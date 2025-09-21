@@ -23,8 +23,7 @@ export function Header() {
                         alt="Diplomatic Duty Free Services New Zealand"
                     />
                 </Link>
-                <div className="flex items-center gap-4">
-                    <Menu className="sm:hidden" />
+                <div className="flex items-center gap-2 sm:gap-4">
                     <NavigationMenu
                         className="hidden sm:flex"
                         delayDuration={0}
@@ -67,7 +66,10 @@ export function Header() {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
-                    <Button disabled>Cart</Button>
+                    <Button>Cart</Button>
+                    <Button size="icon" variant="ghost" className="sm:hidden">
+                        <Menu />
+                    </Button>
                 </div>
             </div>
         </header>
