@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         "Exclusive duty free shopping for diplomats in New Zealand. Discover premium products, seamless service, and secure access tailored for diplomatic personnel.",
 };
 
-export default function RootLayout({
+export default function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode;
