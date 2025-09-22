@@ -38,6 +38,7 @@ const eslintConfig = [
                     },
                 },
             ],
+            "no-use-before-define": "error",
         },
     },
 ];

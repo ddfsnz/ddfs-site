@@ -41,6 +41,9 @@ export function Header() {
                                         <Link href="/beers">Beers</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
+                                        <Link href="/ciders">Ciders</Link>
+                                    </NavigationMenuLink>
+                                    <NavigationMenuLink asChild>
                                         <Link href="/spirits">Spirits</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
