@@ -22,16 +22,18 @@ interface ProductBase {
 
 export interface Beer extends ProductBase {
     beerOptions: {
-        abv: number;
+        abv?: number;
         container: string;
         quantity: number[];
         size: {
             unit: string;
             value: number;
         };
-        style: {
+        // TODO: mixed style
+        style?: {
             _ref: string;
             _type: "reference";
+            name: string;
         };
     };
 }

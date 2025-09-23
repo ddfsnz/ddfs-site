@@ -29,7 +29,13 @@ export function ProductTile({ product }: { product: Product }) {
                         </span>
                     </div>
                     <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        {product.beerOptions.abv}% ABV
+                        {product.beerOptions.abv
+                            ? `${product.beerOptions.abv}%`
+                            : "Mixed"}{" "}
+                        ABV
+                    </div>
+                    <div className="flex flex-wrap gap-1 text-xs text-gray-500">
+                        {product.beerOptions.style?.name}
                     </div>
                 </>
             )}

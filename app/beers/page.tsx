@@ -5,8 +5,23 @@ import { Beer } from "@/types/product";
 
 export default async function Page() {
     const beers = await sanity.fetch<Beer[]>(
-        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}"]`,
+        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}"]{
+            ...,
+            company->{
+                ...,
+                name
+            },
+            beerOptions {
+                ...,
+                style->{
+                    ...,
+                    name
+                }
+            }
+        }
+        `,
     );
+    console.log(beers);
 
     return (
         <>
