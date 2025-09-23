@@ -1,48 +1,54 @@
+import Link from "next/link";
+import { DisplayPrice } from "@/components/DisplayPrice";
+import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/product";
 
 export function ProductTile({ product }: { product: Product }) {
     return (
-        <div className="grid grid-cols-1 gap-2 rounded-md border border-gray-100 bg-gray-50 p-2">
-            <div className="aspect-square rounded-s bg-white"></div>
-            <h3 className="line-clamp-2 text-sm font-semibold">
+        <Link
+            href="/"
+            className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 transition-colors hover:text-gray-600"
+        >
+            <div className="aspect-square rounded-sm bg-white"></div>
+            <h3 className="mt-2 line-clamp-2 min-h-10 text-sm leading-tight font-medium">
                 {product.name}
             </h3>
             {"beerOptions" in product && (
                 <>
                     <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        <span>
+                        <Badge
+                            variant="outline"
+                            className="border-amber-200 bg-white text-amber-500"
+                        >
+                            {product.beerOptions.style?.name}
+                        </Badge>
+                        <Badge variant="outline" className="text-gray-500">
                             {product.beerOptions.size.value}
-                            {product.beerOptions.size.unit}
-                        </span>
-                        <span>{product.beerOptions.container}</span>
+                            {product.beerOptions.size.unit}{" "}
+                            {product.beerOptions.container}
+                        </Badge>
+                        {product.beerOptions.abv && (
+                            <Badge variant="outline" className="text-gray-500">
+                                {product.beerOptions.abv}% ABV
+                            </Badge>
+                        )}
                     </div>
                     <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        <span>
-                            {product.beerOptions.quantity.length === 1
-                                ? "Quantity:"
-                                : "Quantities:"}
-                        </span>
-                        <span>
-                            {product.beerOptions.quantity
-                                .map((q) => q)
-                                .join(", ")}
-                        </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        {product.beerOptions.abv
-                            ? `${product.beerOptions.abv}%`
-                            : "Mixed"}{" "}
-                        ABV
-                    </div>
-                    <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        {product.beerOptions.style?.name}
+                        {product.beerOptions.quantity.map((o, i) => (
+                            <span key={o}>
+                                {o} Pack
+                                {i !==
+                                    product.beerOptions.quantity.length - 1 &&
+                                    ","}
+                            </span>
+                        ))}
                     </div>
                 </>
             )}
-            <span className="font-bold text-red-700">
-                ${product.price}
-                <span className="ml-1 text-xs font-semibold">+GST</span>
+            <span className="font-display mt-auto text-lg font-bold text-red-700">
+                <DisplayPrice price={product.price} />{" "}
+                <span className="text-xs font-semibold">+GST</span>
             </span>
-        </div>
+        </Link>
     );
 }
