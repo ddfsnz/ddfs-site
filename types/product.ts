@@ -1,4 +1,4 @@
-export interface Product {
+interface ProductBase {
     _createdAt: string;
     _id: string;
     _originalId: string;
@@ -20,7 +20,7 @@ export interface Product {
     stock: number;
 }
 
-export interface Beer extends Product {
+export interface Beer extends ProductBase {
     beerOptions: {
         abv: number;
         container: string;
@@ -36,7 +36,7 @@ export interface Beer extends Product {
     };
 }
 
-export interface Cider extends Product {
+export interface Cider extends ProductBase {
     ciderOptions: {
         abv: number;
         container: string;
@@ -52,7 +52,7 @@ export interface Cider extends Product {
     };
 }
 
-export interface Honey extends Product {
+export interface Honey extends ProductBase {
     honeyOptions:
         | {
               quantity: number[];
@@ -86,7 +86,7 @@ export interface Honey extends Product {
           };
 }
 
-export interface Liquer extends Product {
+export interface Liquer extends ProductBase {
     liquerOptions: {
         abv: number;
         isTravelExclusive?: boolean;
@@ -101,7 +101,7 @@ export interface Liquer extends Product {
     };
 }
 
-export interface Port extends Product {
+export interface Port extends ProductBase {
     portOptions: {
         abv: number;
         size: {
@@ -115,7 +115,7 @@ export interface Port extends Product {
     };
 }
 
-export interface Spirit extends Product {
+export interface Spirit extends ProductBase {
     spiritOptions: {
         abv: number;
         age?: number;
@@ -131,7 +131,7 @@ export interface Spirit extends Product {
     };
 }
 
-export interface Tobacco extends Product {
+export interface Tobacco extends ProductBase {
     tobaccoOptions:
         | {
               quantity: number[];
@@ -152,7 +152,7 @@ export interface Tobacco extends Product {
           };
 }
 
-export interface Wine extends Product {
+export interface Wine extends ProductBase {
     wineOptions: {
         abv: number;
         region: string;
@@ -168,3 +168,13 @@ export interface Wine extends Product {
         year?: number;
     };
 }
+
+export type Product =
+    | Beer
+    | Cider
+    | Honey
+    | Liquer
+    | Port
+    | Spirit
+    | Tobacco
+    | Wine;
