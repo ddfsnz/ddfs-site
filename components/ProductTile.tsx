@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { Beer, Cider, Honey, Liquer, Product } from "@/types/product";
+import { Beer, Cider, Honey, Liquer, Port, Product } from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
     return (
@@ -107,6 +107,27 @@ function LiquerBadges({
             <Badge variant="outline" className="text-gray-500">
                 {liquerOptions.abv}% ABV
             </Badge>
+            {liquerOptions.isTravelExclusive && (
+                <Badge variant="outline" className="text-gray-500">
+                    Travel Exclusive
+                </Badge>
+            )}
+        </div>
+    );
+}
+
+function PortBadges({ portOptions }: { portOptions: Port["portOptions"] }) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge
+                variant="outline"
+                className="border-red-200 bg-white text-red-700"
+            >
+                {portOptions.style.name}
+            </Badge>
+            <Badge variant="outline" className="text-gray-500">
+                {portOptions.abv}% ABV
+            </Badge>
         </div>
     );
 }
@@ -173,6 +194,15 @@ export function ProductTile({ product }: { product: Product }) {
                     <span className="text-xs text-gray-500">
                         {product.liquerOptions.size.value}
                         {product.liquerOptions.size.unit}
+                    </span>
+                </>
+            )}
+            {"portOptions" in product && (
+                <>
+                    <PortBadges portOptions={product.portOptions} />
+                    <span className="text-xs text-gray-500">
+                        {product.portOptions.size.value}
+                        {product.portOptions.size.unit}
                     </span>
                 </>
             )}

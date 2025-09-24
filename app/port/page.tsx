@@ -5,7 +5,20 @@ import { Port } from "@/types/product";
 
 export default async function Page() {
     const ports = await sanity.fetch<Port[]>(
-        `*[_type == "product" && category._ref == "${PORTS_CATEGORY_ID}"]`,
+        `*[_type == "product" && category._ref == "${PORTS_CATEGORY_ID}"]{
+            ...,
+            company->{
+                ...,
+                name
+            },
+            portOptions {
+                ...,
+                style->{
+                    ...,
+                    name
+                }
+            }
+        }`,
     );
 
     return (
