@@ -173,6 +173,7 @@ export interface Wine extends ProductBase {
         style: {
             _ref: string;
             _type: "reference";
+            name: string;
         };
         wineType: string;
         year?: number;

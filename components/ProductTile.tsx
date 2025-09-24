@@ -12,6 +12,7 @@ import {
     Product,
     Spirit,
     Tobacco,
+    Wine,
 } from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
@@ -187,6 +188,35 @@ function TobaccoBadges({
     );
 }
 
+function WineBadges({ wineOptions }: { wineOptions: Wine["wineOptions"] }) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge
+                variant="outline"
+                className={cn(
+                    "bg-white",
+                    wineOptions.wineType === "Red"
+                        ? "border-rose-200 text-rose-800"
+                        : "border-yellow-200 text-yellow-500",
+                )}
+            >
+                {wineOptions.style.name}
+            </Badge>
+            <Badge variant="outline" className="text-gray-500">
+                {wineOptions.region}
+            </Badge>
+            {wineOptions.year && (
+                <Badge variant="outline" className="text-gray-500">
+                    {wineOptions.year}
+                </Badge>
+            )}
+            <Badge variant="outline" className="text-gray-500">
+                {wineOptions.abv}% ABV
+            </Badge>
+        </div>
+    );
+}
+
 export function ProductTile({ product }: { product: Product }) {
     return (
         <Link
@@ -284,6 +314,15 @@ export function ProductTile({ product }: { product: Product }) {
                             {product.tobaccoOptions.size.unit}
                         </span>
                     )}
+                </>
+            )}
+            {"wineOptions" in product && (
+                <>
+                    <WineBadges wineOptions={product.wineOptions} />
+                    <span className="text-xs text-gray-500">
+                        {product.wineOptions.size.value}
+                        {product.wineOptions.size.unit}
+                    </span>
                 </>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">
