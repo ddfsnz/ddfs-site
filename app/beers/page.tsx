@@ -18,8 +18,7 @@ export default async function Page() {
                     name
                 }
             }
-        }
-        `,
+        }`,
     );
 
     return (

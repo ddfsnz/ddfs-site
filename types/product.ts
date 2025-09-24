@@ -29,8 +29,7 @@ export interface Beer extends ProductBase {
             unit: string;
             value: number;
         };
-        // TODO: mixed style
-        style?: {
+        style: {
             _ref: string;
             _type: "reference";
             name: string;
@@ -62,6 +61,7 @@ export interface Honey extends ProductBase {
               style: {
                   _ref: string;
                   _type: "reference";
+                  name: string;
               };
           }
         | {
@@ -72,6 +72,7 @@ export interface Honey extends ProductBase {
               style: {
                   _ref: string;
                   _type: "reference";
+                  name: string;
               };
           }
         | {
@@ -84,6 +85,7 @@ export interface Honey extends ProductBase {
               style: {
                   _ref: string;
                   _type: "reference";
+                  name: string;
               };
               umf: number;
           };

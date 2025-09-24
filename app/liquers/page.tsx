@@ -5,7 +5,20 @@ import { Liquer } from "@/types/product";
 
 export default async function Page() {
     const liquers = await sanity.fetch<Liquer[]>(
-        `*[_type == "product" && category._ref == "${LIQUERS_CATEGORY_ID}"]`,
+        `*[_type == "product" && category._ref == "${LIQUERS_CATEGORY_ID}"]{
+            ...,
+            company->{
+                ...,
+                name
+            },
+            liquerOptions {
+                ...,
+                style->{
+                    ...,
+                    name
+                }
+            }
+        }`,
     );
 
     return (

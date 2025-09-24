@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
-import { Beer, Cider, Product } from "@/types/product";
+import { cn } from "@/lib/utils";
+import { Beer, Cider, Honey, Product } from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
     return (
@@ -10,7 +11,7 @@ function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
                 variant="outline"
                 className="border-amber-200 bg-white text-amber-500"
             >
-                {beerOptions.style?.name}
+                {beerOptions.style.name}
             </Badge>
             <Badge variant="outline" className="text-gray-500">
                 {beerOptions.size.value}
@@ -36,7 +37,7 @@ function CiderBadges({
                 variant="outline"
                 className="border-amber-200 bg-white text-amber-500"
             >
-                {ciderOptions.style?.name}
+                {ciderOptions.style.name}
             </Badge>
             <Badge variant="outline" className="text-gray-500">
                 {ciderOptions.size.value}
@@ -45,6 +46,45 @@ function CiderBadges({
             {ciderOptions.abv && (
                 <Badge variant="outline" className="text-gray-500">
                     {ciderOptions.abv}% ABV
+                </Badge>
+            )}
+        </div>
+    );
+}
+
+function HoneyBadges({
+    honeyOptions,
+}: {
+    honeyOptions: Honey["honeyOptions"];
+}) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge
+                variant="outline"
+                className="border-yellow-200 bg-white text-yellow-500"
+            >
+                {honeyOptions.style.name}
+            </Badge>
+            {"range" in honeyOptions && (
+                <Badge
+                    variant="outline"
+                    className={cn(
+                        honeyOptions.range === "Special"
+                            ? "border-blue-200 text-blue-500"
+                            : "text-gray-500",
+                    )}
+                >
+                    {honeyOptions.range}
+                </Badge>
+            )}
+            {"mgo" in honeyOptions && (
+                <Badge variant="outline" className="text-gray-500">
+                    {honeyOptions.mgo} MGO
+                </Badge>
+            )}
+            {"umf" in honeyOptions && (
+                <Badge variant="outline" className="text-gray-500">
+                    {honeyOptions.umf}+ UMF
                 </Badge>
             )}
         </div>
@@ -89,6 +129,22 @@ export function ProductTile({ product }: { product: Product }) {
                             </span>
                         ))}
                     </div>
+                </>
+            )}
+            {"honeyOptions" in product && (
+                <>
+                    <HoneyBadges honeyOptions={product.honeyOptions} />
+                    {"quantity" in product.honeyOptions && (
+                        <span className="text-xs text-gray-500">
+                            {product.honeyOptions.quantity} capsules
+                        </span>
+                    )}
+                    {"size" in product.honeyOptions && (
+                        <span className="text-xs text-gray-500">
+                            {product.honeyOptions.size.value}
+                            {product.honeyOptions.size.unit}
+                        </span>
+                    )}
                 </>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">
