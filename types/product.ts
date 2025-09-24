@@ -102,6 +102,7 @@ export interface Liquer extends ProductBase {
         style: {
             _ref: string;
             _type: "reference";
+            name: string;
         };
     };
 }

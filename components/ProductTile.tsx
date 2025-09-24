@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { Beer, Cider, Honey, Product } from "@/types/product";
+import { Beer, Cider, Honey, Liquer, Product } from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
     return (
@@ -91,6 +91,26 @@ function HoneyBadges({
     );
 }
 
+function LiquerBadges({
+    liquerOptions,
+}: {
+    liquerOptions: Liquer["liquerOptions"];
+}) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge
+                variant="outline"
+                className="border-green-200 bg-white text-green-500"
+            >
+                {liquerOptions.style.name}
+            </Badge>
+            <Badge variant="outline" className="text-gray-500">
+                {liquerOptions.abv}% ABV
+            </Badge>
+        </div>
+    );
+}
+
 export function ProductTile({ product }: { product: Product }) {
     return (
         <Link
@@ -145,6 +165,15 @@ export function ProductTile({ product }: { product: Product }) {
                             {product.honeyOptions.size.unit}
                         </span>
                     )}
+                </>
+            )}
+            {"liquerOptions" in product && (
+                <>
+                    <LiquerBadges liquerOptions={product.liquerOptions} />
+                    <span className="text-xs text-gray-500">
+                        {product.liquerOptions.size.value}
+                        {product.liquerOptions.size.unit}
+                    </span>
                 </>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">
