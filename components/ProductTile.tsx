@@ -11,6 +11,7 @@ import {
     Port,
     Product,
     Spirit,
+    Tobacco,
 } from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
@@ -172,6 +173,20 @@ function SpiritBadges({
     );
 }
 
+function TobaccoBadges({
+    tobaccoOptions,
+}: {
+    tobaccoOptions: Tobacco["tobaccoOptions"];
+}) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge variant="outline" className="bg-white">
+                {tobaccoOptions.style.name}
+            </Badge>
+        </div>
+    );
+}
+
 export function ProductTile({ product }: { product: Product }) {
     return (
         <Link
@@ -253,6 +268,22 @@ export function ProductTile({ product }: { product: Product }) {
                         {product.spiritOptions.size.value}
                         {product.spiritOptions.size.unit}
                     </span>
+                </>
+            )}
+            {"tobaccoOptions" in product && (
+                <>
+                    <TobaccoBadges tobaccoOptions={product.tobaccoOptions} />
+                    {"quantity" in product.tobaccoOptions && (
+                        <span className="text-xs text-gray-500">
+                            {product.tobaccoOptions.quantity} per pack
+                        </span>
+                    )}
+                    {"size" in product.tobaccoOptions && (
+                        <span className="text-xs text-gray-500">
+                            {product.tobaccoOptions.size.value}
+                            {product.tobaccoOptions.size.unit}
+                        </span>
+                    )}
                 </>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">

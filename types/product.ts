@@ -146,6 +146,7 @@ export interface Tobacco extends ProductBase {
               style: {
                   _ref: string;
                   _type: "reference";
+                  name: string;
               };
           }
         | {
@@ -156,6 +157,7 @@ export interface Tobacco extends ProductBase {
               style: {
                   _ref: string;
                   _type: "reference";
+                  name: string;
               };
           };
 }
