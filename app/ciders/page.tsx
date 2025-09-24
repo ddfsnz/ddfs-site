@@ -5,7 +5,21 @@ import { Cider } from "@/types/product";
 
 export default async function Page() {
     const ciders = await sanity.fetch<Cider[]>(
-        `*[_type == "product" && category._ref == "${CIDERS_CATEGORY_ID}"]`,
+        `*[_type == "product" && category._ref == "${CIDERS_CATEGORY_ID}"]{
+            ...,
+            company->{
+                ...,
+                name
+            },
+            ciderOptions {
+                ...,
+                style->{
+                    ...,
+                    name
+                }
+            }
+        }
+        `,
     );
 
     return (
