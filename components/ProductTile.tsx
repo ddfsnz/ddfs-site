@@ -1,8 +1,17 @@
+import { Plane } from "lucide-react";
 import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { Beer, Cider, Honey, Liquer, Port, Product } from "@/types/product";
+import {
+    Beer,
+    Cider,
+    Honey,
+    Liquer,
+    Port,
+    Product,
+    Spirit,
+} from "@/types/product";
 
 function BeerBadges({ beerOptions }: { beerOptions: Beer["beerOptions"] }) {
     return (
@@ -132,6 +141,37 @@ function PortBadges({ portOptions }: { portOptions: Port["portOptions"] }) {
     );
 }
 
+function SpiritBadges({
+    spiritOptions,
+}: {
+    spiritOptions: Spirit["spiritOptions"];
+}) {
+    return (
+        <div className="flex flex-wrap gap-1">
+            <Badge
+                variant="outline"
+                className="border-yellow-200 bg-white text-yellow-500"
+            >
+                {spiritOptions.style.name}
+            </Badge>
+            <Badge variant="outline" className="text-gray-500">
+                {spiritOptions.abv}% ABV
+            </Badge>
+            {spiritOptions.age && (
+                <Badge variant="outline" className="text-gray-500">
+                    {spiritOptions.age} YO
+                </Badge>
+            )}
+            {spiritOptions.isExportExclusive && (
+                <Badge variant="outline" className="text-gray-500">
+                    <Plane />
+                    Export Exclusive
+                </Badge>
+            )}
+        </div>
+    );
+}
+
 export function ProductTile({ product }: { product: Product }) {
     return (
         <Link
@@ -203,6 +243,15 @@ export function ProductTile({ product }: { product: Product }) {
                     <span className="text-xs text-gray-500">
                         {product.portOptions.size.value}
                         {product.portOptions.size.unit}
+                    </span>
+                </>
+            )}
+            {"spiritOptions" in product && (
+                <>
+                    <SpiritBadges spiritOptions={product.spiritOptions} />
+                    <span className="text-xs text-gray-500">
+                        {product.spiritOptions.size.value}
+                        {product.spiritOptions.size.unit}
                     </span>
                 </>
             )}
