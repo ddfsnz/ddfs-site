@@ -1,4 +1,4 @@
-import { Check, Home, ShoppingCart } from "lucide-react";
+import { Check, Home, Info, ShoppingCart } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BeerBadges } from "@/components/BeerBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
@@ -87,14 +87,19 @@ export default async function Page({ params }: { params: { id: string } }) {
                     </div>
                     <div className="grid grid-cols-2 items-end gap-3">
                         <div className="grid gap-1">
-                            <label className="text-xs font-light text-gray-500">
-                                Quantity
+                            <label className="flex justify-between text-xs text-gray-500">
+                                <span>Quantity</span>
+                                <span className="flex items-center gap-1 font-light text-gray-400">
+                                    {beer.stock} in stock{" "}
+                                    <Info className="size-3" />
+                                </span>
                             </label>
                             <Input
                                 type="number"
                                 defaultValue={beer.quantity[0]}
                                 min={1}
                                 max={beer.quantity[beer.quantity.length - 1]}
+                                className="text-center"
                             />
                         </div>
                         <Button>
