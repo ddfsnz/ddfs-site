@@ -2,6 +2,16 @@ import { Plane } from "lucide-react";
 import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
+import {
+    BEERS_CATEGORY_ID,
+    CIDERS_CATEGORY_ID,
+    HONEY_CATEGORY_ID,
+    LIQUERS_CATEGORY_ID,
+    PORTS_CATEGORY_ID,
+    SPIRITS_CATEGORY_ID,
+    TOBACCO_CATEGORY_ID,
+    WINES_CATEGORY_ID,
+} from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 import {
     Beer,
@@ -218,9 +228,37 @@ function WineBadges({ wineOptions }: { wineOptions: Wine["wineOptions"] }) {
 }
 
 export function ProductTile({ product }: { product: Product }) {
+    let productLink = "/";
+    switch (product.category._ref) {
+        case BEERS_CATEGORY_ID:
+            productLink = `/beers/${product._id}`;
+            break;
+        case CIDERS_CATEGORY_ID:
+            productLink = `/ciders/${product._id}`;
+            break;
+        case HONEY_CATEGORY_ID:
+            productLink = `/honey/${product._id}`;
+            break;
+        case LIQUERS_CATEGORY_ID:
+            productLink = `/liquers/${product._id}`;
+            break;
+        case PORTS_CATEGORY_ID:
+            productLink = `/port/${product._id}`;
+            break;
+        case SPIRITS_CATEGORY_ID:
+            productLink = `/spirits/${product._id}`;
+            break;
+        case TOBACCO_CATEGORY_ID:
+            productLink = `/tobacco/${product._id}`;
+            break;
+        case WINES_CATEGORY_ID:
+            productLink = `/wines/${product._id}`;
+            break;
+    }
+
     return (
         <Link
-            href="/"
+            href={productLink}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 transition-colors hover:text-gray-600"
         >
             <div className="aspect-square rounded-sm bg-white"></div>
