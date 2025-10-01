@@ -12,7 +12,7 @@ export const sanity = createClient({
 });
 
 const builder = imageUrlBuilder(sanity);
-export function urlFor(source: SanityImageSource) {
+export function getImageSrc(source: SanityImageSource) {
     try {
         return builder.image(source).url();
     } catch {

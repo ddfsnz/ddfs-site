@@ -1,10 +1,12 @@
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import { getImageSrc } from "@/lib/sanity";
 import { Product } from "@/types/product";
 
 export function ProductImage({ product }: { product: Product }) {
-    const imageSrc = product.images ? urlFor(product.images[0]) : undefined;
+    const imageSrc = product.images
+        ? getImageSrc(product.images[0])
+        : undefined;
 
     return (
         <div className="flex aspect-square items-center justify-center overflow-hidden rounded-sm bg-white">
