@@ -1,6 +1,7 @@
 import { Home } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BeerBadges } from "@/components/BeerBadges";
+import { DisplayPrice } from "@/components/DisplayPrice";
 import { ProductImage } from "@/components/ProductImage";
 import {
     Breadcrumb,
@@ -9,6 +10,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import { sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
@@ -55,11 +57,18 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <div className="overflow-hidden rounded-lg border">
                     <ProductImage product={beer} />
                 </div>
-                <div className="grid h-min gap-3 md:mt-3 lg:mt-6">
-                    <h1 className="font-display text-3xl font-bold md:mt-6">
+                <div className="grid h-min gap-3 md:mt-3 lg:mt-6 lg:pr-3">
+                    <h1 className="font-display text-3xl font-bold">
                         {beer.name}
                     </h1>
                     <BeerBadges beerOptions={beer.beerOptions} />
+                    <div className="grid grid-cols-2">
+                        <span className="font-display mt-auto text-2xl font-bold text-red-700">
+                            <DisplayPrice price={beer.price} />{" "}
+                            <span className="text-xs font-semibold">+GST</span>
+                        </span>
+                        <Button>Add to Cart</Button>
+                    </div>
                 </div>
             </div>
         </>
