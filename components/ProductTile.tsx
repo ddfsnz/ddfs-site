@@ -1,4 +1,5 @@
-import { Plane } from "lucide-react";
+import { ImageOff, Plane } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +11,7 @@ import {
     PORTS_CATEGORY_ID,
     SPIRITS_CATEGORY_ID,
     TOBACCO_CATEGORY_ID,
+    urlFor,
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
@@ -256,12 +258,27 @@ export function ProductTile({ product }: { product: Product }) {
             break;
     }
 
+    const imageSrc = product.images ? urlFor(product.images[0]) : undefined;
+
     return (
         <Link
             href={productLink}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 transition-colors hover:text-gray-600"
         >
-            <div className="aspect-square rounded-sm bg-white"></div>
+            <div className="flex aspect-square items-center justify-center overflow-hidden rounded-sm bg-white">
+                {imageSrc ? (
+                    <div className="relative h-full max-h-10/12 w-full max-w-10/12">
+                        <Image
+                            src={imageSrc}
+                            alt={product.name}
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                ) : (
+                    <ImageOff className="text-gray-300" />
+                )}
+            </div>
             <h3 className="mt-2 line-clamp-2 min-h-10 text-sm leading-tight font-medium">
                 {product.name}
             </h3>

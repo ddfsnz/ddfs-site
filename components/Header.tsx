@@ -13,7 +13,7 @@ import {
 
 export function Header() {
     return (
-        <header className="bg-background fixed top-0 w-full border-b p-2 sm:p-3">
+        <header className="bg-background fixed top-0 z-50 w-full border-b p-2 sm:p-3">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
                 <Link href="/" className="relative h-auto w-24">
                     <Image

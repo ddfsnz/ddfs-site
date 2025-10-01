@@ -14,6 +14,12 @@ interface ProductBase {
         _ref: string;
         _type: "reference";
     };
+    images?: {
+        asset: {
+            _id: string;
+            url: string;
+        };
+    }[];
     name: string;
     price: number;
     quantity: number[];
