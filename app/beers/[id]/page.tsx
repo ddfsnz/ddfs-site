@@ -35,7 +35,7 @@ export default async function Page({
 
     return (
         <>
-            <div className="mt-24 grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
                 <div className="overflow-hidden rounded-lg border">
                     <ProductImage product={beer} />
                 </div>

@@ -35,7 +35,7 @@ export default function Layout({
                 className={`${urbanist.variable} ${inter.variable} ${geistMono.variable} font-sans text-gray-800 antialiased`}
             >
                 <Header />
-                <div className="px-2 sm:px-3">
+                <div className="mt-24 px-2 sm:mt-32 sm:px-3">
                     <div className="mx-auto max-w-7xl">{children}</div>
                 </div>
             </body>
