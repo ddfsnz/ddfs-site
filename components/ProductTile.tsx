@@ -279,7 +279,7 @@ export function ProductTile({ product }: { product: Product }) {
                     <ImageOff className="text-gray-300" />
                 )}
             </div>
-            <h3 className="mt-2 line-clamp-2 min-h-10 text-sm leading-tight font-medium">
+            <h3 className="mt-2 line-clamp-2 min-h-[calc((0.875rem*1.25)*2)] text-sm leading-tight font-medium">
                 {product.name}
             </h3>
             {"beerOptions" in product && (
