@@ -1,7 +1,7 @@
-import { ImageOff, Plane } from "lucide-react";
-import Image from "next/image";
+import { Plane } from "lucide-react";
 import Link from "next/link";
 import { DisplayPrice } from "@/components/DisplayPrice";
+import { ProductImage } from "@/components/ProductImage";
 import { Badge } from "@/components/ui/badge";
 import {
     BEERS_CATEGORY_ID,
@@ -11,7 +11,6 @@ import {
     PORTS_CATEGORY_ID,
     SPIRITS_CATEGORY_ID,
     TOBACCO_CATEGORY_ID,
-    urlFor,
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
@@ -258,27 +257,12 @@ export function ProductGridTile({ product }: { product: Product }) {
             break;
     }
 
-    const imageSrc = product.images ? urlFor(product.images[0]) : undefined;
-
     return (
         <Link
             href={productLink}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 transition-colors hover:text-gray-600"
         >
-            <div className="flex aspect-square items-center justify-center overflow-hidden rounded-sm bg-white">
-                {imageSrc ? (
-                    <div className="relative h-full max-h-10/12 w-full max-w-10/12">
-                        <Image
-                            src={imageSrc}
-                            alt={product.name}
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                ) : (
-                    <ImageOff className="text-gray-300" />
-                )}
-            </div>
+            <ProductImage product={product} />
             <h3 className="mt-2 line-clamp-2 min-h-[calc((0.875rem*1.25)*2)] text-sm leading-tight font-medium">
                 {product.name}
             </h3>
