@@ -1,4 +1,4 @@
-import { ImageOff } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import { Product } from "@/types/product";
@@ -19,7 +19,7 @@ export function ProductImage({ product }: { product: Product }) {
                     />
                 </div>
             ) : (
-                <ImageOff className="text-gray-300" />
+                <ImageIcon className="size-8 text-gray-300" />
             )}
         </div>
     );
