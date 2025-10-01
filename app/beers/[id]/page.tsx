@@ -11,6 +11,7 @@ export default async function Page({
         id: string;
     };
 }) {
+    const { id } = await params;
     const beer = await sanity.fetch<Beer | undefined>(
         `*[_type == "product" && _id == $id][0]{
             ...,
@@ -26,7 +27,7 @@ export default async function Page({
                 }
             }
         }`,
-        { id: params.id },
+        { id: id },
     );
 
     if (!beer) {
