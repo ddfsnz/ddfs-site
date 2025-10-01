@@ -13,6 +13,7 @@ interface ProductBase {
     company: {
         _ref: string;
         _type: "reference";
+        name: string;
     };
     images?: {
         asset: {

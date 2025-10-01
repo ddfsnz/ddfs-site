@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, ShoppingCart } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BeerBadges } from "@/components/BeerBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
@@ -61,13 +61,16 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <h1 className="font-display text-3xl font-bold">
                         {beer.name}
                     </h1>
+                    <span className="text-gray-500">{beer.company.name}</span>
                     <BeerBadges beerOptions={beer.beerOptions} />
                     <div className="grid grid-cols-2">
                         <span className="font-display mt-auto text-2xl font-bold text-red-700">
                             <DisplayPrice price={beer.price} />{" "}
                             <span className="text-xs font-semibold">+GST</span>
                         </span>
-                        <Button>Add to Cart</Button>
+                        <Button>
+                            Add to Cart <ShoppingCart />
+                        </Button>
                     </div>
                 </div>
             </div>

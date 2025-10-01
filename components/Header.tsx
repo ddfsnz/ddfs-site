@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -69,7 +69,9 @@ export function Header() {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
-                    <Button>Cart</Button>
+                    <Button>
+                        Cart <ShoppingCart />
+                    </Button>
                     <Button size="icon" variant="ghost" className="sm:hidden">
                         <Menu />
                     </Button>
