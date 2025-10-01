@@ -4,13 +4,7 @@ import { ProductImage } from "@/components/ProductImage";
 import { sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
-export default async function Page({
-    params,
-}: {
-    params: {
-        id: string;
-    };
-}) {
+export default async function Page({ params }: { params: { id: string } }) {
     const { id } = await params;
     const beer = await sanity.fetch<Beer | undefined>(
         `*[_type == "product" && _id == $id][0]{
