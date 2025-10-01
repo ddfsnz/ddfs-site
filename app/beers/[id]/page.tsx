@@ -1,6 +1,14 @@
+import { Home } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BeerBadges } from "@/components/BeerBadges";
 import { ProductImage } from "@/components/ProductImage";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
@@ -30,6 +38,19 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     return (
         <>
+            <Breadcrumb className="mb-6">
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="/">
+                            <Home className="size-4" />
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="/beers">Beers</BreadcrumbLink>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
                 <div className="overflow-hidden rounded-lg border">
                     <ProductImage product={beer} />
