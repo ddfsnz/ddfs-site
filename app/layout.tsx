@@ -32,7 +32,7 @@ export default function Layout({
     return (
         <html lang="en">
             <body
-                className={`${urbanist.variable} ${inter.variable} ${geistMono.variable} font-sans antialiased`}
+                className={`${urbanist.variable} ${inter.variable} ${geistMono.variable} font-sans text-gray-800 antialiased`}
             >
                 <Header />
                 <div className="px-2 sm:px-3">
