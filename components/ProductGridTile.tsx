@@ -229,7 +229,7 @@ function WineBadges({ wineOptions }: { wineOptions: Wine["wineOptions"] }) {
     );
 }
 
-export function ProductTile({ product }: { product: Product }) {
+export function ProductGridTile({ product }: { product: Product }) {
     let productLink = "/";
     switch (product.category._ref) {
         case BEERS_CATEGORY_ID:
