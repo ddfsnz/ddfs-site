@@ -4,6 +4,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { SearchInput } from "@/components/SearchInput";
 import { SortOrder } from "@/components/SortOrder";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
+import { Company, Style } from "@/types/metadata";
 import { Beer } from "@/types/product";
 
 export default async function Page({
@@ -54,11 +55,11 @@ export default async function Page({
         }`,
     );
 
-    const companies = await sanity.fetch(
+    const companies = await sanity.fetch<Company[]>(
         `*[_type == "company" && category._ref == "${BEERS_CATEGORY_ID}"] | order(name asc)`,
     );
 
-    const styles = await sanity.fetch(
+    const styles = await sanity.fetch<Style[]>(
         `*[_type == "tag" && type == "style" && category._ref == "${BEERS_CATEGORY_ID}"] | order(name asc)`,
     );
 
