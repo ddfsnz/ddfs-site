@@ -96,7 +96,7 @@ export default async function Page({
         <>
             <CatalogHeader heading="Beers" />
             <div className="grid grid-cols-1 md:grid-cols-[240px_auto]">
-                <div className="hidden border-r p-3 pl-0 md:block">
+                <div className="hidden border-r p-3 pt-6 pl-0 md:block">
                     <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
                         <SearchInput
                             label="Search"
