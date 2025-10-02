@@ -18,27 +18,25 @@ export default async function Page({
         container?: string;
     };
 }) {
-    const sortOrder = (await searchParams).sort || "name asc";
-    const search = (await searchParams).search || "";
-    const company = (await searchParams).company || "";
-    const style = (await searchParams).style || "";
-    const size = (await searchParams).size || "";
-    const container = (await searchParams).container || "";
-    let searchFilter = search
-        ? `&& (name match "${search}*" || company->name match "${search}*")`
+    const filters = await searchParams;
+    let searchFilter = filters.search
+        ? `&& (name match "${filters.search}*" || company->name match "${filters.search}*")`
         : "";
-    if (company) {
-        searchFilter += ` && company._ref == "${company}"`;
+    if (filters.company) {
+        searchFilter += ` && company._ref == "${filters.company}"`;
     }
-    if (style) {
-        searchFilter += ` && beerOptions.style._ref == "${style}"`;
+    if (filters.style) {
+        searchFilter += ` && beerOptions.style._ref == "${filters.style}"`;
     }
-    if (size) {
-        searchFilter += ` && beerOptions.size.value == ${size}`;
+    if (filters.size) {
+        searchFilter += ` && beerOptions.size.value == ${filters.size}`;
     }
-    if (container) {
-        searchFilter += ` && beerOptions.container == "${container}"`;
+    if (filters.container) {
+        searchFilter += ` && beerOptions.container == "${filters.container}"`;
     }
+
+    const sortOrder = (await searchParams).sort || "name asc";
+
     const beers = await sanity.fetch<Beer[]>(
         `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
             ...,
@@ -55,12 +53,15 @@ export default async function Page({
             }
         }`,
     );
+
     const companies = await sanity.fetch(
         `*[_type == "company" && category._ref == "${BEERS_CATEGORY_ID}"] | order(name asc)`,
     );
+
     const styles = await sanity.fetch(
         `*[_type == "tag" && type == "style" && category._ref == "${BEERS_CATEGORY_ID}"] | order(name asc)`,
     );
+
     const allBeerSizes = await sanity.fetch<Beer[]>(
         `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}"] {
             beerOptions
@@ -77,6 +78,7 @@ export default async function Page({
             ]),
         ).values(),
     );
+
     const containers = [
         { value: "Cans", label: "Cans" },
         { value: "Bottles", label: "Bottles" },
@@ -88,7 +90,10 @@ export default async function Page({
             <div className="grid grid-cols-1 md:grid-cols-[240px_auto]">
                 <div className="hidden border-r p-3 pl-0 md:block">
                     <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
-                        <SearchInput label="Search" initialValue={search} />
+                        <SearchInput
+                            label="Search"
+                            initialValue={filters.search}
+                        />
                         <FilterInput
                             label="Producers"
                             filterName="company"

@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 
 export function SearchInput({
-    initialValue,
+    initialValue = "",
     label,
 }: {
-    initialValue: string;
+    initialValue?: string;
     label: string;
 }) {
     const router = useRouter();
