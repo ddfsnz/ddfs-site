@@ -30,7 +30,10 @@ export default async function Page({
     return (
         <>
             <CatalogHeader heading="Beers" />
-            <div className="flex justify-end border-b bg-gray-50 p-1">
+            <div className="flex items-center justify-between border-b bg-gray-50 p-1">
+                <span className="text-sm font-medium text-gray-500">
+                    {beers.length} Products
+                </span>
                 <SortOrder />
             </div>
             <ProductGrid products={beers} />
