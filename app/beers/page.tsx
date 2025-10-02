@@ -14,6 +14,7 @@ export default async function Page({
         search?: string;
         company?: string;
         style?: string;
+        size?: string;
         container?: string;
     };
 }) {
@@ -21,6 +22,7 @@ export default async function Page({
     const search = (await searchParams).search || "";
     const company = (await searchParams).company || "";
     const style = (await searchParams).style || "";
+    const size = (await searchParams).size || "";
     const container = (await searchParams).container || "";
     let searchFilter = search
         ? `&& (name match "${search}*" || company->name match "${search}*")`
@@ -30,6 +32,9 @@ export default async function Page({
     }
     if (style) {
         searchFilter += ` && beerOptions.style._ref == "${style}"`;
+    }
+    if (size) {
+        searchFilter += ` && beerOptions.size.value == ${size}`;
     }
     if (container) {
         searchFilter += ` && beerOptions.container == "${container}"`;
@@ -55,6 +60,22 @@ export default async function Page({
     );
     const styles = await sanity.fetch(
         `*[_type == "tag" && type == "style" && category._ref == "${BEERS_CATEGORY_ID}"] | order(name asc)`,
+    );
+    const allBeerSizes = await sanity.fetch<Beer[]>(
+        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}"] {
+            beerOptions
+        }`,
+    );
+    const sizes = Array.from(
+        new Map(
+            allBeerSizes.map((b) => [
+                String(b.beerOptions.size.value),
+                {
+                    value: String(b.beerOptions.size.value),
+                    label: b.beerOptions.size.value + b.beerOptions.size.unit,
+                },
+            ]),
+        ).values(),
     );
     const containers = [
         { value: "Cans", label: "Cans" },
@@ -83,6 +104,11 @@ export default async function Page({
                                 value: s._id,
                                 label: s.name,
                             }))}
+                        />
+                        <FilterInput
+                            label="Sizes"
+                            filterName="size"
+                            filterOptions={sizes}
                         />
                         <FilterInput
                             label="Containers"
