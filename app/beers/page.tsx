@@ -13,7 +13,7 @@ export default async function Page({
     const sortOrder = searchParams.sort || "name asc";
     const search = searchParams.search || "";
     const searchFilter = search
-        ? `&& name match "${search}*" || company->name match "${search}*"`
+        ? `&& (name match "${search}*" || company->name match "${search}*")`
         : "";
     const beers = await sanity.fetch<Beer[]>(
         `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
