@@ -4,7 +4,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 
-export function SearchInput({ initialValue }: { initialValue: string }) {
+export function SearchInput({
+    initialValue,
+    label,
+}: {
+    initialValue: string;
+    label: string;
+}) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [value, setValue] = useState(initialValue);
@@ -15,7 +21,7 @@ export function SearchInput({ initialValue }: { initialValue: string }) {
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setValue(e.target.value);
-        const params = new URLSearchParams(Array.from(searchParams.entries()));
+        const params = new URLSearchParams(searchParams);
         if (e.target.value) {
             params.set("search", e.target.value);
         } else {
@@ -25,6 +31,13 @@ export function SearchInput({ initialValue }: { initialValue: string }) {
     }
 
     return (
-        <Input value={value} onChange={handleChange} placeholder="Search..." />
+        <div className="grid grid-cols-1 gap-1">
+            <label className="text-xs text-gray-500">{label}</label>
+            <Input
+                value={value}
+                onChange={handleChange}
+                placeholder="Search..."
+            />
+        </div>
     );
 }
