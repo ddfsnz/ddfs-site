@@ -1,18 +1,22 @@
 import { CatalogHeader } from "@/components/CatalogHeader";
 import { ProductGrid } from "@/components/ProductGrid";
+import { SearchInput } from "@/components/SearchInput";
 import { SortOrder } from "@/components/SortOrder";
-import { Input } from "@/components/ui/input";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
 export default async function Page({
     searchParams,
 }: {
-    searchParams: { sort?: string };
+    searchParams: { sort?: string; search?: string };
 }) {
     const sortOrder = searchParams.sort || "name asc";
+    const search = searchParams.search || "";
+    const searchFilter = search
+        ? `&& name match "${search}*" || company->name match "${search}*"`
+        : "";
     const beers = await sanity.fetch<Beer[]>(
-        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}"] | order(${sortOrder}) {
+        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
             ...,
             company->{
                 ...,
@@ -32,8 +36,8 @@ export default async function Page({
         <>
             <CatalogHeader heading="Beers" />
             <div className="grid grid-cols-1 md:grid-cols-[240px_auto]">
-                <div className="hidden gap-4 border-r p-3 md:grid">
-                    <Input placeholder="Search..." />
+                <div className="hidden gap-4 border-r p-3 pl-0 md:grid">
+                    <SearchInput initialValue={search} />
                 </div>
                 <div>
                     <div className="flex items-center justify-between border-b bg-gray-50 p-1 pl-4">

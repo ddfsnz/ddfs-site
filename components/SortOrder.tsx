@@ -24,7 +24,11 @@ export function SortOrder() {
 
     function handleChange(value: string) {
         const params = new URLSearchParams(Array.from(searchParams.entries()));
-        params.set("sort", value);
+        if (value === "name asc") {
+            params.delete("sort");
+        } else {
+            params.set("sort", value);
+        }
         router.replace(`?${params.toString()}`);
     }
 
