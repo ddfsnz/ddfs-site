@@ -12,7 +12,6 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
 import { sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
