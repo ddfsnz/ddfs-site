@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Urbanist } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 const urbanist = Urbanist({
@@ -38,6 +39,7 @@ export default function Layout({
                 <div className="mt-22 px-2 sm:mt-24 sm:px-3">
                     <div className="mx-auto max-w-7xl">{children}</div>
                 </div>
+                <Footer />
             </body>
         </html>
     );
