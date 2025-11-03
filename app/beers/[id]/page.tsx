@@ -67,10 +67,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <BeerOptions beer={beer} />
                 </div>
             </div>
-            <div className="mx-auto w-full max-w-3xl">
-                <Separator className="mb-6" />
+            <div className="mx-auto my-12 w-full max-w-3xl">
                 <h2 className="font-display mb-2 text-2xl font-bold">
-                    Product Details
+                    {beer.name}
                 </h2>
                 <ProductDescription description={beer.description} />
             </div>
