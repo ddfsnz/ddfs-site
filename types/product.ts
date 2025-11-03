@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/react";
+
 interface ProductBase {
     _createdAt: string;
     _id: string;
@@ -15,6 +17,7 @@ interface ProductBase {
         _type: "reference";
         name: string;
     };
+    description: PortableTextBlock[];
     images?: {
         asset: {
             _id: string;

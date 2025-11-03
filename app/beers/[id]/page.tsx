@@ -2,6 +2,7 @@ import { Home } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BeerBadges } from "@/components/BeerBadges";
 import { BeerOptions } from "@/components/BeerOptions";
+import { ProductDescription } from "@/components/ProductDescription";
 import { ProductDetails } from "@/components/ProductDetails";
 import { ProductImage } from "@/components/ProductImage";
 import {
@@ -34,6 +35,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         }`,
         { id: id },
     );
+    console.log(beer);
 
     if (!beer) {
         notFound();
@@ -67,10 +69,10 @@ export default async function Page({ params }: { params: { id: string } }) {
             </div>
             <div className="mx-auto w-full max-w-3xl">
                 <Separator className="mb-6" />
-                <h2 className="font-display text-2xl font-bold">
+                <h2 className="font-display mb-2 text-2xl font-bold">
                     Product Details
                 </h2>
-                <p className="text-sm leading-normal">Product description...</p>
+                <ProductDescription description={beer.description} />
             </div>
         </div>
     );
