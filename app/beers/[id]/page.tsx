@@ -103,7 +103,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         See All <ArrowRight className="size-4" />
                     </Link>
                 </div>
-                <ProductGrid products={related} />
+                <ProductGrid products={related} threeCols={false} />
             </div>
         </div>
     );
