@@ -1,15 +1,6 @@
-import { Settings2 } from "lucide-react";
 import { CatalogHeader } from "@/components/CatalogHeader";
 import { FilterInput } from "@/components/FilterInput";
-import { ProductGrid } from "@/components/ProductGrid";
-import { SearchInput } from "@/components/SearchInput";
-import { SortOrder } from "@/components/SortOrder";
-import { Button } from "@/components/ui/button";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
+import { ProductCatalog } from "@/components/ProductCatalog";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Beer } from "@/types/product";
@@ -95,109 +86,38 @@ export default async function Page({
     return (
         <>
             <CatalogHeader heading="Beers" />
-            <div className="grid grid-cols-1 md:grid-cols-[240px_auto]">
-                <div className="hidden border-r p-3 pt-6 pl-0 md:block">
-                    <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
-                        <SearchInput
-                            label="Search"
-                            initialValue={filters.search}
-                        />
-                        <FilterInput
-                            label="Producer"
-                            filterName="company"
-                            filterOptions={companies.map((c) => ({
-                                value: c._id,
-                                label: c.name,
-                            }))}
-                            defaultValue={filters.company}
-                        />
-                        <FilterInput
-                            label="Style"
-                            filterName="style"
-                            filterOptions={styles.map((s) => ({
-                                value: s._id,
-                                label: s.name,
-                            }))}
-                            defaultValue={filters.style}
-                        />
-                        <FilterInput
-                            label="Size"
-                            filterName="size"
-                            filterOptions={sizes}
-                            defaultValue={filters.size}
-                        />
-                        <FilterInput
-                            label="Container"
-                            filterName="container"
-                            filterOptions={containers}
-                            defaultValue={filters.container}
-                        />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex items-center justify-between border-b bg-gray-50 p-1 md:pl-3">
-                        <div className="flex items-center gap-3">
-                            <Popover>
-                                <PopoverTrigger
-                                    className="block md:hidden"
-                                    asChild
-                                >
-                                    <Button size="icon" variant="ghost">
-                                        <Settings2 />
-                                    </Button>
-                                </PopoverTrigger>
-                                <PopoverContent>
-                                    <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
-                                        <SearchInput
-                                            label="Search"
-                                            initialValue={filters.search}
-                                        />
-                                        <FilterInput
-                                            label="Producer"
-                                            filterName="company"
-                                            filterOptions={companies.map(
-                                                (c) => ({
-                                                    value: c._id,
-                                                    label: c.name,
-                                                }),
-                                            )}
-                                            defaultValue={filters.company}
-                                        />
-                                        <FilterInput
-                                            label="Style"
-                                            filterName="style"
-                                            filterOptions={styles.map((s) => ({
-                                                value: s._id,
-                                                label: s.name,
-                                            }))}
-                                            defaultValue={filters.style}
-                                        />
-                                        <FilterInput
-                                            label="Size"
-                                            filterName="size"
-                                            filterOptions={sizes}
-                                            defaultValue={filters.size}
-                                        />
-                                        <FilterInput
-                                            label="Container"
-                                            filterName="container"
-                                            filterOptions={containers}
-                                            defaultValue={filters.container}
-                                        />
-                                    </div>
-                                </PopoverContent>
-                            </Popover>
-                            <span className="text-sm font-medium text-gray-500">
-                                {beers.length} Products
-                            </span>
-                        </div>
-                        <SortOrder />
-                    </div>
-                    <div className="py-2 md:p-2 md:pr-0 lg:p-3 lg:pr-0">
-                        <ProductGrid products={beers} />
-                    </div>
-                </div>
-            </div>
+            <ProductCatalog products={beers} search={filters.search}>
+                <FilterInput
+                    label="Producer"
+                    filterName="company"
+                    filterOptions={companies.map((c) => ({
+                        value: c._id,
+                        label: c.name,
+                    }))}
+                    defaultValue={filters.company}
+                />
+                <FilterInput
+                    label="Style"
+                    filterName="style"
+                    filterOptions={styles.map((s) => ({
+                        value: s._id,
+                        label: s.name,
+                    }))}
+                    defaultValue={filters.style}
+                />
+                <FilterInput
+                    label="Size"
+                    filterName="size"
+                    filterOptions={sizes}
+                    defaultValue={filters.size}
+                />
+                <FilterInput
+                    label="Container"
+                    filterName="container"
+                    filterOptions={containers}
+                    defaultValue={filters.container}
+                />
+            </ProductCatalog>
         </>
     );
 }
