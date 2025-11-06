@@ -13,6 +13,8 @@ export default async function Page({
         search?: string;
         company?: string;
         style?: string;
+        region?: string;
+        year?: string;
     };
 }) {
     const filters = await searchParams;
@@ -24,6 +26,12 @@ export default async function Page({
     }
     if (filters.style) {
         searchFilter += ` && wineOptions.style._ref == "${filters.style}"`;
+    }
+    if (filters.region) {
+        searchFilter += ` && wineOptions.region == "${filters.region}"`;
+    }
+    if (filters.year) {
+        searchFilter += ` && wineOptions.year == ${filters.year}`;
     }
 
     const sortOrder = filters.sort || "name asc";
@@ -53,6 +61,16 @@ export default async function Page({
         `*[_type == "tag" && type == "style" && category._ref == "${WINES_CATEGORY_ID}"] | order(name asc)`,
     );
 
+    const allRegions = await sanity.fetch<string[]>(
+        `*[_type == "product" && category._ref == "${WINES_CATEGORY_ID}"].wineOptions.region`,
+    );
+    const regions = [...new Set(allRegions.filter(Boolean).sort())];
+
+    const allYears = await sanity.fetch<number[]>(
+        `*[_type == "product" && category._ref == "${WINES_CATEGORY_ID}"].wineOptions.year`,
+    );
+    const years = [...new Set(allYears.filter(Boolean).sort())];
+
     return (
         <>
             <CatalogHeader heading="Wines" />
@@ -74,6 +92,24 @@ export default async function Page({
                         label: s.name,
                     }))}
                     defaultValue={filters.style}
+                />
+                <FilterInput
+                    label="Region"
+                    filterName="region"
+                    filterOptions={regions.map((r) => ({
+                        value: r,
+                        label: r,
+                    }))}
+                    defaultValue={filters.region}
+                />
+                <FilterInput
+                    label="Year"
+                    filterName="year"
+                    filterOptions={years.map((y) => ({
+                        value: y.toString(),
+                        label: y.toString(),
+                    }))}
+                    defaultValue={filters.year}
                 />
             </ProductCatalog>
         </>
