@@ -143,7 +143,7 @@ function SpiritBadges({
                 variant="outline"
                 className="border-yellow-200 bg-white text-yellow-500"
             >
-                {spiritOptions.style.name}
+                {spiritOptions.style?.name}
             </Badge>
             <Badge variant="outline" className="text-gray-500">
                 {spiritOptions.abv}% ABV

@@ -142,7 +142,7 @@ export interface Spirit extends ProductBase {
             unit: string;
             value: number;
         };
-        style: {
+        style?: {
             _ref: string;
             _type: "reference";
             name: string;
