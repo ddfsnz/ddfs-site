@@ -14,14 +14,16 @@ export function FilterInput({
     filterName,
     filterOptions,
     label,
+    defaultValue,
 }: {
     filterName: string;
     filterOptions: { value: string; label: string }[];
     label: string;
+    defaultValue?: string;
 }) {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState(defaultValue || "");
 
     function handleChange(filterName: string, value: string) {
         const params = new URLSearchParams(searchParams);

@@ -109,6 +109,7 @@ export default async function Page({
                                 value: c._id,
                                 label: c.name,
                             }))}
+                            defaultValue={filters.company}
                         />
                         <FilterInput
                             label="Style"
@@ -117,16 +118,19 @@ export default async function Page({
                                 value: s._id,
                                 label: s.name,
                             }))}
+                            defaultValue={filters.style}
                         />
                         <FilterInput
                             label="Size"
                             filterName="size"
                             filterOptions={sizes}
+                            defaultValue={filters.size}
                         />
                         <FilterInput
                             label="Container"
                             filterName="container"
                             filterOptions={containers}
+                            defaultValue={filters.container}
                         />
                     </div>
                 </div>
@@ -157,6 +161,7 @@ export default async function Page({
                                                     label: c.name,
                                                 }),
                                             )}
+                                            defaultValue={filters.company}
                                         />
                                         <FilterInput
                                             label="Style"
@@ -165,16 +170,19 @@ export default async function Page({
                                                 value: s._id,
                                                 label: s.name,
                                             }))}
+                                            defaultValue={filters.style}
                                         />
                                         <FilterInput
                                             label="Size"
                                             filterName="size"
                                             filterOptions={sizes}
+                                            defaultValue={filters.size}
                                         />
                                         <FilterInput
                                             label="Container"
                                             filterName="container"
                                             filterOptions={containers}
+                                            defaultValue={filters.container}
                                         />
                                     </div>
                                 </PopoverContent>
