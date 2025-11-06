@@ -61,18 +61,18 @@ export default async function Page({
         `*[_type == "tag" && type == "style" && category._ref == "${CIDERS_CATEGORY_ID}"] | order(name asc)`,
     );
 
-    const allBeerSizes = await sanity.fetch<Cider[]>(
+    const allCiderSizes = await sanity.fetch<Cider[]>(
         `*[_type == "product" && category._ref == "${CIDERS_CATEGORY_ID}"] {
             ciderOptions
         }`,
     );
     const sizes = Array.from(
         new Map(
-            allBeerSizes.map((b) => [
-                String(b.ciderOptions.size.value),
+            allCiderSizes.map((c) => [
+                String(c.ciderOptions.size.value),
                 {
-                    value: String(b.ciderOptions.size.value),
-                    label: b.ciderOptions.size.value + b.ciderOptions.size.unit,
+                    value: String(c.ciderOptions.size.value),
+                    label: c.ciderOptions.size.value + c.ciderOptions.size.unit,
                 },
             ]),
         ).values(),
