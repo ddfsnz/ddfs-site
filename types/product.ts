@@ -15,6 +15,7 @@ interface ProductBase {
     company: {
         _ref: string;
         _type: "reference";
+        _id: string;
         name: string;
     };
     description: PortableTextBlock[];
