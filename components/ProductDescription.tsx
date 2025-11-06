@@ -5,5 +5,9 @@ export function ProductDescription({
 }: {
     description: PortableTextBlock[];
 }) {
-    return <PortableText value={description} />;
+    return (
+        <div className="leading-relaxed">
+            <PortableText value={description} />
+        </div>
+    );
 }
