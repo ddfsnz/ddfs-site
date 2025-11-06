@@ -34,7 +34,7 @@ export default async function Page({
         searchFilter += ` && beerOptions.container == "${filters.container}"`;
     }
 
-    const sortOrder = (await searchParams).sort || "name asc";
+    const sortOrder = filters.sort || "name asc";
 
     const beers = await sanity.fetch<Beer[]>(
         `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
