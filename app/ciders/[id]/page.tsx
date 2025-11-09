@@ -14,7 +14,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
+import { CIDERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Cider } from "@/types/product";
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     const companyId = cider.company._id;
     const related = await sanity.fetch<Cider[]>(
-        `*[_type == "product" && category._ref == "${BEERS_CATEGORY_ID}" && company._ref == "${companyId}" && _id != "${cider._id}"][0...4] {
+        `*[_type == "product" && category._ref == "${CIDERS_CATEGORY_ID}" && company._ref == "${companyId}" && _id != "${cider._id}"][0...4] {
             ...,
             company->{
                 ...,
@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         More from {cider.company.name}
                     </h2>
                     <Link
-                        href={`/beers?company=${companyId}`}
+                        href={`/ciders?company=${companyId}`}
                         className="flex items-center gap-1 transition-colors hover:text-red-700"
                     >
                         See All <ArrowRight className="size-4" />
