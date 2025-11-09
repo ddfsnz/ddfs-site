@@ -1,103 +1,104 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
     return (
-        <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
-            <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <ol className="list-inside list-decimal text-center font-mono text-sm/6 sm:text-left">
-                    <li className="mb-2 tracking-[-.01em]">
-                        Get started by editing{" "}
-                        <code className="rounded bg-black/[.05] px-1 py-0.5 font-mono font-semibold dark:bg-white/[.06]">
-                            app/page.tsx
-                        </code>
-                        .
-                    </li>
-                    <li className="tracking-[-.01em]">
-                        Save and see your changes instantly.
-                    </li>
-                </ol>
-
-                <div className="flex flex-col items-center gap-4 sm:flex-row">
-                    <a
-                        className="bg-foreground text-background flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:bg-[#383838] sm:h-12 sm:w-auto sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            className="dark:invert"
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={20}
-                            height={20}
-                        />
-                        Deploy now
-                    </a>
-                    <a
-                        className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-                        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Read our docs
-                    </a>
-                </div>
-            </main>
-            <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]">
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
+        <>
+            <div className="mb-20 text-center">
+                <h1 className="font-display mb-2 text-5xl font-bold text-red-700 sm:text-7xl">
+                    Diplomatic Duty Free Services
+                </h1>
+                <p className="text-gray-500">Wellington New Zealand</p>
+            </div>
+            <div className="grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
+                <Link
+                    href="/wines"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
+                >
+                    <Image src="/wines.png" alt="" height={800} width={1200} />
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Wines
+                    </h2>
+                </Link>
+                <Link
+                    href="/beers"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
+                >
+                    <Image src="/beers.png" alt="" height={800} width={1200} />
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Beers
+                    </h2>
+                </Link>
+                <Link
+                    href="/ciders"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
+                >
+                    <Image src="/ciders.png" alt="" height={800} width={1200} />
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Ciders
+                    </h2>
+                </Link>
+                <Link
+                    href="/spirits"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
                 >
                     <Image
-                        aria-hidden
-                        src="/file.svg"
-                        alt="File icon"
-                        width={16}
-                        height={16}
+                        src="/spirits.png"
+                        alt=""
+                        height={800}
+                        width={1200}
                     />
-                    Learn
-                </a>
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Spirits
+                    </h2>
+                </Link>
+                <Link
+                    href="/liquers"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
                 >
                     <Image
-                        aria-hidden
-                        src="/window.svg"
-                        alt="Window icon"
-                        width={16}
-                        height={16}
+                        src="/liqueurs.png"
+                        alt=""
+                        height={800}
+                        width={1200}
                     />
-                    Examples
-                </a>
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Liqueurs
+                    </h2>
+                </Link>
+                <Link
+                    href="/ports"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
+                >
+                    <Image src="/ports.png" alt="" height={800} width={1200} />
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Ports
+                    </h2>
+                </Link>
+                <Link
+                    href="/tobacco"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
                 >
                     <Image
-                        aria-hidden
-                        src="/globe.svg"
-                        alt="Globe icon"
-                        width={16}
-                        height={16}
+                        src="/tobacco.png"
+                        alt=""
+                        height={800}
+                        width={1200}
                     />
-                    Go to nextjs.org →
-                </a>
-            </footer>
-        </div>
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Tobacco
+                    </h2>
+                </Link>
+                <Link
+                    href="/honey"
+                    className="overflow-hidden rounded-md border transition-colors hover:bg-gray-50 hover:text-red-700"
+                >
+                    <Image src="/honey.png" alt="" height={800} width={1200} />
+                    <h2 className="font-display my-2 text-2xl font-semibold transition-colors">
+                        Manuka Honey
+                    </h2>
+                </Link>
+            </div>
+        </>
     );
 }
