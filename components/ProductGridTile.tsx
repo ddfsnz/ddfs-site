@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BeerBadges } from "@/components/BeerBadges";
 import { CiderBadges } from "@/components/CiderBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
+import { HoneyBadges } from "@/components/HoneyBadges";
 import { ProductImage } from "@/components/ProductImage";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,54 +17,7 @@ import {
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
-import {
-    Honey,
-    Liquer,
-    Port,
-    Product,
-    Spirit,
-    Tobacco,
-    Wine,
-} from "@/types/product";
-
-function HoneyBadges({
-    honeyOptions,
-}: {
-    honeyOptions: Honey["honeyOptions"];
-}) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className="border-yellow-200 bg-white text-yellow-500"
-            >
-                {honeyOptions.style.name}
-            </Badge>
-            {"range" in honeyOptions && (
-                <Badge
-                    variant="outline"
-                    className={cn(
-                        honeyOptions.range === "Special"
-                            ? "border-blue-200 text-blue-500"
-                            : "text-gray-500",
-                    )}
-                >
-                    {honeyOptions.range}
-                </Badge>
-            )}
-            {"mgo" in honeyOptions && (
-                <Badge variant="outline" className="text-gray-500">
-                    {honeyOptions.mgo} MGO
-                </Badge>
-            )}
-            {"umf" in honeyOptions && (
-                <Badge variant="outline" className="text-gray-500">
-                    {honeyOptions.umf}+ UMF
-                </Badge>
-            )}
-        </div>
-    );
-}
+import { Liquer, Port, Product, Spirit, Tobacco, Wine } from "@/types/product";
 
 function LiquerBadges({
     liquerOptions,
