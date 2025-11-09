@@ -1,6 +1,7 @@
 import { Plane } from "lucide-react";
 import Link from "next/link";
 import { BeerBadges } from "@/components/BeerBadges";
+import { CiderBadges } from "@/components/CiderBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { ProductImage } from "@/components/ProductImage";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +17,6 @@ import {
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 import {
-    Cider,
     Honey,
     Liquer,
     Port,
@@ -25,32 +25,6 @@ import {
     Tobacco,
     Wine,
 } from "@/types/product";
-
-function CiderBadges({
-    ciderOptions,
-}: {
-    ciderOptions: Cider["ciderOptions"];
-}) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className="border-amber-200 bg-white text-amber-500"
-            >
-                {ciderOptions.style.name}
-            </Badge>
-            <Badge variant="outline" className="text-gray-500">
-                {ciderOptions.size.value}
-                {ciderOptions.size.unit} {ciderOptions.container}
-            </Badge>
-            {ciderOptions.abv && (
-                <Badge variant="outline" className="text-gray-500">
-                    {ciderOptions.abv}% ABV
-                </Badge>
-            )}
-        </div>
-    );
-}
 
 function HoneyBadges({
     honeyOptions,
