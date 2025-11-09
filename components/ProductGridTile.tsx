@@ -7,6 +7,7 @@ import { LiquerBadges } from "@/components/LiquerBadges";
 import { PortBadges } from "@/components/PortBadges";
 import { ProductImage } from "@/components/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
+import { TobaccoBadges } from "@/components/TobaccoBadges";
 import { Badge } from "@/components/ui/badge";
 import {
     BEERS_CATEGORY_ID,
@@ -19,21 +20,7 @@ import {
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
-import { Product, Tobacco, Wine } from "@/types/product";
-
-function TobaccoBadges({
-    tobaccoOptions,
-}: {
-    tobaccoOptions: Tobacco["tobaccoOptions"];
-}) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge variant="outline" className="bg-white">
-                {tobaccoOptions.style.name}
-            </Badge>
-        </div>
-    );
-}
+import { Product, Wine } from "@/types/product";
 
 function WineBadges({ wineOptions }: { wineOptions: Wine["wineOptions"] }) {
     return (
