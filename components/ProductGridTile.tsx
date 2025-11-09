@@ -1,4 +1,3 @@
-import { Plane } from "lucide-react";
 import Link from "next/link";
 import { BeerBadges } from "@/components/BeerBadges";
 import { CiderBadges } from "@/components/CiderBadges";
@@ -7,6 +6,7 @@ import { HoneyBadges } from "@/components/HoneyBadges";
 import { LiquerBadges } from "@/components/LiquerBadges";
 import { PortBadges } from "@/components/PortBadges";
 import { ProductImage } from "@/components/ProductImage";
+import { SpiritBadges } from "@/components/SpiritBadges";
 import { Badge } from "@/components/ui/badge";
 import {
     BEERS_CATEGORY_ID,
@@ -19,38 +19,7 @@ import {
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
-import { Product, Spirit, Tobacco, Wine } from "@/types/product";
-
-function SpiritBadges({
-    spiritOptions,
-}: {
-    spiritOptions: Spirit["spiritOptions"];
-}) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className="border-yellow-200 bg-white text-yellow-500"
-            >
-                {spiritOptions.style?.name}
-            </Badge>
-            <Badge variant="outline" className="text-gray-500">
-                {spiritOptions.abv}% ABV
-            </Badge>
-            {spiritOptions.age && (
-                <Badge variant="outline" className="text-gray-500">
-                    {spiritOptions.age} YO
-                </Badge>
-            )}
-            {spiritOptions.isExportExclusive && (
-                <Badge variant="outline" className="text-gray-500">
-                    <Plane />
-                    Export Exclusive
-                </Badge>
-            )}
-        </div>
-    );
-}
+import { Product, Tobacco, Wine } from "@/types/product";
 
 function TobaccoBadges({
     tobaccoOptions,
