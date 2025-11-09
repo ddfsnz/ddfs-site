@@ -8,7 +8,7 @@ import { PortBadges } from "@/components/PortBadges";
 import { ProductImage } from "@/components/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
 import { TobaccoBadges } from "@/components/TobaccoBadges";
-import { Badge } from "@/components/ui/badge";
+import { WineBadges } from "@/components/WineBadges";
 import {
     BEERS_CATEGORY_ID,
     CIDERS_CATEGORY_ID,
@@ -19,37 +19,7 @@ import {
     TOBACCO_CATEGORY_ID,
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
-import { cn } from "@/lib/utils";
-import { Product, Wine } from "@/types/product";
-
-function WineBadges({ wineOptions }: { wineOptions: Wine["wineOptions"] }) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className={cn(
-                    "bg-white",
-                    wineOptions.wineType === "Red"
-                        ? "border-rose-200 text-rose-800"
-                        : "border-yellow-200 text-yellow-500",
-                )}
-            >
-                {wineOptions.style.name}
-            </Badge>
-            <Badge variant="outline" className="text-gray-500">
-                {wineOptions.region}
-            </Badge>
-            {wineOptions.year && (
-                <Badge variant="outline" className="text-gray-500">
-                    {wineOptions.year}
-                </Badge>
-            )}
-            <Badge variant="outline" className="text-gray-500">
-                {wineOptions.abv}% ABV
-            </Badge>
-        </div>
-    );
-}
+import { Product } from "@/types/product";
 
 export function ProductGridTile({ product }: { product: Product }) {
     let productLink = "/";
