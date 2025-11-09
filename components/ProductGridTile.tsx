@@ -4,6 +4,7 @@ import { BeerBadges } from "@/components/BeerBadges";
 import { CiderBadges } from "@/components/CiderBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { HoneyBadges } from "@/components/HoneyBadges";
+import { LiquerBadges } from "@/components/LiquerBadges";
 import { ProductImage } from "@/components/ProductImage";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -17,32 +18,7 @@ import {
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
-import { Liquer, Port, Product, Spirit, Tobacco, Wine } from "@/types/product";
-
-function LiquerBadges({
-    liquerOptions,
-}: {
-    liquerOptions: Liquer["liquerOptions"];
-}) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className="border-green-200 bg-white text-green-500"
-            >
-                {liquerOptions.style.name}
-            </Badge>
-            <Badge variant="outline" className="text-gray-500">
-                {liquerOptions.abv}% ABV
-            </Badge>
-            {liquerOptions.isTravelExclusive && (
-                <Badge variant="outline" className="text-gray-500">
-                    Travel Exclusive
-                </Badge>
-            )}
-        </div>
-    );
-}
+import { Port, Product, Spirit, Tobacco, Wine } from "@/types/product";
 
 function PortBadges({ portOptions }: { portOptions: Port["portOptions"] }) {
     return (
