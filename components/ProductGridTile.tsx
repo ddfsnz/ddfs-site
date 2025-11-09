@@ -5,6 +5,7 @@ import { CiderBadges } from "@/components/CiderBadges";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { HoneyBadges } from "@/components/HoneyBadges";
 import { LiquerBadges } from "@/components/LiquerBadges";
+import { PortBadges } from "@/components/PortBadges";
 import { ProductImage } from "@/components/ProductImage";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -18,23 +19,7 @@ import {
     WINES_CATEGORY_ID,
 } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
-import { Port, Product, Spirit, Tobacco, Wine } from "@/types/product";
-
-function PortBadges({ portOptions }: { portOptions: Port["portOptions"] }) {
-    return (
-        <div className="flex flex-wrap gap-1">
-            <Badge
-                variant="outline"
-                className="border-red-200 bg-white text-red-700"
-            >
-                {portOptions.style.name}
-            </Badge>
-            <Badge variant="outline" className="text-gray-500">
-                {portOptions.abv}% ABV
-            </Badge>
-        </div>
-    );
-}
+import { Product, Spirit, Tobacco, Wine } from "@/types/product";
 
 function SpiritBadges({
     spiritOptions,
@@ -126,7 +111,7 @@ export function ProductGridTile({ product }: { product: Product }) {
             productLink = `/liquers/${product._id}`;
             break;
         case PORTS_CATEGORY_ID:
-            productLink = `/port/${product._id}`;
+            productLink = `/ports/${product._id}`;
             break;
         case SPIRITS_CATEGORY_ID:
             productLink = `/spirits/${product._id}`;

@@ -50,7 +50,7 @@ export function Header() {
                                         <Link href="/liquers">Liquers</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
-                                        <Link href="/port">Port</Link>
+                                        <Link href="/ports">Ports</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
                                         <Link href="/tobacco">Tobacco</Link>
