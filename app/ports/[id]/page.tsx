@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     );
 
     return (
-        <main className="mx-auto max-w-7xl px-4 py-32 pt-40">
+        <main className="mx-auto max-w-7xl px-4 py-32 pt-24">
             <div className="grid grid-cols-1 gap-6">
                 <Breadcrumb>
                     <BreadcrumbList>
