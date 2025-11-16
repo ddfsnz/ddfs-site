@@ -18,7 +18,7 @@ interface CartItem {
 // Define the CartContext type
 interface CartContextType {
     cartItems: CartItem[];
-    addToCart: (product: Product) => void;
+    addToCart: (product: Product, quantity: number) => void;
     // You can add more methods like removeFromCart, updateQuantity, etc., if needed
 }
 
@@ -50,7 +50,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         localStorage.setItem("cart", JSON.stringify(cartItems));
     }, [cartItems]);
 
-    const addToCart = (product: Product) => {
+    const addToCart = (product: Product, quantity: number) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(
                 (item) => item.product._id === product._id,
@@ -59,12 +59,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
                 // Increase quantity if product already in cart
                 return prevItems.map((item) =>
                     item.product._id === product._id
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? { ...item, quantity: item.quantity + quantity }
                         : item,
                 );
             } else {
                 // Add new item with quantity 1
-                return [...prevItems, { product, quantity: 1 }];
+                return [...prevItems, { product, quantity: quantity }];
             }
         });
     };
