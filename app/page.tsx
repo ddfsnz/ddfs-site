@@ -163,14 +163,16 @@ export default function Page() {
                                     Family owned and operated since 2005, DDFS
                                     is based in Wellington and proudly serves
                                     embassies, high commissions, and consulates
-                                    from around the globe. Our extensive
-                                    selection includes premium wines, spirits,
-                                    tobacco, fragrances, Manuka honey, and olive
-                                    oil—all available duty free. Use our website
-                                    to explore our product range, place your
-                                    next order, and enjoy a seamless duty free
-                                    shopping experience. We look forward to
-                                    assisting you.
+                                    from around the globe.
+                                </p>
+                                <p>
+                                    Our extensive selection includes premium
+                                    wines, spirits, tobacco, fragrances, Manuka
+                                    honey, and olive oil—all available duty
+                                    free. Use our website to explore our product
+                                    range, place your next order, and enjoy a
+                                    seamless duty free shopping experience. We
+                                    look forward to assisting you.
                                 </p>
                                 <p>
                                     Jordan Collicoat, CEO, Diplomatic Duty Free
