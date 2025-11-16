@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, ShoppingCart, XCircle } from "lucide-react";
+import { CartItem } from "@/components/CartItem";
 import { Button } from "@/components/ui/button";
 import {
     Sheet,
@@ -13,7 +14,7 @@ import {
 import { useCart } from "@/lib/cart";
 
 export function Cart() {
-    const { cartItems } = useCart();
+    const { cartItems, emptyCart } = useCart();
 
     return (
         <Sheet>
@@ -35,15 +36,29 @@ export function Cart() {
                     </SheetTitle>
                 </SheetHeader>
                 <div className="grid gap-3 p-4">
-                    {cartItems.map((c) => (
-                        <div key={c.product._id}>{c.product.name}</div>
-                    ))}
+                    {cartItems.length === 0 ? (
+                        <span className="mx-auto block text-sm text-gray-500">
+                            Cart is empty
+                        </span>
+                    ) : (
+                        cartItems.map((c) => (
+                            <CartItem
+                                key={c.product._id}
+                                product={c.product}
+                                quantity={c.quantity}
+                            />
+                        ))
+                    )}
                 </div>
                 <SheetFooter>
-                    <Button>
+                    <Button disabled={cartItems.length === 0}>
                         Send Order <ArrowRight />
                     </Button>
-                    <Button variant="outline">
+                    <Button
+                        onClick={emptyCart}
+                        disabled={cartItems.length === 0}
+                        variant="outline"
+                    >
                         Empty Cart <XCircle />
                     </Button>
                 </SheetFooter>
