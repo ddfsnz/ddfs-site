@@ -35,7 +35,7 @@ export function Cart() {
                         My Cart
                     </SheetTitle>
                 </SheetHeader>
-                <div className="grid gap-3 p-4">
+                <div className="grid gap-3 overflow-y-auto p-4">
                     {cartItems.length === 0 ? (
                         <span className="mx-auto block text-sm text-gray-500">
                             Cart is empty

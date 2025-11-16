@@ -19,7 +19,7 @@ export function CartItem({
             <div className="flex aspect-square size-24 items-center justify-center overflow-hidden rounded-sm border bg-white">
                 <ImageIcon className="size-8 text-gray-300" />
             </div>
-            <div className="grid gap-2">
+            <div className="grid place-items-start gap-1">
                 <h3 className="text-sm font-semibold">{product.name}</h3>
                 <span className="block text-xs text-gray-500">x{quantity}</span>
                 <Button
