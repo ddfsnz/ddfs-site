@@ -5,10 +5,12 @@ import { useState } from "react";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/lib/cart";
 import { Liquer } from "@/types/product";
 
 export function LiquerOptions({ liquer }: { liquer: Liquer }) {
     const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
 
     return (
         <div className="grid gap-3">
@@ -35,7 +37,7 @@ export function LiquerOptions({ liquer }: { liquer: Liquer }) {
                         className="text-center"
                     />
                 </div>
-                <Button>
+                <Button onClick={() => addToCart(liquer, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

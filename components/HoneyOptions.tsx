@@ -5,10 +5,12 @@ import { useState } from "react";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/lib/cart";
 import { Honey } from "@/types/product";
 
 export function HoneyOptions({ honey }: { honey: Honey }) {
     const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
 
     return (
         <div className="grid gap-3">
@@ -35,7 +37,7 @@ export function HoneyOptions({ honey }: { honey: Honey }) {
                         className="text-center"
                     />
                 </div>
-                <Button>
+                <Button onClick={() => addToCart(honey, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>
