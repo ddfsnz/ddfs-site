@@ -5,6 +5,7 @@ import { useState } from "react";
 import { DisplayPrice } from "@/components/DisplayPrice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { Beer } from "@/types/product";
 
@@ -16,6 +17,7 @@ export function BeerOptions({ beer }: { beer: Beer }) {
             ? beer.price
             : beer.price * (pack / beer.beerOptions.quantity[0]);
     }
+    const { addToCart } = useCart();
 
     return (
         <div className="grid gap-3">
@@ -59,7 +61,7 @@ export function BeerOptions({ beer }: { beer: Beer }) {
                         className="text-center"
                     />
                 </div>
-                <Button>
+                <Button onClick={() => addToCart(beer)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

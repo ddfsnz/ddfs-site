@@ -3,6 +3,7 @@ import { Geist_Mono, Inter, Urbanist } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { CartProvider } from "@/lib/cart";
 
 const urbanist = Urbanist({
     variable: "--font-urbanist",
@@ -35,9 +36,11 @@ export default function Layout({
             <body
                 className={`${urbanist.variable} ${inter.variable} ${geistMono.variable} font-sans text-gray-800 antialiased`}
             >
-                <Header />
-                {children}
-                <Footer />
+                <CartProvider>
+                    <Header />
+                    {children}
+                    <Footer />
+                </CartProvider>
             </body>
         </html>
     );
