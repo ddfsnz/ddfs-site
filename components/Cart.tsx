@@ -14,13 +14,17 @@ import { useCart } from "@/lib/cart";
 
 export function Cart() {
     const { cartItems } = useCart();
-    console.log(cartItems);
 
     return (
         <Sheet>
             <SheetTrigger asChild>
                 <Button>
-                    Cart {cartItems.length ? `(${cartItems.length})` : null}
+                    Cart
+                    {cartItems.length ? (
+                        <span className="block h-4 min-w-4 rounded-full bg-white text-xs text-gray-700">
+                            {cartItems.length}
+                        </span>
+                    ) : null}
                     <ShoppingCart />
                 </Button>
             </SheetTrigger>
