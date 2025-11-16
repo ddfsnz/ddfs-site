@@ -1,4 +1,4 @@
-import { Menu, ShoppingCart } from "lucide-react";
+import { ArrowRight, Menu, ShoppingCart, XCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,14 @@ import {
     NavigationMenuContent,
     NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import {
+    Sheet,
+    SheetContent,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function Header() {
     return (
@@ -72,9 +80,28 @@ export function Header() {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
-                    <Button>
-                        Cart <ShoppingCart />
-                    </Button>
+                    <Sheet>
+                        <SheetTrigger>
+                            <Button>
+                                Cart <ShoppingCart />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle className="font-display text-3xl font-bold text-red-700">
+                                    My Cart
+                                </SheetTitle>
+                            </SheetHeader>
+                            <SheetFooter>
+                                <Button>
+                                    Send Order <ArrowRight />
+                                </Button>
+                                <Button variant="outline">
+                                    Empty Cart <XCircle />
+                                </Button>
+                            </SheetFooter>
+                        </SheetContent>
+                    </Sheet>
                     <Button size="icon" variant="ghost" className="sm:hidden">
                         <Menu />
                     </Button>
