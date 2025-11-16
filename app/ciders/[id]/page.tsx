@@ -60,51 +60,55 @@ export default async function Page({ params }: { params: { id: string } }) {
     );
 
     return (
-        <div className="grid grid-cols-1 gap-6">
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink href="/">
-                            <Home className="size-4" />
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbLink href="/ciders">Ciders</BreadcrumbLink>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
-            <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-2 lg:gap-6">
-                <div className="overflow-hidden rounded-lg border">
-                    <ProductImage product={cider} />
+        <main className="mx-auto max-w-7xl px-4 py-32 pt-40">
+            <div className="grid grid-cols-1 gap-6">
+                <Breadcrumb>
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/">
+                                <Home className="size-4" />
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/ciders">
+                                Ciders
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+                <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-2 lg:gap-6">
+                    <div className="overflow-hidden rounded-lg border">
+                        <ProductImage product={cider} />
+                    </div>
+                    <div className="grid h-min gap-6 md:pt-3 lg:pt-6 lg:pr-3 lg:pb-6">
+                        <ProductDetails product={cider}>
+                            <CiderBadges ciderOptions={cider.ciderOptions} />
+                        </ProductDetails>
+                        <CiderOptions cider={cider} />
+                    </div>
                 </div>
-                <div className="grid h-min gap-6 md:pt-3 lg:pt-6 lg:pr-3 lg:pb-6">
-                    <ProductDetails product={cider}>
-                        <CiderBadges ciderOptions={cider.ciderOptions} />
-                    </ProductDetails>
-                    <CiderOptions cider={cider} />
-                </div>
-            </div>
-            <div className="mx-auto my-12 w-full max-w-3xl">
-                <h2 className="font-display mb-2 text-2xl font-bold">
-                    {cider.name}
-                </h2>
-                <ProductDescription description={cider.description} />
-            </div>
-            <div className="mx-auto my-12 w-full max-w-5xl">
-                <div className="flex items-baseline justify-between gap-3">
-                    <h2 className="font-display mb-6 text-2xl font-bold">
-                        More from {cider.company.name}
+                <div className="mx-auto my-12 w-full max-w-3xl">
+                    <h2 className="font-display mb-2 text-2xl font-bold">
+                        {cider.name}
                     </h2>
-                    <Link
-                        href={`/ciders?company=${companyId}`}
-                        className="flex items-center gap-1 transition-colors hover:text-red-700"
-                    >
-                        See All <ArrowRight className="size-4" />
-                    </Link>
+                    <ProductDescription description={cider.description} />
                 </div>
-                <ProductGrid products={related} threeCols={false} />
+                <div className="mx-auto my-12 w-full max-w-5xl">
+                    <div className="flex items-baseline justify-between gap-3">
+                        <h2 className="font-display mb-6 text-2xl font-bold">
+                            More from {cider.company.name}
+                        </h2>
+                        <Link
+                            href={`/ciders?company=${companyId}`}
+                            className="flex items-center gap-1 transition-colors hover:text-red-700"
+                        >
+                            See All <ArrowRight className="size-4" />
+                        </Link>
+                    </div>
+                    <ProductGrid products={related} threeCols={false} />
+                </div>
             </div>
-        </div>
+        </main>
     );
 }
