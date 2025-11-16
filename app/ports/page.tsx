@@ -60,7 +60,7 @@ export default async function Page({
     return (
         <main className="relative">
             <div className="absolute inset-0 aspect-[2/1] bg-[url('/hero-ports.png')] bg-contain bg-no-repeat"></div>
-            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/80 to-white"></div>
+            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/90 to-white"></div>
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
                 <CatalogHeader
                     heading="Ports"
