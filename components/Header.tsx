@@ -62,7 +62,10 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/about" className="font-medium">
+                                    <Link
+                                        href="/#about"
+                                        className="font-medium"
+                                    >
                                         About DDFS
                                     </Link>
                                 </NavigationMenuLink>

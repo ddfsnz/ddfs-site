@@ -66,7 +66,7 @@ export function Footer() {
                         </Link>
                     </div>
                     <Link
-                        href="/about"
+                        href="/#about"
                         className="font-medium transition-colors hover:text-red-700"
                     >
                         About DDFS
