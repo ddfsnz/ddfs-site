@@ -8,7 +8,7 @@ export default function Page() {
                 <h1 className="font-display mb-2 text-5xl font-bold text-red-700 sm:text-7xl">
                     Diplomatic Duty Free Services
                 </h1>
-                <p className="text-gray-500">
+                <p className="text-gray-700">
                     New Zealand’s trusted supplier of duty free wines, spirits,
                     tobacco, and specialty products.
                 </p>
@@ -25,7 +25,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Wines
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Discover a curated selection of premium wines from New
                         Zealand and around the world.
                     </p>
@@ -41,7 +41,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Beers
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Enjoy local craft brews and international favorites,
                         perfect for every beer enthusiast.
                     </p>
@@ -57,7 +57,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Ciders
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Taste crisp, refreshing ciders made from the finest New
                         Zealand apples and pears.
                     </p>
@@ -73,7 +73,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Spirits
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Explore top-shelf spirits, including whisky, gin, vodka,
                         and more from renowned distilleries.
                     </p>
@@ -89,7 +89,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Liqueurs
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Indulge in smooth, flavorful liqueurs ideal for sipping
                         or mixing in cocktails.
                     </p>
@@ -105,7 +105,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Ports
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Savor rich, aged ports with deep flavors, perfect for
                         after-dinner enjoyment.
                     </p>
@@ -121,7 +121,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Tobacco
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Choose from a range of premium tobacco products for
                         discerning connoisseurs.
                     </p>
@@ -137,7 +137,7 @@ export default function Page() {
                     <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
                         Manuka Honey
                     </h2>
-                    <p className="text-xs">
+                    <p className="text-xs text-gray-500">
                         Experience pure New Zealand Manuka honey, prized for its
                         unique taste and health benefits.
                     </p>
