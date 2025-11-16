@@ -20,15 +20,15 @@ export function ProductCatalog({
     products: Product[];
 }) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[240px_auto]">
-            <div className="hidden border-r p-3 pt-6 pl-0 md:block">
+        <div className="grid grid-cols-1 rounded-lg bg-white md:grid-cols-[240px_auto]">
+            <div className="hidden border-r p-3 pt-6 md:block">
                 <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
                     <SearchInput label="Search" initialValue={search} />
                     {children}
                 </div>
             </div>
             <div>
-                <div className="flex items-center justify-between border-b bg-gray-50 p-1 md:pl-3">
+                <div className="flex items-center justify-between rounded-tr-lg border-b bg-gray-50 p-1 md:pl-3">
                     <div className="flex items-center gap-3">
                         <Popover>
                             <PopoverTrigger className="block md:hidden" asChild>
@@ -52,7 +52,7 @@ export function ProductCatalog({
                     </div>
                     <SortOrder />
                 </div>
-                <div className="py-2 md:p-2 md:pr-0 lg:p-3 lg:pr-0">
+                <div className="py-2 md:p-2 md:pr-0 lg:p-3">
                     <ProductGrid products={products} />
                 </div>
             </div>

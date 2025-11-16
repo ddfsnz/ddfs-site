@@ -5,7 +5,7 @@ export default function Page() {
     return (
         <main className="relative">
             <div className="absolute inset-0 aspect-[2/1] bg-[url('/hero-homepage.png')] bg-contain bg-no-repeat"></div>
-            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/75 to-white"></div>
+            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/80 to-white"></div>
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
                 <div className="mb-20 text-center">
                     <h1 className="font-display mb-2 text-5xl font-bold text-red-700 sm:text-7xl">
@@ -62,7 +62,7 @@ export default function Page() {
                         </h2>
                         <p className="text-xs text-gray-500">
                             Taste crisp, refreshing ciders made from the finest
-                            New Zealand apples and pears.
+                            New Zealand apples.
                         </p>
                     </Link>
                     <Link href="/spirits" className="group">

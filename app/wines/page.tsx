@@ -72,46 +72,53 @@ export default async function Page({
     const years = [...new Set(allYears.filter(Boolean).sort())];
 
     return (
-        <>
-            <CatalogHeader heading="Wines" />
-            <ProductCatalog products={wines} search={filters.search}>
-                <FilterInput
-                    label="Producer"
-                    filterName="company"
-                    filterOptions={companies.map((c) => ({
-                        value: c._id,
-                        label: c.name,
-                    }))}
-                    defaultValue={filters.company}
+        <main className="relative">
+            <div className="absolute inset-0 aspect-[2/1] bg-[url('/hero-wines.png')] bg-contain bg-no-repeat"></div>
+            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/90 to-white"></div>
+            <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
+                <CatalogHeader
+                    heading="Wines"
+                    subheading="Discover a curated selection of premium wines from New Zealand and around the world."
                 />
-                <FilterInput
-                    label="Style"
-                    filterName="style"
-                    filterOptions={styles.map((s) => ({
-                        value: s._id,
-                        label: s.name,
-                    }))}
-                    defaultValue={filters.style}
-                />
-                <FilterInput
-                    label="Region"
-                    filterName="region"
-                    filterOptions={regions.map((r) => ({
-                        value: r,
-                        label: r,
-                    }))}
-                    defaultValue={filters.region}
-                />
-                <FilterInput
-                    label="Year"
-                    filterName="year"
-                    filterOptions={years.map((y) => ({
-                        value: y.toString(),
-                        label: y.toString(),
-                    }))}
-                    defaultValue={filters.year}
-                />
-            </ProductCatalog>
-        </>
+                <ProductCatalog products={wines} search={filters.search}>
+                    <FilterInput
+                        label="Producer"
+                        filterName="company"
+                        filterOptions={companies.map((c) => ({
+                            value: c._id,
+                            label: c.name,
+                        }))}
+                        defaultValue={filters.company}
+                    />
+                    <FilterInput
+                        label="Style"
+                        filterName="style"
+                        filterOptions={styles.map((s) => ({
+                            value: s._id,
+                            label: s.name,
+                        }))}
+                        defaultValue={filters.style}
+                    />
+                    <FilterInput
+                        label="Region"
+                        filterName="region"
+                        filterOptions={regions.map((r) => ({
+                            value: r,
+                            label: r,
+                        }))}
+                        defaultValue={filters.region}
+                    />
+                    <FilterInput
+                        label="Year"
+                        filterName="year"
+                        filterOptions={years.map((y) => ({
+                            value: y.toString(),
+                            label: y.toString(),
+                        }))}
+                        defaultValue={filters.year}
+                    />
+                </ProductCatalog>
+            </div>
+        </main>
     );
 }

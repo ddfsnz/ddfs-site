@@ -84,40 +84,47 @@ export default async function Page({
     ];
 
     return (
-        <>
-            <CatalogHeader heading="Beers" />
-            <ProductCatalog products={beers} search={filters.search}>
-                <FilterInput
-                    label="Producer"
-                    filterName="company"
-                    filterOptions={companies.map((c) => ({
-                        value: c._id,
-                        label: c.name,
-                    }))}
-                    defaultValue={filters.company}
+        <main className="relative">
+            <div className="absolute inset-0 aspect-[2/1] bg-[url('/hero-beers.png')] bg-contain bg-no-repeat"></div>
+            <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/80 to-white"></div>
+            <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
+                <CatalogHeader
+                    heading="Beers"
+                    subheading="Enjoy local craft brews and international favorites, perfect for every beer enthusiast."
                 />
-                <FilterInput
-                    label="Style"
-                    filterName="style"
-                    filterOptions={styles.map((s) => ({
-                        value: s._id,
-                        label: s.name,
-                    }))}
-                    defaultValue={filters.style}
-                />
-                <FilterInput
-                    label="Size"
-                    filterName="size"
-                    filterOptions={sizes}
-                    defaultValue={filters.size}
-                />
-                <FilterInput
-                    label="Container"
-                    filterName="container"
-                    filterOptions={containers}
-                    defaultValue={filters.container}
-                />
-            </ProductCatalog>
-        </>
+                <ProductCatalog products={beers} search={filters.search}>
+                    <FilterInput
+                        label="Producer"
+                        filterName="company"
+                        filterOptions={companies.map((c) => ({
+                            value: c._id,
+                            label: c.name,
+                        }))}
+                        defaultValue={filters.company}
+                    />
+                    <FilterInput
+                        label="Style"
+                        filterName="style"
+                        filterOptions={styles.map((s) => ({
+                            value: s._id,
+                            label: s.name,
+                        }))}
+                        defaultValue={filters.style}
+                    />
+                    <FilterInput
+                        label="Size"
+                        filterName="size"
+                        filterOptions={sizes}
+                        defaultValue={filters.size}
+                    />
+                    <FilterInput
+                        label="Container"
+                        filterName="container"
+                        filterOptions={containers}
+                        defaultValue={filters.container}
+                    />
+                </ProductCatalog>
+            </div>
+        </main>
     );
 }

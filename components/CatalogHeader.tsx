@@ -1,9 +1,16 @@
-export function CatalogHeader({ heading }: { heading: string }) {
+export function CatalogHeader({
+    heading,
+    subheading,
+}: {
+    heading: string;
+    subheading: string;
+}) {
     return (
         <div className="border-b pb-4">
-            <h1 className="font-display text-5xl font-bold sm:text-7xl">
+            <h1 className="font-display text-5xl font-bold text-red-700 sm:text-7xl">
                 {heading}
             </h1>
+            <p className="text-sm text-gray-700">{subheading}</p>
         </div>
     );
 }
