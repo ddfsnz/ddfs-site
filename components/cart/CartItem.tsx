@@ -6,10 +6,26 @@ import {
     CartItem as CartItemType,
     useCart,
 } from "@/components/cart/cart-context";
+import { DisplayPrice } from "@/components/DisplayPrice";
 import { ProductImage } from "@/components/ProductImage";
 
 export function CartItem({ cartItem }: { cartItem: CartItemType }) {
     const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
+    function calculatedPrice() {
+        let price = cartItem.product.price * cartItem.quantity;
+        if (cartItem.packSize) {
+            let baseQuantity: number | null = null;
+            if ("beerOptions" in cartItem.product) {
+                baseQuantity = cartItem.product.beerOptions.quantity[0];
+            } else if ("ciderOptions" in cartItem.product) {
+                baseQuantity = cartItem.product.ciderOptions.quantity[0];
+            }
+            if (baseQuantity && cartItem.packSize !== baseQuantity) {
+                price *= cartItem.packSize / baseQuantity;
+            }
+        }
+        return price;
+    }
 
     return (
         <div className="flex items-center gap-3">
@@ -20,11 +36,14 @@ export function CartItem({ cartItem }: { cartItem: CartItemType }) {
                 <h3 className="line-clamp-2 text-sm font-semibold sm:text-base">
                     {cartItem.product.name}
                 </h3>
-                {cartItem.packSize && (
-                    <span className="block text-xs text-gray-500">
-                        {cartItem.packSize} Pack
-                    </span>
-                )}
+                <span className="text-xs font-semibold text-red-700">
+                    <DisplayPrice price={calculatedPrice()} />
+                    {cartItem.packSize && (
+                        <span className="text-xs font-normal text-gray-500">
+                            {" • "} {cartItem.packSize} Pack
+                        </span>
+                    )}
+                </span>
                 <div className="flex w-full items-center justify-between">
                     <div className="grid grid-cols-3">
                         <Button

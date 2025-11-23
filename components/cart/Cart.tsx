@@ -50,16 +50,18 @@ export function Cart() {
                     )}
                 </div>
                 <SheetFooter>
-                    <Button disabled={cartItems.length === 0}>
-                        Send Order <ArrowRight />
-                    </Button>
-                    <Button
-                        onClick={emptyCart}
-                        disabled={cartItems.length === 0}
-                        variant="outline"
-                    >
-                        Empty Cart <XCircle />
-                    </Button>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <Button
+                            onClick={emptyCart}
+                            disabled={cartItems.length === 0}
+                            variant="outline"
+                        >
+                            Empty Cart <XCircle />
+                        </Button>
+                        <Button disabled={cartItems.length === 0}>
+                            Send Order <ArrowRight />
+                        </Button>
+                    </div>
                 </SheetFooter>
             </SheetContent>
         </Sheet>
