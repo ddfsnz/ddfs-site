@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
-import { HoneyBadges } from "@/components/HoneyBadges";
+import { HoneyBadges } from "@/components/products/badges/HoneyBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";

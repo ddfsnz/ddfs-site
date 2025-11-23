@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
-import { LiquerBadges } from "@/components/LiquerBadges";
+import { LiquerBadges } from "@/components/products/badges/LiquerBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";

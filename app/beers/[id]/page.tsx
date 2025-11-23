@@ -8,8 +8,8 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
-import { BeerBadges } from "@/components/BeerBadges";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
+import { BeerBadges } from "@/components/products/badges/BeerBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";

@@ -9,11 +9,11 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
+import { WineBadges } from "@/components/products/badges/WineBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
 import { ProductOptions } from "@/components/products/ProductOptions";
-import { WineBadges } from "@/components/WineBadges";
 import { sanity, WINES_CATEGORY_ID } from "@/lib/sanity";
 import { Wine } from "@/types/product";
 

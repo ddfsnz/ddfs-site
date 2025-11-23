@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { BeerBadges } from "@/components/BeerBadges";
-import { CiderBadges } from "@/components/CiderBadges";
-import { HoneyBadges } from "@/components/HoneyBadges";
-import { LiquerBadges } from "@/components/LiquerBadges";
-import { PortBadges } from "@/components/PortBadges";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
+import { BeerBadges } from "@/components/products/badges/BeerBadges";
+import { CiderBadges } from "@/components/products/badges/CiderBadges";
+import { HoneyBadges } from "@/components/products/badges/HoneyBadges";
+import { LiquerBadges } from "@/components/products/badges/LiquerBadges";
+import { PortBadges } from "@/components/products/badges/PortBadges";
+import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
+import { TobaccoBadges } from "@/components/products/badges/TobaccoBadges";
+import { WineBadges } from "@/components/products/badges/WineBadges";
 import { ProductImage } from "@/components/products/ProductImage";
-import { SpiritBadges } from "@/components/SpiritBadges";
-import { TobaccoBadges } from "@/components/TobaccoBadges";
-import { WineBadges } from "@/components/WineBadges";
 import {
     BEERS_CATEGORY_ID,
     CIDERS_CATEGORY_ID,
