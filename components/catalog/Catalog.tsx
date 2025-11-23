@@ -5,8 +5,8 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/_ui/popover";
+import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { SearchInput } from "@/components/catalog/SearchInput";
-import { ProductGrid } from "@/components/ProductGrid";
 import { SortOrder } from "@/components/SortOrder";
 import { Product } from "@/types/product";
 
@@ -53,7 +53,7 @@ export function Catalog({
                     <SortOrder />
                 </div>
                 <div className="py-2 md:p-2 md:pr-0 lg:p-3">
-                    <ProductGrid products={products} />
+                    <CatalogGrid products={products} />
                 </div>
             </div>
         </div>

@@ -8,11 +8,11 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
+import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { CiderBadges } from "@/components/CiderBadges";
 import { CiderOptions } from "@/components/CiderOptions";
 import { ProductDescription } from "@/components/ProductDescription";
 import { ProductDetails } from "@/components/ProductDetails";
-import { ProductGrid } from "@/components/ProductGrid";
 import { ProductImage } from "@/components/ProductImage";
 import { CIDERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Cider } from "@/types/product";
@@ -106,7 +106,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             See All <ArrowRight className="size-4" />
                         </Link>
                     </div>
-                    <ProductGrid products={related} threeCols={false} />
+                    <CatalogGrid products={related} threeCols={false} />
                 </div>
             </div>
         </main>

@@ -8,9 +8,9 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
+import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { ProductDescription } from "@/components/ProductDescription";
 import { ProductDetails } from "@/components/ProductDetails";
-import { ProductGrid } from "@/components/ProductGrid";
 import { ProductImage } from "@/components/ProductImage";
 import { WineBadges } from "@/components/WineBadges";
 import { WineOptions } from "@/components/WineOptions";
@@ -104,7 +104,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             See All <ArrowRight className="size-4" />
                         </Link>
                     </div>
-                    <ProductGrid products={related} threeCols={false} />
+                    <CatalogGrid products={related} threeCols={false} />
                 </div>
             </div>
         </main>

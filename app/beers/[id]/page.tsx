@@ -10,9 +10,9 @@ import {
 } from "@/components/_ui/breadcrumb";
 import { BeerBadges } from "@/components/BeerBadges";
 import { BeerOptions } from "@/components/BeerOptions";
+import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { ProductDescription } from "@/components/ProductDescription";
 import { ProductDetails } from "@/components/ProductDetails";
-import { ProductGrid } from "@/components/ProductGrid";
 import { ProductImage } from "@/components/ProductImage";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
@@ -104,7 +104,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             See All <ArrowRight className="size-4" />
                         </Link>
                     </div>
-                    <ProductGrid products={related} threeCols={false} />
+                    <CatalogGrid products={related} threeCols={false} />
                 </div>
             </div>
         </main>

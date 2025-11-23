@@ -2,7 +2,7 @@ import { ProductGridTile } from "@/components/ProductGridTile";
 import { cn } from "@/lib/utils";
 import { Product } from "@/types/product";
 
-export function ProductGrid({
+export function CatalogGrid({
     products,
     threeCols = true,
 }: {
