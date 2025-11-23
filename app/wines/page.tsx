@@ -1,6 +1,6 @@
+import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { ProductCatalog } from "@/components/ProductCatalog";
 import { sanity, WINES_CATEGORY_ID } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Wine } from "@/types/product";
@@ -80,7 +80,7 @@ export default async function Page({
                     heading="Wines"
                     subheading="Discover a curated selection of premium wines from New Zealand and around the world."
                 />
-                <ProductCatalog products={wines} search={filters.search}>
+                <Catalog products={wines} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"
@@ -117,7 +117,7 @@ export default async function Page({
                         }))}
                         defaultValue={filters.year}
                     />
-                </ProductCatalog>
+                </Catalog>
             </div>
         </main>
     );

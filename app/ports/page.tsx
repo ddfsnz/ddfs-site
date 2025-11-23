@@ -1,6 +1,6 @@
+import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { ProductCatalog } from "@/components/ProductCatalog";
 import { PORTS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Port } from "@/types/product";
@@ -66,7 +66,7 @@ export default async function Page({
                     heading="Ports"
                     subheading="Savor rich, aged ports with deep flavors, perfect for after-dinner enjoyment."
                 />
-                <ProductCatalog products={ports} search={filters.search}>
+                <Catalog products={ports} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"
@@ -85,7 +85,7 @@ export default async function Page({
                         }))}
                         defaultValue={filters.style}
                     />
-                </ProductCatalog>
+                </Catalog>
             </div>
         </main>
     );

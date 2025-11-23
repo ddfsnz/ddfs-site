@@ -1,6 +1,6 @@
+import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { ProductCatalog } from "@/components/ProductCatalog";
 import { sanity, TOBACCO_CATEGORY_ID } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Tobacco } from "@/types/product";
@@ -62,7 +62,7 @@ export default async function Page({
                     heading="Tobacco"
                     subheading="Choose from a range of premium tobacco products for discerning connoisseurs."
                 />
-                <ProductCatalog products={tobaccos} search={filters.search}>
+                <Catalog products={tobaccos} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"
@@ -81,7 +81,7 @@ export default async function Page({
                         }))}
                         defaultValue={filters.style}
                     />
-                </ProductCatalog>
+                </Catalog>
             </div>
         </main>
     );

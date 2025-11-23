@@ -1,6 +1,6 @@
+import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { ProductCatalog } from "@/components/ProductCatalog";
 import { HONEY_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Honey } from "@/types/product";
@@ -66,7 +66,7 @@ export default async function Page({
                     heading="Manuka Honey"
                     subheading="Experience pure New Zealand Manuka honey, prized for its unique taste and health benefits."
                 />
-                <ProductCatalog products={honeys} search={filters.search}>
+                <Catalog products={honeys} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"
@@ -85,7 +85,7 @@ export default async function Page({
                         }))}
                         defaultValue={filters.style}
                     />
-                </ProductCatalog>
+                </Catalog>
             </div>
         </main>
     );

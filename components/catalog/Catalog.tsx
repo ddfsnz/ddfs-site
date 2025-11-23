@@ -10,7 +10,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { SortOrder } from "@/components/SortOrder";
 import { Product } from "@/types/product";
 
-export function ProductCatalog({
+export function Catalog({
     children,
     search,
     products,

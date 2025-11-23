@@ -1,6 +1,6 @@
+import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { ProductCatalog } from "@/components/ProductCatalog";
 import { CIDERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
 import { Cider } from "@/types/product";
@@ -92,7 +92,7 @@ export default async function Page({
                     heading="Ciders"
                     subheading="Taste crisp, refreshing ciders made from the finest New Zealand apples."
                 />
-                <ProductCatalog products={ciders} search={filters.search}>
+                <Catalog products={ciders} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"
@@ -123,7 +123,7 @@ export default async function Page({
                         filterOptions={containers}
                         defaultValue={filters.container}
                     />
-                </ProductCatalog>
+                </Catalog>
             </div>
         </main>
     );
