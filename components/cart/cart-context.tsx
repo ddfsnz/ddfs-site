@@ -19,6 +19,8 @@ interface CartItem {
 interface CartContextType {
     cartItems: CartItem[];
     addToCart: (product: Product, quantity: number) => void;
+    increaseQuantity: (productId: string) => void;
+    decreaseQuantity: (productId: string) => void;
     removeFromCart: (productId: string) => void;
     emptyCart: () => void;
     // You can add more methods like removeFromCart, updateQuantity, etc., if needed
@@ -52,6 +54,32 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         localStorage.setItem("cart", JSON.stringify(cartItems));
     }, [cartItems]);
 
+    // Helper function to update quantity and remove if <= 0
+    const updateQuantity = (productId: string, delta: number) => {
+        setCartItems((prevItems) => {
+            const existingItem = prevItems.find(
+                (item) => item.product._id === productId,
+            );
+            if (existingItem) {
+                const newQuantity = existingItem.quantity + delta;
+                if (newQuantity <= 0) {
+                    // Remove the item if quantity becomes 0 or negative
+                    return prevItems.filter(
+                        (item) => item.product._id !== productId,
+                    );
+                } else {
+                    return prevItems.map((item) =>
+                        item.product._id === productId
+                            ? { ...item, quantity: newQuantity }
+                            : item,
+                    );
+                }
+            } else {
+                return prevItems;
+            }
+        });
+    };
+
     const addToCart = (product: Product, quantity: number) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(
@@ -65,10 +93,18 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
                         : item,
                 );
             } else {
-                // Add new item with quantity 1
+                // Add new item with quantity
                 return [...prevItems, { product, quantity: quantity }];
             }
         });
+    };
+
+    const increaseQuantity = (productId: string) => {
+        updateQuantity(productId, 1);
+    };
+
+    const decreaseQuantity = (productId: string) => {
+        updateQuantity(productId, -1);
     };
 
     const removeFromCart = (productId: string) => {
@@ -84,6 +120,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const value: CartContextType = {
         cartItems,
         addToCart,
+        increaseQuantity,
+        decreaseQuantity,
         removeFromCart,
         emptyCart,
     };
