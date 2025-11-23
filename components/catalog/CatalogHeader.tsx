@@ -6,7 +6,7 @@ export function CatalogHeader({
     subheading: string;
 }) {
     return (
-        <div className="border-b pb-4">
+        <div className="pb-4">
             <h1 className="font-display mb-2 text-5xl font-bold text-red-700 sm:text-7xl">
                 {heading}
             </h1>

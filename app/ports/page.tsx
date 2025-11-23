@@ -1,4 +1,4 @@
-import { CatalogHeader } from "@/components/CatalogHeader";
+import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/FilterInput";
 import { ProductCatalog } from "@/components/ProductCatalog";
 import { PORTS_CATEGORY_ID, sanity } from "@/lib/sanity";

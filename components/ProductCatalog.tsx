@@ -20,7 +20,7 @@ export function ProductCatalog({
     products: Product[];
 }) {
     return (
-        <div className="grid min-h-[100vh] grid-cols-1 rounded-lg bg-white md:grid-cols-[240px_auto]">
+        <div className="grid min-h-[100vh] grid-cols-1 rounded-lg border-t bg-white md:grid-cols-[240px_auto]">
             <div className="hidden border-r p-3 pt-6 md:block">
                 <div className="sticky top-24 grid grid-cols-1 place-content-start gap-4">
                     <SearchInput label="Search" initialValue={search} />
