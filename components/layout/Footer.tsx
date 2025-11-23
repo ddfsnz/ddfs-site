@@ -14,7 +14,7 @@ export function Footer() {
                     />
                 </Link>
                 <nav className="flex flex-col gap-12 text-center text-sm sm:flex-row sm:text-left">
-                    <div className="grid gap-3 text-sm">
+                    <div className="flex flex-col gap-3">
                         <h2 className="font-medium">Products</h2>
                         <Link
                             href="/wines"
@@ -65,12 +65,20 @@ export function Footer() {
                             Manuka Honey
                         </Link>
                     </div>
-                    <Link
-                        href="/#about"
-                        className="font-medium transition-colors hover:text-red-700"
-                    >
-                        About DDFS
-                    </Link>
+                    <div className="flex flex-col gap-3 font-medium">
+                        <Link
+                            href="/#about"
+                            className="transition-colors hover:text-red-700"
+                        >
+                            About DDFS
+                        </Link>
+                        <Link
+                            href="/legal"
+                            className="transition-colors hover:text-red-700"
+                        >
+                            Legal
+                        </Link>
+                    </div>
                 </nav>
             </div>
         </footer>
