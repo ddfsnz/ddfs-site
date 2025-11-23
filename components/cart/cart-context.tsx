@@ -7,6 +7,7 @@ import {
     useEffect,
     ReactNode,
 } from "react";
+import { usePrice } from "@/components/price/usePrice";
 import { Product } from "@/types/product";
 
 export interface CartItem {
@@ -18,6 +19,7 @@ export interface CartItem {
 // Define the CartContext type
 interface CartContextType {
     cartItems: CartItem[];
+    cartPrice: number;
     addToCart: (
         product: Product,
         packSize: number | null,
@@ -39,6 +41,8 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const { calculateCartPrice } = usePrice();
+    const cartPrice = calculateCartPrice(cartItems);
 
     // Load cart from localStorage on mount
     useEffect(() => {
@@ -146,6 +150,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
     const value: CartContextType = {
         cartItems,
+        cartPrice,
         addToCart,
         increaseQuantity,
         decreaseQuantity,

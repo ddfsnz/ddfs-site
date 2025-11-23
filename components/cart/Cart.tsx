@@ -12,9 +12,10 @@ import {
 } from "@/components/_ui/sheet";
 import { useCart } from "@/components/cart/cart-context";
 import { CartItem } from "@/components/cart/CartItem";
+import { DisplayPrice } from "@/components/DisplayPrice";
 
 export function Cart() {
-    const { cartItems, emptyCart } = useCart();
+    const { cartItems, cartPrice, emptyCart } = useCart();
 
     return (
         <Sheet>
@@ -50,6 +51,15 @@ export function Cart() {
                     )}
                 </div>
                 <SheetFooter>
+                    <div className="grid grid-cols-1 border-t py-2 text-center">
+                        <span className="text-xs font-normal text-gray-500">
+                            Total:
+                        </span>
+                        <span className="font-display text-center font-bold text-red-700">
+                            <DisplayPrice price={cartPrice} />{" "}
+                            <span className="text-xs">+ GST</span>
+                        </span>
+                    </div>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         <Button
                             onClick={emptyCart}

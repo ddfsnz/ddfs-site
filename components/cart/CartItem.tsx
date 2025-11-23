@@ -24,7 +24,7 @@ export function CartItem({ cartItem }: { cartItem: CartItemType }) {
                     {cartItem.product.name}
                 </h3>
                 <span className="text-xs font-semibold text-red-700">
-                    <DisplayPrice price={calculatePrice(cartItem)} />
+                    <DisplayPrice price={calculatePrice(cartItem)} /> +GST
                     {cartItem.packSize && (
                         <span className="text-xs font-normal text-gray-500">
                             {" • "} {cartItem.packSize} Pack

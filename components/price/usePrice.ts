@@ -17,5 +17,13 @@ export function usePrice() {
         return price;
     }
 
-    return { calculatePrice };
+    function calculateCartPrice(cartItems: CartItem[]) {
+        let total = 0;
+        cartItems.forEach((c) => {
+            total += calculatePrice(c);
+        });
+        return total;
+    }
+
+    return { calculatePrice, calculateCartPrice };
 }
