@@ -10,10 +10,10 @@ import {
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { HoneyBadges } from "@/components/HoneyBadges";
-import { HoneyOptions } from "@/components/HoneyOptions";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { HONEY_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Honey } from "@/types/product";
 
@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <ProductDetails product={honey}>
                             <HoneyBadges honeyOptions={honey.honeyOptions} />
                         </ProductDetails>
-                        <HoneyOptions honey={honey} />
+                        <ProductOptions product={honey} />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

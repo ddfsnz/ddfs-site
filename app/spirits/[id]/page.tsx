@@ -12,8 +12,8 @@ import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { SpiritBadges } from "@/components/SpiritBadges";
-import { SpiritOptions } from "@/components/SpiritOptions";
 import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";
 import { Spirit } from "@/types/product";
 
@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 spiritOptions={spirit.spiritOptions}
                             />
                         </ProductDetails>
-                        <SpiritOptions spirit={spirit} />
+                        <ProductOptions product={spirit} />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

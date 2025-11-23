@@ -10,10 +10,10 @@ import {
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { PortBadges } from "@/components/PortBadges";
-import { PortOptions } from "@/components/PortOptions";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { PORTS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Port } from "@/types/product";
 
@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <ProductDetails product={port}>
                             <PortBadges portOptions={port.portOptions} />
                         </ProductDetails>
-                        <PortOptions port={port} />
+                        <ProductOptions product={port} />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

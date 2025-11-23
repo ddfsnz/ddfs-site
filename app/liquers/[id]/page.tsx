@@ -10,10 +10,10 @@ import {
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { LiquerBadges } from "@/components/LiquerBadges";
-import { LiquerOptions } from "@/components/LiquerOptions";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { LIQUERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Liquer } from "@/types/product";
 
@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 liquerOptions={liquer.liquerOptions}
                             />
                         </ProductDetails>
-                        <LiquerOptions liquer={liquer} />
+                        <ProductOptions product={liquer} />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

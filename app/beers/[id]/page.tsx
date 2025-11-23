@@ -9,11 +9,11 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { BeerBadges } from "@/components/BeerBadges";
-import { BeerOptions } from "@/components/BeerOptions";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 
@@ -83,7 +83,10 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <ProductDetails product={beer}>
                             <BeerBadges beerOptions={beer.beerOptions} />
                         </ProductDetails>
-                        <BeerOptions beer={beer} />
+                        <ProductOptions
+                            product={beer}
+                            packSizes={beer.beerOptions.quantity}
+                        />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

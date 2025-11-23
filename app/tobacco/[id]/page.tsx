@@ -12,8 +12,8 @@ import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { TobaccoBadges } from "@/components/TobaccoBadges";
-import { TobaccoOptions } from "@/components/TobaccoOptions";
 import { sanity, TOBACCO_CATEGORY_ID } from "@/lib/sanity";
 import { Tobacco } from "@/types/product";
 
@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 tobaccoOptions={tobacco.tobaccoOptions}
                             />
                         </ProductDetails>
-                        <TobaccoOptions tobacco={tobacco} />
+                        <ProductOptions product={tobacco} />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">

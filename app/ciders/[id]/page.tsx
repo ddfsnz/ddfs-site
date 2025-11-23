@@ -10,10 +10,10 @@ import {
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { CiderBadges } from "@/components/CiderBadges";
-import { CiderOptions } from "@/components/CiderOptions";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImage } from "@/components/products/ProductImage";
+import { ProductOptions } from "@/components/products/ProductOptions";
 import { CIDERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Cider } from "@/types/product";
 
@@ -85,7 +85,10 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <ProductDetails product={cider}>
                             <CiderBadges ciderOptions={cider.ciderOptions} />
                         </ProductDetails>
-                        <CiderOptions cider={cider} />
+                        <ProductOptions
+                            product={cider}
+                            packSizes={cider.ciderOptions.quantity}
+                        />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">
