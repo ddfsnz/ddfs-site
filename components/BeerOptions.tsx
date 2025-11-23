@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils";
 import { Beer } from "@/types/product";
 
 export function BeerOptions({ beer }: { beer: Beer }) {
-    const [pack, setPack] = useState(beer.beerOptions.quantity[0]);
+    const [packSize, setPackSize] = useState(beer.beerOptions.quantity[0]);
     const [quantity, setQuantity] = useState(1);
     function calculatedPrice() {
-        return pack === beer.beerOptions.quantity[0]
+        return packSize === beer.beerOptions.quantity[0]
             ? beer.price
-            : beer.price * (pack / beer.beerOptions.quantity[0]);
+            : beer.price * (packSize / beer.beerOptions.quantity[0]);
     }
     const { addToCart } = useCart();
 
@@ -29,13 +29,13 @@ export function BeerOptions({ beer }: { beer: Beer }) {
                 {beer.beerOptions.quantity.map((o) => (
                     <Button
                         key={o}
-                        onClick={() => setPack(o)}
+                        onClick={() => setPackSize(o)}
                         variant="outline"
                     >
                         <Check
                             className={cn(
                                 "transition-opacity",
-                                o !== pack && "opacity-0",
+                                o !== packSize && "opacity-0",
                             )}
                         />
                         {o} Pack
@@ -61,7 +61,7 @@ export function BeerOptions({ beer }: { beer: Beer }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(beer, quantity)}>
+                <Button onClick={() => addToCart(beer, packSize, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

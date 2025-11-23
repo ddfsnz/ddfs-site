@@ -37,7 +37,7 @@ export function PortOptions({ port }: { port: Port }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(port, quantity)}>
+                <Button onClick={() => addToCart(port, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

@@ -37,7 +37,7 @@ export function HoneyOptions({ honey }: { honey: Honey }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(honey, quantity)}>
+                <Button onClick={() => addToCart(honey, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

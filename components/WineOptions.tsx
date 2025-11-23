@@ -37,7 +37,7 @@ export function WineOptions({ wine }: { wine: Wine }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(wine, quantity)}>
+                <Button onClick={() => addToCart(wine, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

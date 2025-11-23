@@ -37,7 +37,7 @@ export function TobaccoOptions({ tobacco }: { tobacco: Tobacco }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(tobacco, quantity)}>
+                <Button onClick={() => addToCart(tobacco, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

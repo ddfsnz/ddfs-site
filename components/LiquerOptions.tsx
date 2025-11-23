@@ -37,7 +37,7 @@ export function LiquerOptions({ liquer }: { liquer: Liquer }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(liquer, quantity)}>
+                <Button onClick={() => addToCart(liquer, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

@@ -9,21 +9,24 @@ import {
 } from "react";
 import { Product } from "@/types/product";
 
-// Define the CartItem interface
-interface CartItem {
+export interface CartItem {
     product: Product;
+    packSize: number | null;
     quantity: number;
 }
 
 // Define the CartContext type
 interface CartContextType {
     cartItems: CartItem[];
-    addToCart: (product: Product, quantity: number) => void;
-    increaseQuantity: (productId: string) => void;
-    decreaseQuantity: (productId: string) => void;
-    removeFromCart: (productId: string) => void;
+    addToCart: (
+        product: Product,
+        packSize: number | null,
+        quantity: number,
+    ) => void;
+    increaseQuantity: (productId: string, packSize: number | null) => void;
+    decreaseQuantity: (productId: string, packSize: number | null) => void;
+    removeFromCart: (productId: string, packSize: number | null) => void;
     emptyCart: () => void;
-    // You can add more methods like removeFromCart, updateQuantity, etc., if needed
 }
 
 // Create the CartContext
@@ -55,21 +58,32 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }, [cartItems]);
 
     // Helper function to update quantity and remove if <= 0
-    const updateQuantity = (productId: string, delta: number) => {
+    const updateQuantity = (
+        productId: string,
+        packSize: number | null,
+        delta: number,
+    ) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(
-                (item) => item.product._id === productId,
+                (item) =>
+                    item.product._id === productId &&
+                    item.packSize === packSize,
             );
             if (existingItem) {
                 const newQuantity = existingItem.quantity + delta;
                 if (newQuantity <= 0) {
                     // Remove the item if quantity becomes 0 or negative
                     return prevItems.filter(
-                        (item) => item.product._id !== productId,
+                        (item) =>
+                            !(
+                                item.product._id === productId &&
+                                item.packSize === packSize
+                            ),
                     );
                 } else {
                     return prevItems.map((item) =>
-                        item.product._id === productId
+                        item.product._id === productId &&
+                        item.packSize === packSize
                             ? { ...item, quantity: newQuantity }
                             : item,
                     );
@@ -80,36 +94,49 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         });
     };
 
-    const addToCart = (product: Product, quantity: number) => {
+    const addToCart = (
+        product: Product,
+        packSize: number | null,
+        quantity: number,
+    ) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(
-                (item) => item.product._id === product._id,
+                (item) =>
+                    item.product._id === product._id &&
+                    item.packSize === packSize,
             );
             if (existingItem) {
-                // Increase quantity if product already in cart
+                // Increase quantity if product with same packSize already in cart
                 return prevItems.map((item) =>
-                    item.product._id === product._id
+                    item.product._id === product._id &&
+                    item.packSize === packSize
                         ? { ...item, quantity: item.quantity + quantity }
                         : item,
                 );
             } else {
-                // Add new item with quantity
-                return [...prevItems, { product, quantity: quantity }];
+                // Add new item with quantity and packSize
+                return [...prevItems, { product, quantity, packSize }];
             }
         });
     };
 
-    const increaseQuantity = (productId: string) => {
-        updateQuantity(productId, 1);
+    const increaseQuantity = (productId: string, packSize: number | null) => {
+        updateQuantity(productId, packSize, 1);
     };
 
-    const decreaseQuantity = (productId: string) => {
-        updateQuantity(productId, -1);
+    const decreaseQuantity = (productId: string, packSize: number | null) => {
+        updateQuantity(productId, packSize, -1);
     };
 
-    const removeFromCart = (productId: string) => {
+    const removeFromCart = (productId: string, packSize: number | null) => {
         setCartItems((prevItems) => {
-            return prevItems.filter((item) => item.product._id !== productId);
+            return prevItems.filter(
+                (item) =>
+                    !(
+                        item.product._id === productId &&
+                        item.packSize === packSize
+                    ),
+            );
         });
     };
 

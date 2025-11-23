@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils";
 import { Cider } from "@/types/product";
 
 export function CiderOptions({ cider }: { cider: Cider }) {
-    const [pack, setPack] = useState(cider.ciderOptions.quantity[0]);
+    const [packSize, setPackSize] = useState(cider.ciderOptions.quantity[0]);
     const [quantity, setQuantity] = useState(1);
     function calculatedPrice() {
-        return pack === cider.ciderOptions.quantity[0]
+        return packSize === cider.ciderOptions.quantity[0]
             ? cider.price
-            : cider.price * (pack / cider.ciderOptions.quantity[0]);
+            : cider.price * (packSize / cider.ciderOptions.quantity[0]);
     }
     const { addToCart } = useCart();
 
@@ -29,13 +29,13 @@ export function CiderOptions({ cider }: { cider: Cider }) {
                 {cider.ciderOptions.quantity.map((o) => (
                     <Button
                         key={o}
-                        onClick={() => setPack(o)}
+                        onClick={() => setPackSize(o)}
                         variant="outline"
                     >
                         <Check
                             className={cn(
                                 "transition-opacity",
-                                o !== pack && "opacity-0",
+                                o !== packSize && "opacity-0",
                             )}
                         />
                         {o} Pack
@@ -61,7 +61,7 @@ export function CiderOptions({ cider }: { cider: Cider }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(cider, quantity)}>
+                <Button onClick={() => addToCart(cider, packSize, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>

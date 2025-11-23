@@ -37,7 +37,7 @@ export function SpiritOptions({ spirit }: { spirit: Spirit }) {
                         className="text-center"
                     />
                 </div>
-                <Button onClick={() => addToCart(spirit, quantity)}>
+                <Button onClick={() => addToCart(spirit, null, quantity)}>
                     Add to Cart <ShoppingCart />
                 </Button>
             </div>
