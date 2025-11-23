@@ -12,6 +12,7 @@ import {
 } from "@/components/_ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { Cart } from "@/components/cart/Cart";
+import { GSTSwitch } from "@/components/price/GSTSwitch";
 
 export function Header() {
     return (
@@ -74,6 +75,9 @@ export function Header() {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
+                    <div className="hidden sm:block">
+                        <GSTSwitch />
+                    </div>
                     <Cart />
                     <Sheet>
                         <SheetTrigger asChild>
@@ -86,6 +90,7 @@ export function Header() {
                             </Button>
                         </SheetTrigger>
                         <SheetContent className="w-11/12 p-3 pt-12">
+                            <GSTSwitch />
                             <NavigationMenu className="flex w-full max-w-full flex-col justify-start">
                                 <span className="w-full p-2 text-start text-sm font-semibold">
                                     Products

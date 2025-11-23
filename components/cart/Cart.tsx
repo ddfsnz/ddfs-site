@@ -56,8 +56,7 @@ export function Cart() {
                             Total:
                         </span>
                         <span className="font-display text-center font-bold text-red-700">
-                            <DisplayPrice price={cartPrice} />{" "}
-                            <span className="text-xs">+ GST</span>
+                            <DisplayPrice price={cartPrice} />
                         </span>
                     </div>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

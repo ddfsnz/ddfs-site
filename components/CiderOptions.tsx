@@ -25,8 +25,7 @@ export function CiderOptions({ cider }: { cider: Cider }) {
                         packSize,
                         quantity: 1,
                     })}
-                />{" "}
-                <span className="text-xs font-semibold">+GST</span>
+                />
             </span>
             <div className="flex flex-wrap gap-2">
                 {cider.ciderOptions.quantity.map((o) => (

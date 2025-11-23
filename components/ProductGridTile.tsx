@@ -167,8 +167,7 @@ export function ProductGridTile({ product }: { product: Product }) {
                         packSize: null,
                         quantity: 1,
                     })}
-                />{" "}
-                <span className="text-xs font-semibold">+GST</span>
+                />
             </span>
         </Link>
     );

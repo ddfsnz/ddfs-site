@@ -23,8 +23,7 @@ export function WineOptions({ wine }: { wine: Wine }) {
                         packSize: null,
                         quantity: 1,
                     })}
-                />{" "}
-                <span className="text-xs font-semibold">+GST</span>
+                />
             </span>
             <div className="grid grid-cols-2 items-end gap-3">
                 <div className="grid gap-1">

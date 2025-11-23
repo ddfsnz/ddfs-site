@@ -25,8 +25,7 @@ export function BeerOptions({ beer }: { beer: Beer }) {
                         packSize,
                         quantity: 1,
                     })}
-                />{" "}
-                <span className="text-xs font-semibold">+GST</span>
+                />
             </span>
             <div className="flex flex-wrap gap-2">
                 {beer.beerOptions.quantity.map((o) => (

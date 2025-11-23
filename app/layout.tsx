@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-context";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { PriceProvider } from "@/components/price/price-context";
 
 const urbanist = Urbanist({
     variable: "--font-urbanist",
@@ -36,11 +37,13 @@ export default function Layout({
             <body
                 className={`${urbanist.variable} ${inter.variable} ${geistMono.variable} font-sans text-gray-800 antialiased`}
             >
-                <CartProvider>
-                    <Header />
-                    {children}
-                    <Footer />
-                </CartProvider>
+                <PriceProvider>
+                    <CartProvider>
+                        <Header />
+                        {children}
+                        <Footer />
+                    </CartProvider>
+                </PriceProvider>
             </body>
         </html>
     );
