@@ -5,8 +5,8 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/_ui/popover";
+import { SearchInput } from "@/components/catalog/SearchInput";
 import { ProductGrid } from "@/components/ProductGrid";
-import { SearchInput } from "@/components/SearchInput";
 import { SortOrder } from "@/components/SortOrder";
 import { Product } from "@/types/product";
 

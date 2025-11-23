@@ -1,5 +1,5 @@
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
-import { FilterInput } from "@/components/FilterInput";
+import { FilterInput } from "@/components/catalog/FilterInput";
 import { ProductCatalog } from "@/components/ProductCatalog";
 import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
