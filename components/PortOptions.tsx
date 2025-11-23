@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
 import { useCart } from "@/components/cart/cart-context";
-import { DisplayPrice } from "@/components/DisplayPrice";
+import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
 import { Port } from "@/types/product";
 

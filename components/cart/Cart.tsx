@@ -12,7 +12,7 @@ import {
 } from "@/components/_ui/sheet";
 import { useCart } from "@/components/cart/cart-context";
 import { CartItem } from "@/components/cart/CartItem";
-import { DisplayPrice } from "@/components/DisplayPrice";
+import { DisplayPrice } from "@/components/price/DisplayPrice";
 
 export function Cart() {
     const { cartItems, cartPrice, emptyCart } = useCart();

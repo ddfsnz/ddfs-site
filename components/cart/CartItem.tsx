@@ -6,7 +6,7 @@ import {
     CartItem as CartItemType,
     useCart,
 } from "@/components/cart/cart-context";
-import { DisplayPrice } from "@/components/DisplayPrice";
+import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
 import { ProductImage } from "@/components/ProductImage";
 

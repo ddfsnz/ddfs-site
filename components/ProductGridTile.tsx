@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { BeerBadges } from "@/components/BeerBadges";
 import { CiderBadges } from "@/components/CiderBadges";
-import { DisplayPrice } from "@/components/DisplayPrice";
 import { HoneyBadges } from "@/components/HoneyBadges";
 import { LiquerBadges } from "@/components/LiquerBadges";
 import { PortBadges } from "@/components/PortBadges";
+import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
 import { ProductImage } from "@/components/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
