@@ -7,7 +7,7 @@ import {
 } from "@/components/_ui/popover";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { SearchInput } from "@/components/catalog/SearchInput";
-import { SortOrder } from "@/components/SortOrder";
+import { SortOrder } from "@/components/catalog/SortOrder";
 import { Product } from "@/types/product";
 
 export function Catalog({
