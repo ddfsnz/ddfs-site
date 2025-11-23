@@ -42,7 +42,10 @@ export function Cart() {
                         </span>
                     ) : (
                         cartItems.map((c) => (
-                            <CartItem key={c.product._id} cartItem={c} />
+                            <CartItem
+                                key={c.product._id + c.packSize}
+                                cartItem={c}
+                            />
                         ))
                     )}
                 </div>
