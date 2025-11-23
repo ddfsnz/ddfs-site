@@ -10,7 +10,7 @@ import {
     NavigationMenuContent,
     NavigationMenuLink,
 } from "@/components/_ui/navigation-menu";
-import { Cart } from "@/components/Cart";
+import { Cart } from "@/components/cart/Cart";
 
 export function Header() {
     return (

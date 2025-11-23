@@ -1,6 +1,4 @@
 import { createClient } from "@sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const sanity = createClient({
     projectId: process.env.SANITY_PROJECT_ID,
@@ -10,15 +8,6 @@ export const sanity = createClient({
     useCdn: false, // TODO: CDN in production
     perspective: "drafts", // TODO: drafts in dev/stage
 });
-
-const builder = imageUrlBuilder(sanity);
-export function getImageSrc(source: SanityImageSource) {
-    try {
-        return builder.image(source).url();
-    } catch {
-        return undefined;
-    }
-}
 
 export const BEERS_CATEGORY_ID = "1ba1526c-f516-4c61-bea8-dda1e2c5fcc0";
 export const CIDERS_CATEGORY_ID = "fa4fcd60-f6b2-46fc-b93f-38c714a74d7d";

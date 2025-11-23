@@ -4,8 +4,8 @@ import { Check, Info, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
+import { useCart } from "@/components/cart/cart-context";
 import { DisplayPrice } from "@/components/DisplayPrice";
-import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { Cider } from "@/types/product";
 

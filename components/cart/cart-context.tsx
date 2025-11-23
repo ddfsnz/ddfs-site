@@ -19,7 +19,7 @@ interface CartItem {
 interface CartContextType {
     cartItems: CartItem[];
     addToCart: (product: Product, quantity: number) => void;
-    removeFromCart: (product: Product) => void;
+    removeFromCart: (productId: string) => void;
     emptyCart: () => void;
     // You can add more methods like removeFromCart, updateQuantity, etc., if needed
 }
@@ -71,9 +71,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         });
     };
 
-    const removeFromCart = (product: Product) => {
+    const removeFromCart = (productId: string) => {
         setCartItems((prevItems) => {
-            return prevItems.filter((item) => item.product._id !== product._id);
+            return prevItems.filter((item) => item.product._id !== productId);
         });
     };
 

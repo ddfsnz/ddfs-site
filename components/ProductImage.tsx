@@ -1,6 +1,6 @@
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { getImageSrc } from "@/lib/sanity";
+import { getImageSrc } from "@/lib/sanity-image";
 import { Product } from "@/types/product";
 
 export function ProductImage({ product }: { product: Product }) {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Urbanist } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/cart/cart-context";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { CartProvider } from "@/lib/cart";
 
 const urbanist = Urbanist({
     variable: "--font-urbanist",

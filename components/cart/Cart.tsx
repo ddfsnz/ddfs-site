@@ -10,8 +10,8 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/_ui/sheet";
-import { CartItem } from "@/components/CartItem";
-import { useCart } from "@/lib/cart";
+import { useCart } from "@/components/cart/cart-context";
+import { CartItem } from "@/components/cart/CartItem";
 
 export function Cart() {
     const { cartItems, emptyCart } = useCart();

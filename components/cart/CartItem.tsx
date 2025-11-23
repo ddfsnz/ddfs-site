@@ -1,8 +1,9 @@
 "use client";
 
-import { ImageIcon, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Button } from "@/components/_ui/button";
-import { useCart } from "@/lib/cart";
+import { useCart } from "@/components/cart/cart-context";
+import { ProductImage } from "@/components/ProductImage";
 import { Product } from "@/types/product";
 
 export function CartItem({
@@ -16,14 +17,14 @@ export function CartItem({
 
     return (
         <div className="grid grid-cols-[auto_1fr] place-items-center gap-3">
-            <div className="flex aspect-square size-24 items-center justify-center overflow-hidden rounded-sm border bg-white">
-                <ImageIcon className="size-8 text-gray-300" />
+            <div className="aspect-square size-24 overflow-hidden rounded-sm border bg-white">
+                <ProductImage product={product} />
             </div>
             <div className="grid place-items-start gap-1">
                 <h3 className="text-sm font-semibold">{product.name}</h3>
                 <span className="block text-xs text-gray-500">x{quantity}</span>
                 <Button
-                    onClick={() => removeFromCart(product)}
+                    onClick={() => removeFromCart(product._id)}
                     variant="outline"
                     size="sm"
                 >
