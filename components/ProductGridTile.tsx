@@ -5,6 +5,7 @@ import { DisplayPrice } from "@/components/DisplayPrice";
 import { HoneyBadges } from "@/components/HoneyBadges";
 import { LiquerBadges } from "@/components/LiquerBadges";
 import { PortBadges } from "@/components/PortBadges";
+import { usePrice } from "@/components/price/usePrice";
 import { ProductImage } from "@/components/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
 import { TobaccoBadges } from "@/components/TobaccoBadges";
@@ -49,6 +50,8 @@ export function ProductGridTile({ product }: { product: Product }) {
             productLink = `/wines/${product._id}`;
             break;
     }
+
+    const { calculatePrice } = usePrice();
 
     return (
         <Link
@@ -158,7 +161,13 @@ export function ProductGridTile({ product }: { product: Product }) {
                 </>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">
-                <DisplayPrice price={product.price} />{" "}
+                <DisplayPrice
+                    price={calculatePrice({
+                        product,
+                        packSize: null,
+                        quantity: 1,
+                    })}
+                />{" "}
                 <span className="text-xs font-semibold">+GST</span>
             </span>
         </Link>

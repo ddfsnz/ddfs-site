@@ -6,23 +6,26 @@ import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
 import { useCart } from "@/components/cart/cart-context";
 import { DisplayPrice } from "@/components/DisplayPrice";
+import { usePrice } from "@/components/price/usePrice";
 import { cn } from "@/lib/utils";
 import { Beer } from "@/types/product";
 
 export function BeerOptions({ beer }: { beer: Beer }) {
     const [packSize, setPackSize] = useState(beer.beerOptions.quantity[0]);
     const [quantity, setQuantity] = useState(1);
-    function calculatedPrice() {
-        return packSize === beer.beerOptions.quantity[0]
-            ? beer.price
-            : beer.price * (packSize / beer.beerOptions.quantity[0]);
-    }
+    const { calculatePrice } = usePrice();
     const { addToCart } = useCart();
 
     return (
         <div className="grid gap-3">
             <span className="font-display mt-auto text-2xl font-bold text-red-700">
-                <DisplayPrice price={calculatedPrice()} />{" "}
+                <DisplayPrice
+                    price={calculatePrice({
+                        product: beer,
+                        packSize,
+                        quantity: 1,
+                    })}
+                />{" "}
                 <span className="text-xs font-semibold">+GST</span>
             </span>
             <div className="flex flex-wrap gap-2">
