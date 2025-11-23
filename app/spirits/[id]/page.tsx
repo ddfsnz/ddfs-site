@@ -9,9 +9,9 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
-import { ProductDescription } from "@/components/ProductDescription";
-import { ProductDetails } from "@/components/ProductDetails";
-import { ProductImage } from "@/components/ProductImage";
+import { ProductDescription } from "@/components/products/ProductDescription";
+import { ProductDetails } from "@/components/products/ProductDetails";
+import { ProductImage } from "@/components/products/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
 import { SpiritOptions } from "@/components/SpiritOptions";
 import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";

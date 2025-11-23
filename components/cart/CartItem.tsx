@@ -8,7 +8,7 @@ import {
 } from "@/components/cart/cart-context";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
-import { ProductImage } from "@/components/ProductImage";
+import { ProductImage } from "@/components/products/ProductImage";
 
 export function CartItem({ cartItem }: { cartItem: CartItemType }) {
     const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();

@@ -1,4 +1,4 @@
-import { ProductGridTile } from "@/components/ProductGridTile";
+import { ProductTile } from "@/components/products/ProductTile";
 import { cn } from "@/lib/utils";
 import { Product } from "@/types/product";
 
@@ -17,7 +17,7 @@ export function CatalogGrid({
             )}
         >
             {products.map((p) => (
-                <ProductGridTile key={p._id} product={p} />
+                <ProductTile key={p._id} product={p} />
             ))}
         </div>
     );

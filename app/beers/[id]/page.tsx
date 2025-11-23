@@ -11,9 +11,9 @@ import {
 import { BeerBadges } from "@/components/BeerBadges";
 import { BeerOptions } from "@/components/BeerOptions";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
-import { ProductDescription } from "@/components/ProductDescription";
-import { ProductDetails } from "@/components/ProductDetails";
-import { ProductImage } from "@/components/ProductImage";
+import { ProductDescription } from "@/components/products/ProductDescription";
+import { ProductDetails } from "@/components/products/ProductDetails";
+import { ProductImage } from "@/components/products/ProductImage";
 import { BEERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Beer } from "@/types/product";
 

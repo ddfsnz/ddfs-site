@@ -11,9 +11,9 @@ import {
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { LiquerBadges } from "@/components/LiquerBadges";
 import { LiquerOptions } from "@/components/LiquerOptions";
-import { ProductDescription } from "@/components/ProductDescription";
-import { ProductDetails } from "@/components/ProductDetails";
-import { ProductImage } from "@/components/ProductImage";
+import { ProductDescription } from "@/components/products/ProductDescription";
+import { ProductDetails } from "@/components/products/ProductDetails";
+import { ProductImage } from "@/components/products/ProductImage";
 import { LIQUERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Liquer } from "@/types/product";
 

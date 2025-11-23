@@ -6,7 +6,7 @@ import { LiquerBadges } from "@/components/LiquerBadges";
 import { PortBadges } from "@/components/PortBadges";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
-import { ProductImage } from "@/components/ProductImage";
+import { ProductImage } from "@/components/products/ProductImage";
 import { SpiritBadges } from "@/components/SpiritBadges";
 import { TobaccoBadges } from "@/components/TobaccoBadges";
 import { WineBadges } from "@/components/WineBadges";
@@ -22,7 +22,7 @@ import {
 } from "@/lib/sanity";
 import { Product } from "@/types/product";
 
-export function ProductGridTile({ product }: { product: Product }) {
+export function ProductTile({ product }: { product: Product }) {
     let productLink = "/";
     switch (product.category._ref) {
         case BEERS_CATEGORY_ID:
