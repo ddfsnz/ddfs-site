@@ -1,6 +1,29 @@
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import {
+    PortableText,
+    PortableTextBlock,
+    PortableTextComponents,
+} from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { sanity } from "@/lib/sanity";
+
+const portableTextComponents: Partial<PortableTextComponents> = {
+    marks: {
+        link: ({ children, value }) => {
+            const rel = !value.href.startsWith("/")
+                ? "noreferrer noopener"
+                : undefined;
+            return (
+                <a
+                    href={value.href}
+                    rel={rel}
+                    className="text-red-700 underline"
+                >
+                    {children}
+                </a>
+            );
+        },
+    },
+};
 
 export default async function Page() {
     const page = await sanity.fetch<
@@ -11,7 +34,6 @@ export default async function Page() {
         }`,
         { title: "Legal" },
     );
-    console.log(page);
 
     if (!page) {
         notFound();
@@ -23,7 +45,10 @@ export default async function Page() {
                 <h1 className="font-display mb-3 text-5xl font-bold text-red-700 sm:text-7xl">
                     Legal
                 </h1>
-                <PortableText value={page.content} />
+                <PortableText
+                    value={page.content}
+                    components={portableTextComponents}
+                />
             </div>
         </main>
     );
