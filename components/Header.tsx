@@ -10,6 +10,7 @@ import {
     NavigationMenuContent,
     NavigationMenuLink,
 } from "@/components/_ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { Cart } from "@/components/cart/Cart";
 
 export function Header() {
@@ -74,9 +75,97 @@ export function Header() {
                         </NavigationMenuList>
                     </NavigationMenu>
                     <Cart />
-                    <Button size="icon" variant="ghost" className="sm:hidden">
-                        <Menu />
-                    </Button>
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Button
+                                size="icon"
+                                variant="ghost"
+                                className="sm:hidden"
+                            >
+                                <Menu />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent className="w-11/12 p-3 pt-12">
+                            <NavigationMenu className="flex w-full max-w-full flex-col justify-start">
+                                <span className="w-full p-2 text-start text-sm font-semibold">
+                                    Products
+                                </span>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/wines"
+                                        className="w-full text-start"
+                                    >
+                                        Wines
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/beers"
+                                        className="w-full text-start"
+                                    >
+                                        Beers
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/ciders"
+                                        className="w-full text-start"
+                                    >
+                                        Ciders
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/spirits"
+                                        className="w-full text-start"
+                                    >
+                                        Spirits
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/liquers"
+                                        className="w-full text-start"
+                                    >
+                                        Liquers
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/ports"
+                                        className="w-full text-start"
+                                    >
+                                        Ports
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/tobacco"
+                                        className="w-full text-start"
+                                    >
+                                        Tobacco
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/honey"
+                                        className="w-full text-start"
+                                    >
+                                        Manuka Honey
+                                    </Link>
+                                </NavigationMenuLink>
+                                <hr className="my-4 w-full" />
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/#about"
+                                        className="w-full text-start font-medium"
+                                    >
+                                        About DDFS
+                                    </Link>
+                                </NavigationMenuLink>
+                            </NavigationMenu>
+                        </SheetContent>
+                    </Sheet>
                 </div>
             </div>
         </header>

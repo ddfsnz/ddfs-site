@@ -30,7 +30,7 @@ export function Cart() {
                     <ShoppingCart />
                 </Button>
             </SheetTrigger>
-            <SheetContent className="sm:max-w-xl">
+            <SheetContent className="w-11/12 sm:max-w-xl">
                 <SheetHeader>
                     <SheetTitle className="font-display text-3xl font-bold text-red-700">
                         My Cart
