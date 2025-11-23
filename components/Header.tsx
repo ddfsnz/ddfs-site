@@ -1,8 +1,7 @@
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Cart } from "@/components/Cart";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/_ui/button";
 import {
     NavigationMenu,
     NavigationMenuList,
@@ -10,7 +9,8 @@ import {
     NavigationMenuTrigger,
     NavigationMenuContent,
     NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
+} from "@/components/_ui/navigation-menu";
+import { Cart } from "@/components/Cart";
 
 export function Header() {
     return (

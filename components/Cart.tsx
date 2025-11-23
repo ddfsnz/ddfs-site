@@ -1,8 +1,7 @@
 "use client";
 
 import { ArrowRight, ShoppingCart, XCircle } from "lucide-react";
-import { CartItem } from "@/components/CartItem";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/_ui/button";
 import {
     Sheet,
     SheetContent,
@@ -10,7 +9,8 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/_ui/sheet";
+import { CartItem } from "@/components/CartItem";
 import { useCart } from "@/lib/cart";
 
 export function Cart() {

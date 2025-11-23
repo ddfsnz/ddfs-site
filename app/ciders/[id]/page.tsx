@@ -1,19 +1,19 @@
 import { ArrowRight, Home } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CiderBadges } from "@/components/CiderBadges";
-import { CiderOptions } from "@/components/CiderOptions";
-import { ProductDescription } from "@/components/ProductDescription";
-import { ProductDetails } from "@/components/ProductDetails";
-import { ProductGrid } from "@/components/ProductGrid";
-import { ProductImage } from "@/components/ProductImage";
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/components/_ui/breadcrumb";
+import { CiderBadges } from "@/components/CiderBadges";
+import { CiderOptions } from "@/components/CiderOptions";
+import { ProductDescription } from "@/components/ProductDescription";
+import { ProductDetails } from "@/components/ProductDetails";
+import { ProductGrid } from "@/components/ProductGrid";
+import { ProductImage } from "@/components/ProductImage";
 import { CIDERS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Cider } from "@/types/product";
 

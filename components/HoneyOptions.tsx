@@ -2,9 +2,9 @@
 
 import { Info, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/_ui/button";
+import { Input } from "@/components/_ui/input";
 import { DisplayPrice } from "@/components/DisplayPrice";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useCart } from "@/lib/cart";
 import { Honey } from "@/types/product";
 

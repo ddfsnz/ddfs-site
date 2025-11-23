@@ -2,12 +2,12 @@
 import { ArrowDownWideNarrow } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/_ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/_ui/popover";
 
 const SORT_OPTIONS = [
     { label: "Name", value: "name asc" },

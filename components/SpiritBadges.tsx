@@ -1,5 +1,5 @@
 import { Plane } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/_ui/badge";
 import { Spirit } from "@/types/product";
 
 export function SpiritBadges({

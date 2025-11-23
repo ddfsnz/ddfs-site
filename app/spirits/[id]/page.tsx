@@ -1,19 +1,19 @@
 import { ArrowRight, Home } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProductDescription } from "@/components/ProductDescription";
-import { ProductDetails } from "@/components/ProductDetails";
-import { ProductGrid } from "@/components/ProductGrid";
-import { ProductImage } from "@/components/ProductImage";
-import { SpiritBadges } from "@/components/SpiritBadges";
-import { SpiritOptions } from "@/components/SpiritOptions";
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/components/_ui/breadcrumb";
+import { ProductDescription } from "@/components/ProductDescription";
+import { ProductDetails } from "@/components/ProductDetails";
+import { ProductGrid } from "@/components/ProductGrid";
+import { ProductImage } from "@/components/ProductImage";
+import { SpiritBadges } from "@/components/SpiritBadges";
+import { SpiritOptions } from "@/components/SpiritOptions";
 import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";
 import { Spirit } from "@/types/product";
 

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/_ui/badge";
 import { Tobacco } from "@/types/product";
 
 export function TobaccoBadges({

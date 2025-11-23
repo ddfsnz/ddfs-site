@@ -1,7 +1,7 @@
 "use client";
 
 import { ImageIcon, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/_ui/button";
 import { useCart } from "@/lib/cart";
 import { Product } from "@/types/product";
 

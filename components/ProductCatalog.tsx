@@ -1,13 +1,13 @@
 import { Settings2 } from "lucide-react";
-import { ProductGrid } from "@/components/ProductGrid";
-import { SearchInput } from "@/components/SearchInput";
-import { SortOrder } from "@/components/SortOrder";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/_ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/_ui/popover";
+import { ProductGrid } from "@/components/ProductGrid";
+import { SearchInput } from "@/components/SearchInput";
+import { SortOrder } from "@/components/SortOrder";
 import { Product } from "@/types/product";
 
 export function ProductCatalog({
