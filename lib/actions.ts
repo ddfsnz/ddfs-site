@@ -48,7 +48,7 @@ export async function sendOrder(
                     <strong>Order Total: <span style="color: #b91c1c;">$${(cartPrice * 1.15).toFixed(2)}</span> <span style="font-size: 0.8em;">(incl. GST)</span></strong>
                 </p>
                 <p>
-                    <strong>Your details:</strong
+                    <strong>Your details:</strong>
                     <br />
                     <span>${recipient.name}</span>
                     <br />
@@ -126,7 +126,7 @@ export async function sendOrder(
                     <strong>Order Total: <span style="color: #b91c1c;">$${(cartPrice * 1.15).toFixed(2)}</span> <span style="font-size: 0.8em;">(incl. GST)</span></strong>
                 </p>
                 <p>
-                    <strong>Recipient details:</strong
+                    <strong>Recipient details:</strong>
                     <br />
                     <span>${recipient.name}</span>
                     <br />
