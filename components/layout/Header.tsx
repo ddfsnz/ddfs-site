@@ -44,9 +44,6 @@ export function Header() {
                                         <Link href="/beers">Beers</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
-                                        <Link href="/ciders">Ciders</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
                                         <Link href="/spirits">Spirits</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
@@ -60,6 +57,11 @@ export function Header() {
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
                                         <Link href="/honey">Manuka Honey</Link>
+                                    </NavigationMenuLink>
+                                    <NavigationMenuLink asChild>
+                                        <Link href="/specialty">
+                                            Specialty Products
+                                        </Link>
                                     </NavigationMenuLink>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
@@ -113,14 +115,6 @@ export function Header() {
                                 </NavigationMenuLink>
                                 <NavigationMenuLink asChild>
                                     <Link
-                                        href="/ciders"
-                                        className="w-full text-start"
-                                    >
-                                        Ciders
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
                                         href="/spirits"
                                         className="w-full text-start"
                                     >
@@ -157,6 +151,14 @@ export function Header() {
                                         className="w-full text-start"
                                     >
                                         Manuka Honey
+                                    </Link>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        href="/specialty"
+                                        className="w-full text-start"
+                                    >
+                                        Specialty Products
                                     </Link>
                                 </NavigationMenuLink>
                                 <hr className="my-4 w-full" />

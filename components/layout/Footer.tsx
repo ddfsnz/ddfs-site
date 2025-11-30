@@ -29,12 +29,6 @@ export function Footer() {
                             Beers
                         </Link>
                         <Link
-                            href="/ciders"
-                            className="transition-colors hover:text-red-700"
-                        >
-                            Ciders
-                        </Link>
-                        <Link
                             href="/spirits"
                             className="transition-colors hover:text-red-700"
                         >
@@ -63,6 +57,12 @@ export function Footer() {
                             className="transition-colors hover:text-red-700"
                         >
                             Manuka Honey
+                        </Link>
+                        <Link
+                            href="/specialty"
+                            className="transition-colors hover:text-red-700"
+                        >
+                            Specialty Products
                         </Link>
                     </div>
                     <div className="flex flex-col gap-3 font-medium">
