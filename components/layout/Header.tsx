@@ -11,7 +11,7 @@ import {
     NavigationMenuLink,
 } from "@/components/_ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
-import { Cart } from "@/components/cart/Cart";
+import { CartSheet } from "@/components/cart/CartSheet";
 import { GSTSwitch } from "@/components/price/GSTSwitch";
 
 export function Header() {
@@ -78,7 +78,7 @@ export function Header() {
                     <div className="hidden sm:block">
                         <GSTSwitch />
                     </div>
-                    <Cart />
+                    <CartSheet />
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button

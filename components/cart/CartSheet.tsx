@@ -1,9 +1,12 @@
 "use client";
 
 import { ArrowRight, ShoppingCart, XCircle } from "lucide-react";
+import Link from "next/link";
+import { useRef } from "react";
 import { Button } from "@/components/_ui/button";
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetFooter,
     SheetHeader,
@@ -11,15 +14,17 @@ import {
     SheetTrigger,
 } from "@/components/_ui/sheet";
 import { useCart } from "@/components/cart/cart-context";
-import { CartItem } from "@/components/cart/CartItem";
-import { CheckoutDialog } from "@/components/checkout/CheckoutDialog";
+import { CartItems } from "@/components/cart/CartItems";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
+import { cn } from "@/lib/utils";
 
-export function Cart() {
+export function CartSheet() {
     const { cartItems, cartPrice, emptyCart } = useCart();
+    const closeRef = useRef<HTMLButtonElement>(null);
 
     return (
         <Sheet>
+            <SheetClose ref={closeRef} className="hidden" />
             <SheetTrigger asChild>
                 <Button>
                     Cart
@@ -37,19 +42,8 @@ export function Cart() {
                         My Cart
                     </SheetTitle>
                 </SheetHeader>
-                <div className="grid gap-3 overflow-y-auto p-4">
-                    {cartItems.length === 0 ? (
-                        <span className="mx-auto block text-sm text-gray-500">
-                            Cart is empty
-                        </span>
-                    ) : (
-                        cartItems.map((c) => (
-                            <CartItem
-                                key={c.product._id + c.packSize}
-                                cartItem={c}
-                            />
-                        ))
-                    )}
+                <div className="overflow-y-auto p-4">
+                    <CartItems />
                 </div>
                 <SheetFooter>
                     <div className="grid grid-cols-1 border-t py-2 text-center">
@@ -68,11 +62,20 @@ export function Cart() {
                         >
                             Empty Cart <XCircle />
                         </Button>
-                        <CheckoutDialog>
-                            <Button disabled={cartItems.length === 0}>
+                        <Link
+                            href="/checkout"
+                            className={cn(
+                                cartItems.length === 0 && "pointer-events-none",
+                            )}
+                        >
+                            <Button
+                                disabled={cartItems.length === 0}
+                                className="w-full"
+                                onClick={() => closeRef.current?.click()}
+                            >
                                 Checkout <ArrowRight />
                             </Button>
-                        </CheckoutDialog>
+                        </Link>
                     </div>
                 </SheetFooter>
             </SheetContent>

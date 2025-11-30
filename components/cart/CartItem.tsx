@@ -15,7 +15,7 @@ export function CartItem({ cartItem }: { cartItem: CartItemType }) {
     const { calculatePrice } = usePrice();
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 border-b pb-2">
             <div className="aspect-square size-24 shrink-0 overflow-hidden rounded-sm border bg-white">
                 <ProductImage product={cartItem.product} />
             </div>

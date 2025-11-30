@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Urbanist } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/_ui/sonner";
 import { CartProvider } from "@/components/cart/cart-context";
 import { CheckoutProvider } from "@/components/checkout/checkout-context";
 import { Footer } from "@/components/layout/Footer";
@@ -47,6 +48,7 @@ export default function Layout({
                         </CheckoutProvider>
                     </CartProvider>
                 </PriceProvider>
+                <Toaster />
             </body>
         </html>
     );
