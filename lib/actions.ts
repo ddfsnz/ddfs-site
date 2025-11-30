@@ -26,7 +26,7 @@ export async function sendOrder(
                             <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item</th>
                             <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Quantity</th>
                             <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Unit Price</th>
-                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Total</th>
+                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,13 +65,104 @@ export async function sendOrder(
         `;
     }
 
-    const { data } = await resend.emails.send({
+    const { data: recipientData, error: recipientError } =
+        await resend.emails.send({
+            from: "DDFS NZ <orders@orders.ddfs.co.nz>",
+            replyTo: "jordan@ddfs.co.nz",
+            to: [recipient.email],
+            subject: "Your DDFS Order",
+            html: recipientTemplate(),
+        });
+
+    if (recipientError) {
+        console.error(
+            "Error sending order email to recipient:",
+            recipientError,
+            cartItems,
+            (cartPrice * 1.15).toFixed(2),
+            recipient,
+        );
+    }
+
+    console.log(
+        "Order email sent to recipient:",
+        recipientData,
+        cartItems,
+        (cartPrice * 1.15).toFixed(2),
+        recipient,
+    );
+
+    function ddfsTemplate() {
+        return `
+            <div style="font-family: Arial, sans-serif; background: #fafafa; padding: 32px;">
+                <img src="https://www.ddfs.co.nz/logo-red-horizontal.png" alt="Diplomatic Duty Free Services" />
+                <h1 style="color: #b91c1c; font-size: 2rem; margin-bottom: 0.5em;">New Order Received</h1>
+                <p>Here are the order details:</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+                    <thead>
+                        <tr style="background: #f3f4f6;">
+                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item</th>
+                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Quantity</th>
+                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Unit Price</th>
+                            <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cartItems
+                            .map(
+                                (item) => `
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #e5e7eb;">${item.product.name}</td>
+                                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">${item.quantity}</td>
+                                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">$${(item.product.price * 1.15).toFixed(2)} <span style="font-size: 0.8em;">incl.&nbsp;GST</span></td>
+                                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">$${(item.product.price * 1.15 * item.quantity).toFixed(2)} <span style="font-size: 0.8em;">incl.&nbsp;GST</span></td>
+                            </tr>
+                        `,
+                            )
+                            .join("")}
+                    </tbody>
+                </table>
+                <p style="font-size: 1.2rem; margin-top: 1.5em;">
+                    <strong>Order Total: <span style="color: #b91c1c;">$${(cartPrice * 1.15).toFixed(2)}</span> <span style="font-size: 0.8em;">(incl. GST)</span></strong>
+                </p>
+                <p>
+                    <strong>Recipient details:</strong
+                    <br />
+                    <span>${recipient.name}</span>
+                    <br />
+                    <span>${recipient.email}</span>
+                    <br />
+                    <span>${recipient.phone}</span>
+                    <br />
+                    <span>${recipient.embassy}</span>
+                </p>
+            </div>
+        `;
+    }
+
+    const { data: ddfsData, error: ddfsError } = await resend.emails.send({
         from: "DDFS NZ <orders@orders.ddfs.co.nz>",
-        replyTo: "jordan@ddfs.co.nz",
-        to: [recipient.email],
-        subject: "Your DDFS Order",
-        html: recipientTemplate(),
+        replyTo: recipient.email,
+        to: ["jordan@ddfs.co.nz"],
+        subject: `[$${(cartPrice * 1.15).toFixed(2)}] New order from ${recipient.name} at ${recipient.embassy}`,
+        html: ddfsTemplate(),
     });
 
-    console.log(data);
+    if (ddfsError) {
+        console.error(
+            "Error sending order email to DDFS:",
+            ddfsError,
+            cartItems,
+            cartPrice * 1.15,
+            recipient,
+        );
+    }
+
+    console.log(
+        "Order email sent to DDFS:",
+        ddfsData,
+        cartItems,
+        cartPrice * 1.15,
+        recipient,
+    );
 }
