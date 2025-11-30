@@ -16,6 +16,7 @@ import {
     HONEY_CATEGORY_ID,
     LIQUEURS_CATEGORY_ID,
     PORTS_CATEGORY_ID,
+    SPECIALTY_CATEGORY_ID,
     SPIRITS_CATEGORY_ID,
     TOBACCO_CATEGORY_ID,
     WINES_CATEGORY_ID,
@@ -39,6 +40,9 @@ export function ProductTile({ product }: { product: Product }) {
             break;
         case PORTS_CATEGORY_ID:
             productLink = `/ports/${product._id}`;
+            break;
+        case SPECIALTY_CATEGORY_ID:
+            productLink = `/specialty/${product._id}`;
             break;
         case SPIRITS_CATEGORY_ID:
             productLink = `/spirits/${product._id}`;

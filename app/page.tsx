@@ -50,7 +50,7 @@ export default function Page() {
                                 favorites, perfect for every beer enthusiast.
                             </p>
                         </Link>
-                        <Link href="/ciders" className="group">
+                        {/* <Link href="/ciders" className="group">
                             <Image
                                 src="/ciders.png"
                                 alt=""
@@ -65,7 +65,7 @@ export default function Page() {
                                 Taste crisp, refreshing ciders made from the
                                 finest New Zealand apples.
                             </p>
-                        </Link>
+                        </Link> */}
                         <Link href="/spirits" className="group">
                             <Image
                                 src="/spirits.png"
@@ -144,6 +144,23 @@ export default function Page() {
                             <p className="text-xs text-gray-500">
                                 Experience pure New Zealand Manuka honey, prized
                                 for its unique taste and health benefits.
+                            </p>
+                        </Link>
+                        <Link href="/specialty" className="group">
+                            <Image
+                                src="/specialty.png"
+                                alt=""
+                                height={800}
+                                width={1200}
+                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
+                            />
+                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
+                                Specialty Products
+                            </h2>
+                            <p className="text-xs text-gray-500">
+                                Discover specialty products like premium olive
+                                oils, crafted for exceptional flavor and
+                                quality.
                             </p>
                         </Link>
                     </div>
