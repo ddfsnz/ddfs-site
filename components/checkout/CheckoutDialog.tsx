@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { Button } from "@/components/_ui/button";
 import {
     Dialog,
@@ -15,28 +15,32 @@ import {
 } from "@/components/_ui/dialog";
 import { Input } from "@/components/_ui/input";
 import { useCart } from "@/components/cart/cart-context";
+import { useCheckout } from "@/components/checkout/checkout-context";
 import { sendOrder } from "@/lib/actions";
 
 export function CheckoutDialog({ children }: { children: ReactNode }) {
+    const { cartItems, cartPrice, emptyCart } = useCart();
     const {
-        cartItems,
-        cartPrice,
-        emptyCart,
         recipient,
         updateName,
         updateEmail,
+        updatePhone,
         updateEmbassy,
-    } = useCart();
+        resetRecipient,
+    } = useCheckout();
+    const [isError, setIsError] = useState(false);
+    const closeRef = useRef<HTMLButtonElement>(null);
 
     async function handleSendOrder() {
         if (!recipient.name || !recipient.email || !recipient.embassy) return;
         try {
             await sendOrder(cartItems, cartPrice, recipient);
-            alert("Order Sent!");
             emptyCart();
+            resetRecipient();
+            closeRef.current?.click();
         } catch (error) {
             console.error(error);
-            alert("Failed to send order.");
+            setIsError(true);
         }
     }
 
@@ -64,8 +68,11 @@ export function CheckoutDialog({ children }: { children: ReactNode }) {
                         />
                     </div>
                     <div className="grid grid-cols-1 gap-1">
-                        <label htmlFor="name" className="text-xs text-gray-500">
-                            Email
+                        <label
+                            htmlFor="email"
+                            className="text-xs text-gray-500"
+                        >
+                            Email Address
                         </label>
                         <Input
                             id="email"
@@ -76,7 +83,25 @@ export function CheckoutDialog({ children }: { children: ReactNode }) {
                         />
                     </div>
                     <div className="grid grid-cols-1 gap-1">
-                        <label htmlFor="name" className="text-xs text-gray-500">
+                        <label
+                            htmlFor="phone"
+                            className="text-xs text-gray-500"
+                        >
+                            Phone Number
+                        </label>
+                        <Input
+                            id="email"
+                            type="email"
+                            value={recipient.phone}
+                            onChange={(e) => updatePhone(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="grid grid-cols-1 gap-1">
+                        <label
+                            htmlFor="embassy"
+                            className="text-xs text-gray-500"
+                        >
                             Embassy
                         </label>
                         <Input
@@ -87,20 +112,28 @@ export function CheckoutDialog({ children }: { children: ReactNode }) {
                             required
                         />
                     </div>
+                    {isError && (
+                        <span className="text-center text-xs text-red-500">
+                            Something went wrong, please try again.
+                        </span>
+                    )}
                 </div>
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button variant="outline">Cancel</Button>
+                        <Button variant="outline" ref={closeRef}>
+                            Cancel
+                        </Button>
                     </DialogClose>
                     <Button
                         onClick={handleSendOrder}
                         disabled={
                             !recipient.name ||
                             !recipient.email ||
+                            !recipient.phone ||
                             !recipient.embassy
                         }
                     >
-                        Checkout <ArrowRight />
+                        Send Order <ArrowRight />
                     </Button>
                 </DialogFooter>
             </DialogContent>

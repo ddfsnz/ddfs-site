@@ -1,7 +1,8 @@
 "use server";
 
 import { Resend } from "resend";
-import { CartItem, OrderRecipient } from "@/components/cart/cart-context";
+import { CartItem } from "@/components/cart/cart-context";
+import { OrderRecipient } from "@/components/checkout/checkout-context";
 
 const { RESEND_API_KEY } = process.env;
 if (!RESEND_API_KEY) throw new Error("No Resend API key.");
@@ -45,6 +46,17 @@ export async function sendOrder(
                 </table>
                 <p style="font-size: 1.2rem; margin-top: 1.5em;">
                     <strong>Order Total: <span style="color: #b91c1c;">$${(cartPrice * 1.15).toFixed(2)}</span> <span style="font-size: 0.8em;">(incl. GST)</span></strong>
+                </p>
+                <p>
+                    <strong>Your details:</strong
+                    <br />
+                    <span>${recipient.name}</span>
+                    <br />
+                    <span>${recipient.email}</span>
+                    <br />
+                    <span>${recipient.phone}</span>
+                    <br />
+                    <span>${recipient.embassy}</span>
                 </p>
                 <p>Jordan from DDFS will be in touch to organise your Diplomatic Privileges Purchasing Letter (MFA606) and confirm delivery times for your order.</p>
                 <p>If you have any questions, please email Jordan at <a href="mailto:jordan@ddfs.co.nz" style="color: #b91c1c;">jordan@ddfs.co.nz</a> or call on <a href="tel:+64279092117" style="color: #b91c1c;">+64 27 909 2117</a>.</p>

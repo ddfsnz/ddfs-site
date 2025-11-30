@@ -16,13 +16,6 @@ export interface CartItem {
     quantity: number;
 }
 
-export interface OrderRecipient {
-    name: string;
-    email: string;
-    embassy: string;
-}
-
-// Define the CartContext type
 interface CartContextType {
     // Cart
     cartItems: CartItem[];
@@ -36,11 +29,6 @@ interface CartContextType {
     decreaseQuantity: (productId: string, packSize: number | null) => void;
     removeFromCart: (productId: string, packSize: number | null) => void;
     emptyCart: () => void;
-    // Recipient
-    recipient: OrderRecipient;
-    updateName: (value: string) => void;
-    updateEmail: (value: string) => void;
-    updateEmbassy: (value: string) => void;
 }
 
 // Create the CartContext
@@ -160,36 +148,14 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setCartItems([]);
     };
 
-    const [recipient, setRecipient] = useState<OrderRecipient>({
-        name: "",
-        email: "",
-        embassy: "",
-    });
-
-    function updateName(value: string) {
-        setRecipient({ ...recipient, name: value });
-    }
-
-    function updateEmail(value: string) {
-        setRecipient({ ...recipient, email: value });
-    }
-
-    function updateEmbassy(value: string) {
-        setRecipient({ ...recipient, embassy: value });
-    }
-
     const value: CartContextType = {
         cartItems,
         cartPrice,
-        recipient,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,
         emptyCart,
-        updateName,
-        updateEmail,
-        updateEmbassy,
     };
 
     return (

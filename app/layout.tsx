@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter, Urbanist } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-context";
+import { CheckoutProvider } from "@/components/checkout/checkout-context";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { PriceProvider } from "@/components/price/price-context";
@@ -39,9 +40,11 @@ export default function Layout({
             >
                 <PriceProvider>
                     <CartProvider>
-                        <Header />
-                        {children}
-                        <Footer />
+                        <CheckoutProvider>
+                            <Header />
+                            {children}
+                            <Footer />
+                        </CheckoutProvider>
                     </CartProvider>
                 </PriceProvider>
             </body>

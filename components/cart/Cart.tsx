@@ -70,7 +70,7 @@ export function Cart() {
                         </Button>
                         <CheckoutDialog>
                             <Button disabled={cartItems.length === 0}>
-                                Send Order <ArrowRight />
+                                Checkout <ArrowRight />
                             </Button>
                         </CheckoutDialog>
                     </div>
