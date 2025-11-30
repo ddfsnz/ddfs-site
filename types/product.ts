@@ -19,7 +19,7 @@ interface ProductBase {
         name: string;
     };
     description: PortableTextBlock[];
-    images?: {
+    images: {
         asset: {
             _id: string;
             url: string;

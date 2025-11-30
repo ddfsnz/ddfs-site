@@ -17,7 +17,10 @@ export function CartItem({ cartItem }: { cartItem: CartItemType }) {
     return (
         <div className="flex items-center gap-3 border-b pb-2">
             <div className="aspect-square size-24 shrink-0 overflow-hidden rounded-sm border bg-white">
-                <ProductImage product={cartItem.product} />
+                <ProductImage
+                    image={cartItem.product.images[0]}
+                    name={cartItem.product.name}
+                />
             </div>
             <div className="grid w-full gap-1">
                 <h3 className="line-clamp-2 text-sm font-semibold sm:text-base">

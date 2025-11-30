@@ -12,7 +12,7 @@ import { CatalogGrid } from "@/components/catalog/CatalogGrid";
 import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
-import { ProductImage } from "@/components/products/ProductImage";
+import { ProductImages } from "@/components/products/ProductImages";
 import { ProductOptions } from "@/components/products/ProductOptions";
 import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";
 import { Spirit } from "@/types/product";
@@ -79,7 +79,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </Breadcrumb>
                 <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-2 lg:gap-6">
                     <div className="overflow-hidden rounded-lg border">
-                        <ProductImage product={spirit} />
+                        <ProductImages product={spirit} />
                     </div>
                     <div className="grid h-min gap-6 md:pt-3 lg:pt-6 lg:pr-3 lg:pb-6">
                         <ProductDetails product={spirit}>

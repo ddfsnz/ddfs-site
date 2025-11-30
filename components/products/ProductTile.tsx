@@ -58,7 +58,7 @@ export function ProductTile({ product }: { product: Product }) {
             href={productLink}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 hover:text-red-700"
         >
-            <ProductImage product={product} />
+            <ProductImage image={product.images[0]} name={product.name} />
             <h3 className="mt-2 line-clamp-2 min-h-[calc((0.875rem*1.25)*2)] text-sm leading-tight font-medium transition-colors">
                 {product.name}
             </h3>

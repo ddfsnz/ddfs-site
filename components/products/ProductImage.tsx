@@ -3,10 +3,14 @@ import Image from "next/image";
 import { getImageSrc } from "@/lib/sanity-image";
 import { Product } from "@/types/product";
 
-export function ProductImage({ product }: { product: Product }) {
-    const imageSrc = product.images
-        ? getImageSrc(product.images[0])
-        : undefined;
+export function ProductImage({
+    image,
+    name,
+}: {
+    image: Product["images"][number];
+    name: string;
+}) {
+    const imageSrc = image ? getImageSrc(image) : undefined;
 
     return (
         <div className="flex aspect-square items-center justify-center overflow-hidden rounded-sm bg-white">
@@ -15,7 +19,7 @@ export function ProductImage({ product }: { product: Product }) {
                 <div className="relative h-full max-h-10/12 w-full max-w-10/12">
                     <Image
                         src={imageSrc}
-                        alt={product.name}
+                        alt={name}
                         fill
                         className="object-contain"
                     />
