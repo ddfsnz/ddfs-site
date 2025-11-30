@@ -1,9 +1,9 @@
 import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
-import { LIQUERS_CATEGORY_ID, sanity } from "@/lib/sanity";
+import { LIQUEURS_CATEGORY_ID, sanity } from "@/lib/sanity";
 import { Company, Style } from "@/types/metadata";
-import { Liquer } from "@/types/product";
+import { Liqueur } from "@/types/product";
 
 export default async function Page({
     searchParams,
@@ -32,8 +32,8 @@ export default async function Page({
 
     const sortOrder = filters.sort || "name asc";
 
-    const liquers = await sanity.fetch<Liquer[]>(
-        `*[_type == "product" && category._ref == "${LIQUERS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
+    const liqueurs = await sanity.fetch<Liqueur[]>(
+        `*[_type == "product" && category._ref == "${LIQUEURS_CATEGORY_ID}" ${searchFilter}] | order(${sortOrder}) {
             ...,
             company->{
                 ...,
@@ -50,21 +50,21 @@ export default async function Page({
     );
 
     const companies = await sanity.fetch<Company[]>(
-        `*[_type == "company" && category._ref == "${LIQUERS_CATEGORY_ID}"] | order(name asc)`,
+        `*[_type == "company" && category._ref == "${LIQUEURS_CATEGORY_ID}"] | order(name asc)`,
     );
 
     const styles = await sanity.fetch<Style[]>(
-        `*[_type == "tag" && type == "style" && category._ref == "${LIQUERS_CATEGORY_ID}"] | order(name asc)`,
+        `*[_type == "tag" && type == "style" && category._ref == "${LIQUEURS_CATEGORY_ID}"] | order(name asc)`,
     );
 
-    const allLiquerSizes = await sanity.fetch<Liquer[]>(
-        `*[_type == "product" && category._ref == "${LIQUERS_CATEGORY_ID}"] {
+    const allLiqueurSizes = await sanity.fetch<Liqueur[]>(
+        `*[_type == "product" && category._ref == "${LIQUEURS_CATEGORY_ID}"] {
             liquerOptions
         }`,
     );
     const sizes = Array.from(
         new Map(
-            allLiquerSizes.map((l) => [
+            allLiqueurSizes.map((l) => [
                 String(l.liquerOptions.size.value),
                 {
                     value: String(l.liquerOptions.size.value),
@@ -81,10 +81,10 @@ export default async function Page({
             <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/90 to-white"></div>
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
                 <CatalogHeader
-                    heading="Liquers"
+                    heading="Liqueurs"
                     subheading="Indulge in smooth, flavorful liqueurs ideal for sipping or mixing in cocktails."
                 />
-                <Catalog products={liquers} search={filters.search}>
+                <Catalog products={liqueurs} search={filters.search}>
                     <FilterInput
                         label="Producer"
                         filterName="company"

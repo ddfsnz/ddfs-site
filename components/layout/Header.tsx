@@ -50,7 +50,7 @@ export function Header() {
                                         <Link href="/spirits">Spirits</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
-                                        <Link href="/liquers">Liquers</Link>
+                                        <Link href="/liqueurs">Liqueurs</Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
                                         <Link href="/ports">Ports</Link>
@@ -129,10 +129,10 @@ export function Header() {
                                 </NavigationMenuLink>
                                 <NavigationMenuLink asChild>
                                     <Link
-                                        href="/liquers"
+                                        href="/liqueurs"
                                         className="w-full text-start"
                                     >
-                                        Liquers
+                                        Liqueurs
                                     </Link>
                                 </NavigationMenuLink>
                                 <NavigationMenuLink asChild>

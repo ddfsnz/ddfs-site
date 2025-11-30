@@ -82,7 +82,7 @@ export default function Page() {
                                 gin, vodka, and more from renowned distilleries.
                             </p>
                         </Link>
-                        <Link href="/liquers" className="group">
+                        <Link href="/liqueurs" className="group">
                             <Image
                                 src="/liqueurs.png"
                                 alt=""

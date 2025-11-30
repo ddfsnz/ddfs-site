@@ -1,10 +1,10 @@
 import { Badge } from "@/components/_ui/badge";
-import { Liquer } from "@/types/product";
+import { Liqueur } from "@/types/product";
 
-export function LiquerBadges({
+export function LiqueurBadges({
     liquerOptions,
 }: {
-    liquerOptions: Liquer["liquerOptions"];
+    liquerOptions: Liqueur["liquerOptions"];
 }) {
     return (
         <div className="flex flex-wrap gap-1">

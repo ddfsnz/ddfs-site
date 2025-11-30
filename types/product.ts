@@ -102,7 +102,8 @@ export interface Honey extends ProductBase {
           };
 }
 
-export interface Liquer extends ProductBase {
+export interface Liqueur extends ProductBase {
+    // Misspelling, needs to be changed in CMS and data migrated
     liquerOptions: {
         abv: number;
         isTravelExclusive?: boolean;
@@ -195,7 +196,7 @@ export type Product =
     | Beer
     | Cider
     | Honey
-    | Liquer
+    | Liqueur
     | Port
     | Spirit
     | Tobacco

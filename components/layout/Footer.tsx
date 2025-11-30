@@ -41,10 +41,10 @@ export function Footer() {
                             Spirits
                         </Link>
                         <Link
-                            href="/liquers"
+                            href="/liqueurs"
                             className="transition-colors hover:text-red-700"
                         >
-                            Liquers
+                            Liqueurs
                         </Link>
                         <Link
                             href="/ports"

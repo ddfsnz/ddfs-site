@@ -4,7 +4,7 @@ import { usePrice } from "@/components/price/usePrice";
 import { BeerBadges } from "@/components/products/badges/BeerBadges";
 import { CiderBadges } from "@/components/products/badges/CiderBadges";
 import { HoneyBadges } from "@/components/products/badges/HoneyBadges";
-import { LiquerBadges } from "@/components/products/badges/LiquerBadges";
+import { LiqueurBadges } from "@/components/products/badges/LiqueurBadges";
 import { PortBadges } from "@/components/products/badges/PortBadges";
 import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
 import { TobaccoBadges } from "@/components/products/badges/TobaccoBadges";
@@ -14,7 +14,7 @@ import {
     BEERS_CATEGORY_ID,
     CIDERS_CATEGORY_ID,
     HONEY_CATEGORY_ID,
-    LIQUERS_CATEGORY_ID,
+    LIQUEURS_CATEGORY_ID,
     PORTS_CATEGORY_ID,
     SPIRITS_CATEGORY_ID,
     TOBACCO_CATEGORY_ID,
@@ -34,8 +34,8 @@ export function ProductTile({ product }: { product: Product }) {
         case HONEY_CATEGORY_ID:
             productLink = `/honey/${product._id}`;
             break;
-        case LIQUERS_CATEGORY_ID:
-            productLink = `/liquers/${product._id}`;
+        case LIQUEURS_CATEGORY_ID:
+            productLink = `/liqueurs/${product._id}`;
             break;
         case PORTS_CATEGORY_ID:
             productLink = `/ports/${product._id}`;
@@ -110,7 +110,7 @@ export function ProductTile({ product }: { product: Product }) {
             )}
             {"liquerOptions" in product && (
                 <>
-                    <LiquerBadges liquerOptions={product.liquerOptions} />
+                    <LiqueurBadges liquerOptions={product.liquerOptions} />
                     <span className="text-xs text-gray-500">
                         {product.liquerOptions.size.value}
                         {product.liquerOptions.size.unit}
