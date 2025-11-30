@@ -2,7 +2,6 @@
 
 import { ArrowRight, ShoppingCart, XCircle } from "lucide-react";
 import { Button } from "@/components/_ui/button";
-import { Input } from "@/components/_ui/input";
 import {
     Sheet,
     SheetContent,
@@ -13,31 +12,11 @@ import {
 } from "@/components/_ui/sheet";
 import { useCart } from "@/components/cart/cart-context";
 import { CartItem } from "@/components/cart/CartItem";
+import { CheckoutDialog } from "@/components/checkout/CheckoutDialog";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
-import { sendOrder } from "@/lib/actions";
 
 export function Cart() {
-    const {
-        cartItems,
-        cartPrice,
-        emptyCart,
-        recipient,
-        updateName,
-        updateEmail,
-        updateEmbassy,
-    } = useCart();
-
-    async function handleSendOrder() {
-        if (!recipient.name || !recipient.email || !recipient.embassy) return;
-        try {
-            await sendOrder(cartItems, cartPrice, recipient);
-            alert("Order Sent!");
-            emptyCart();
-        } catch (error) {
-            console.error(error);
-            alert("Failed to send order.");
-        }
-    }
+    const { cartItems, cartPrice, emptyCart } = useCart();
 
     return (
         <Sheet>
@@ -81,23 +60,6 @@ export function Cart() {
                             <DisplayPrice price={cartPrice} />
                         </span>
                     </div>
-                    <div className="grid grid-cols-1 gap-3">
-                        <Input
-                            type="text"
-                            value={recipient.name}
-                            onChange={(e) => updateName(e.target.value)}
-                        />
-                        <Input
-                            type="email"
-                            value={recipient.email}
-                            onChange={(e) => updateEmail(e.target.value)}
-                        />
-                        <Input
-                            type="text"
-                            value={recipient.embassy}
-                            onChange={(e) => updateEmbassy(e.target.value)}
-                        />
-                    </div>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         <Button
                             onClick={emptyCart}
@@ -106,12 +68,11 @@ export function Cart() {
                         >
                             Empty Cart <XCircle />
                         </Button>
-                        <Button
-                            onClick={handleSendOrder}
-                            disabled={cartItems.length === 0}
-                        >
-                            Send Order <ArrowRight />
-                        </Button>
+                        <CheckoutDialog>
+                            <Button disabled={cartItems.length === 0}>
+                                Send Order <ArrowRight />
+                            </Button>
+                        </CheckoutDialog>
                     </div>
                 </SheetFooter>
             </SheetContent>

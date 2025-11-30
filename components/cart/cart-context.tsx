@@ -161,9 +161,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     };
 
     const [recipient, setRecipient] = useState<OrderRecipient>({
-        name: "Joseph Collicoat",
-        email: "jcollicoat@gmail.com",
-        embassy: "Test Embassy",
+        name: "",
+        email: "",
+        embassy: "",
     });
 
     function updateName(value: string) {
