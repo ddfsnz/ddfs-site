@@ -1,5 +1,12 @@
 import { PortableTextBlock } from "@portabletext/react";
 
+export interface ProductImage {
+    asset: {
+        _id: string;
+        url: string;
+    };
+}
+
 interface ProductBase {
     _createdAt: string;
     _id: string;
@@ -19,12 +26,7 @@ interface ProductBase {
         name: string;
     };
     description: PortableTextBlock[];
-    images: {
-        asset: {
-            _id: string;
-            url: string;
-        };
-    }[];
+    images?: ProductImage[];
     name: string;
     price: number;
     quantity: number[];

@@ -1,13 +1,13 @@
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { getImageSrc } from "@/lib/sanity-image";
-import { Product } from "@/types/product";
+import { ProductImage as ProductImageType } from "@/types/product";
 
 export function ProductImage({
     image,
     name,
 }: {
-    image: Product["images"][number];
+    image?: ProductImageType[][number];
     name: string;
 }) {
     const imageSrc = image ? getImageSrc(image) : undefined;
