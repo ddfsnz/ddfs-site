@@ -1,8 +1,10 @@
+import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import { CATALOG_IDS } from "@/app/[catalog]/config";
 import { sanity } from "@/lib/sanity";
 import { getImageSrc } from "@/lib/sanity-image";
+import { AboutDDFS } from "@/types/about";
 import { CatalogConfig } from "@/types/catalog";
 
 export default async function Page() {
@@ -14,6 +16,10 @@ export default async function Page() {
     const sortedCatalogConfigs = catalogIds
         .map((id) => catalogConfigs.find((cfg) => cfg._id === id))
         .filter(Boolean);
+
+    const aboutDDFS = await sanity.fetch<AboutDDFS>(
+        `*[_type == "about-ddfs"][0]`,
+    );
 
     return (
         <main className="relative">
@@ -32,6 +38,7 @@ export default async function Page() {
                     </div>
                     <div className="grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
                         {sortedCatalogConfigs.map((c) => {
+                            // TODO: Fix this mess
                             if (!c) return null;
                             const catalogKey = Object.keys(CATALOG_IDS).find(
                                 (key) =>
@@ -71,33 +78,12 @@ export default async function Page() {
                                 About DDFS
                             </h2>
                             <div className="grid gap-3 text-sm text-gray-700">
-                                <p>
-                                    Diplomatic Duty Free Services (DDFS) is New
-                                    Zealand’s only registered supplier dedicated
-                                    exclusively to the diplomatic community.
-                                    Family owned and operated since 2005, DDFS
-                                    is based in Wellington and proudly serves
-                                    embassies, high commissions, and consulates
-                                    from around the globe.
-                                </p>
-                                <p>
-                                    Our extensive selection includes premium
-                                    wines, spirits, tobacco, fragrances, Manuka
-                                    honey, and olive oil—all available duty
-                                    free. Use our website to explore our product
-                                    range, place your next order, and enjoy a
-                                    seamless duty free shopping experience. We
-                                    look forward to assisting you.
-                                </p>
-                                <p>
-                                    Jordan Collicoat, CEO, Diplomatic Duty Free
-                                    Services New Zealand
-                                </p>
+                                <PortableText value={aboutDDFS.content} />
                             </div>
                         </div>
                         <div className="flex justify-center md:w-1/2">
                             <Image
-                                src="/hero-homepage.png"
+                                src={getImageSrc(aboutDDFS.image) || ""}
                                 alt=""
                                 width={500}
                                 height={350}
