@@ -95,70 +95,24 @@ export async function Header() {
                                 <span className="w-full p-2 text-start text-sm font-semibold">
                                     Products
                                 </span>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/wines"
-                                        className="w-full text-start"
-                                    >
-                                        Wines
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/beers"
-                                        className="w-full text-start"
-                                    >
-                                        Beers
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/spirits"
-                                        className="w-full text-start"
-                                    >
-                                        Spirits
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/liqueurs"
-                                        className="w-full text-start"
-                                    >
-                                        Liqueurs
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/ports"
-                                        className="w-full text-start"
-                                    >
-                                        Ports
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/tobacco"
-                                        className="w-full text-start"
-                                    >
-                                        Tobacco
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/honey"
-                                        className="w-full text-start"
-                                    >
-                                        Manuka Honey
-                                    </Link>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        href="/specialty"
-                                        className="w-full text-start"
-                                    >
-                                        Specialty Products
-                                    </Link>
-                                </NavigationMenuLink>
+                                {Object.keys(CATALOG_IDS).map((c) => (
+                                    <NavigationMenuLink key={c} asChild>
+                                        <Link
+                                            href={`/${c}`}
+                                            className="w-full text-start"
+                                        >
+                                            {
+                                                catalogConfigs.find(
+                                                    (cf) =>
+                                                        cf._id ===
+                                                        CATALOG_IDS[
+                                                            c as keyof typeof CATALOG_IDS
+                                                        ],
+                                                )?.name
+                                            }
+                                        </Link>
+                                    </NavigationMenuLink>
+                                ))}
                                 <hr className="my-4 w-full" />
                                 <NavigationMenuLink asChild>
                                     <Link
