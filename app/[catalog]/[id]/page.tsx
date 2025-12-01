@@ -1,7 +1,7 @@
 import { ArrowRight, Home } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CATALOG_CONFIG, CatalogSlug } from "@/app/[catalog]/config";
+import { CATALOG_IDS, CatalogSlug } from "@/app/[catalog]/config";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -15,6 +15,7 @@ import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImages } from "@/components/products/ProductImages";
 import { ProductOptions } from "@/components/products/ProductOptions";
 import { sanity } from "@/lib/sanity";
+import { CatalogConfig } from "@/types/catalog";
 import { Product } from "@/types/product";
 
 export default async function Page({
@@ -23,7 +24,14 @@ export default async function Page({
     params: { catalog: CatalogSlug; id: string };
 }) {
     const { catalog, id } = await params;
-    const config = CATALOG_CONFIG[catalog];
+    const catalogId = CATALOG_IDS[catalog];
+    if (!catalogId) notFound();
+
+    const catalogConfig = await sanity.fetch<CatalogConfig>(
+        `*[_type == "category" && _id == $catalogId][0]`,
+        { catalogId },
+    );
+    if (!catalogId) notFound();
 
     const product = await sanity.fetch<Product | undefined>(
         `*[_type == "product" && _id == $id][0]{
@@ -32,7 +40,7 @@ export default async function Page({
                 ...,
                 name
             },
-            ${config.optionsKey} {
+            ${catalogConfig.optionsKey} {
                 ...,
                 style->{
                     ...,
@@ -42,19 +50,16 @@ export default async function Page({
         }`,
         { id: id },
     );
-
-    if (!product) {
-        notFound();
-    }
+    if (!product) notFound();
 
     const related = await sanity.fetch<Product[]>(
-        `*[_type == "product" && category._ref == "${config.id}" && company._ref == "${product.company._id}" && _id != "${product._id}"][0...4] {
+        `*[_type == "product" && category._ref == "${catalogId}" && company._ref == "${product.company._id}" && _id != "${product._id}"][0...4] {
             ...,
             company->{
                 ...,
                 name
             },
-            ${config.optionsKey} {
+            ${catalogConfig.optionsKey} {
                 ...,
                 style->{
                     ...,
@@ -77,7 +82,7 @@ export default async function Page({
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
                             <BreadcrumbLink href={`/${catalog}`}>
-                                {config.heading}
+                                {catalogConfig.name}
                             </BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>

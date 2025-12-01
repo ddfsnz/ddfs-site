@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
-import { CATALOG_CONFIG, CatalogSlug } from "@/app/[catalog]/config";
+import { CATALOG_IDS, CatalogSlug } from "@/app/[catalog]/config";
 import { Catalog } from "@/components/catalog/Catalog";
 import { CatalogHeader } from "@/components/catalog/CatalogHeader";
 import { FilterInput } from "@/components/catalog/FilterInput";
 import { sanity } from "@/lib/sanity";
+import { getImageSrc } from "@/lib/sanity-image";
 import { cn } from "@/lib/utils";
+import { CatalogConfig } from "@/types/catalog";
 import { Company, Style } from "@/types/metadata";
 import { Product } from "@/types/product";
 
@@ -23,11 +25,14 @@ export default async function Page({
     };
 }) {
     const { catalog } = await params;
-    const config = CATALOG_CONFIG[catalog];
+    const catalogId = CATALOG_IDS[catalog];
+    if (!catalogId) notFound();
 
-    if (!config) {
-        notFound();
-    }
+    const catalogConfig = await sanity.fetch<CatalogConfig>(
+        `*[_type == "category" && _id == $catalogId][0]`,
+        { catalogId },
+    );
+    if (!catalogConfig) notFound();
 
     const filters = await searchParams;
     let searchFilter = filters.search
@@ -37,25 +42,25 @@ export default async function Page({
         searchFilter += ` && company._ref == "${filters.company}"`;
     }
     if (filters.style) {
-        searchFilter += ` && ${config.optionsKey}.style._ref == "${filters.style}"`;
+        searchFilter += ` && ${catalogConfig.optionsKey}.style._ref == "${filters.style}"`;
     }
-    if (config.filters.includes("size") && filters.size) {
-        searchFilter += ` && ${config.optionsKey}.size.value == ${filters.size}`;
+    if (catalogConfig.filters.includes("size") && filters.size) {
+        searchFilter += ` && ${catalogConfig.optionsKey}.size.value == ${filters.size}`;
     }
-    if (config.filters.includes("container") && filters.container) {
-        searchFilter += ` && ${config.optionsKey}.container == "${filters.container}"`;
+    if (catalogConfig.filters.includes("container") && filters.container) {
+        searchFilter += ` && ${catalogConfig.optionsKey}.container == "${filters.container}"`;
     }
 
     const sortOrder = filters.sort || "name asc";
 
     const products = await sanity.fetch<Product[]>(
-        `*[_type == "product" && category._ref == "${config.id}" ${searchFilter}] | order(${sortOrder}) {
+        `*[_type == "product" && category._ref == "${catalogId}" ${searchFilter}] | order(${sortOrder}) {
             ...,
             company->{
                 ...,
                 name
             },
-            ${config.optionsKey} {
+            ${catalogConfig.optionsKey} {
                 ...,
                 style->{
                     ...,
@@ -66,33 +71,35 @@ export default async function Page({
     );
 
     const companies = await sanity.fetch<Company[]>(
-        `*[_type == "company" && category._ref == "${config.id}"] | order(name asc)`,
+        `*[_type == "company" && category._ref == "${catalogId}"] | order(name asc)`,
     );
 
     const styles = await sanity.fetch<Style[]>(
-        `*[_type == "tag" && type == "style" && category._ref == "${config.id}"] | order(name asc)`,
+        `*[_type == "tag" && type == "style" && category._ref == "${catalogId}"] | order(name asc)`,
     );
 
     let sizes: { value: string; label: string }[] = [];
-    if (config.filters.includes("size")) {
+    if (catalogConfig.filters.includes("size")) {
         const allSizes = await sanity.fetch<
             {
-                [config.optionsKey]: { size: { unit: string; value: number } };
+                [catalogConfig.optionsKey]: {
+                    size: { unit: string; value: number };
+                };
             }[]
         >(
-            `*[_type == "product" && category._ref == "${config.id}"] {
-                ${config.optionsKey}
+            `*[_type == "product" && category._ref == "${catalogId}"] {
+                ${catalogConfig.optionsKey}
             }`,
         );
         sizes = Array.from(
             new Map(
                 allSizes.map((p) => [
-                    String(p[config.optionsKey].size.value),
+                    String(p[catalogConfig.optionsKey].size.value),
                     {
-                        value: String(p[config.optionsKey].size.value),
+                        value: String(p[catalogConfig.optionsKey].size.value),
                         label:
-                            p[config.optionsKey].size.value +
-                            p[config.optionsKey].size.unit,
+                            p[catalogConfig.optionsKey].size.value +
+                            p[catalogConfig.optionsKey].size.unit,
                     },
                 ]),
             ).values(),
@@ -110,13 +117,15 @@ export default async function Page({
                 className={cn(
                     "absolute inset-0 aspect-[2/1] bg-contain bg-no-repeat",
                 )}
-                style={{ backgroundImage: `url(${config.hero})` }}
+                style={{
+                    backgroundImage: `url(${getImageSrc(catalogConfig.heroImage)})`,
+                }}
             ></div>
             <div className="absolute inset-0 aspect-[2/1] bg-gradient-to-b from-white/90 to-white"></div>
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 pt-40">
                 <CatalogHeader
-                    heading={config.heading}
-                    subheading={config.subheading}
+                    heading={catalogConfig.name}
+                    subheading={catalogConfig.description}
                 />
                 <Catalog products={products} search={filters.search}>
                     <FilterInput
@@ -137,7 +146,7 @@ export default async function Page({
                         }))}
                         defaultValue={filters.style}
                     />
-                    {config.filters.includes("size") && (
+                    {catalogConfig.filters.includes("size") && (
                         <FilterInput
                             label="Size"
                             filterName="size"
@@ -145,7 +154,7 @@ export default async function Page({
                             defaultValue={filters.size}
                         />
                     )}
-                    {config.filters.includes("container") && (
+                    {catalogConfig.filters.includes("container") && (
                         <FilterInput
                             label="Container"
                             filterName="container"
