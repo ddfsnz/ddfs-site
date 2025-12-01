@@ -1,7 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CATALOG_IDS } from "@/app/[catalog]/config";
+import { sanity } from "@/lib/sanity";
+import { getImageSrc } from "@/lib/sanity-image";
+import { CatalogConfig } from "@/types/catalog";
 
-export default function Page() {
+export default async function Page() {
+    const catalogIds = Object.values(CATALOG_IDS).map((id) => id);
+    const catalogConfigs = await sanity.fetch<CatalogConfig[]>(
+        `*[_type == "category" && _id in $catalogIds]`,
+        { catalogIds },
+    );
+    const sortedCatalogConfigs = catalogIds
+        .map((id) => catalogConfigs.find((cfg) => cfg._id === id))
+        .filter(Boolean);
+
     return (
         <main className="relative">
             <div className="absolute inset-0 aspect-[2/1] bg-[url('/hero-homepage.png')] bg-contain bg-no-repeat"></div>
@@ -18,151 +31,29 @@ export default function Page() {
                         </p>
                     </div>
                     <div className="grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-                        <Link href="/wines" className="group">
-                            <Image
-                                src="/wines.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Wines
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Discover a curated selection of premium wines
-                                from New Zealand and around the world.
-                            </p>
-                        </Link>
-                        <Link href="/beers" className="group">
-                            <Image
-                                src="/beers.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Beers
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Enjoy local craft brews and international
-                                favorites, perfect for every beer enthusiast.
-                            </p>
-                        </Link>
-                        {/* <Link href="/ciders" className="group">
-                            <Image
-                                src="/ciders.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Ciders
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Taste crisp, refreshing ciders made from the
-                                finest New Zealand apples.
-                            </p>
-                        </Link> */}
-                        <Link href="/spirits" className="group">
-                            <Image
-                                src="/spirits.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Spirits
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Explore top-shelf spirits, including whisky,
-                                gin, vodka, and more from renowned distilleries.
-                            </p>
-                        </Link>
-                        <Link href="/liqueurs" className="group">
-                            <Image
-                                src="/liqueurs.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Liqueurs
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Indulge in smooth, flavorful liqueurs ideal for
-                                sipping or mixing in cocktails.
-                            </p>
-                        </Link>
-                        <Link href="/ports" className="group">
-                            <Image
-                                src="/ports.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Ports
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Savor rich, aged ports with deep flavors,
-                                perfect for after-dinner enjoyment.
-                            </p>
-                        </Link>
-                        <Link href="/tobacco" className="group">
-                            <Image
-                                src="/tobacco.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Tobacco
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Choose from a range of premium tobacco products
-                                for discerning connoisseurs.
-                            </p>
-                        </Link>
-                        <Link href="/honey" className="group">
-                            <Image
-                                src="/honey.png"
-                                alt=""
-                                height={600}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Manuka Honey
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Experience pure New Zealand Manuka honey, prized
-                                for its unique taste and health benefits.
-                            </p>
-                        </Link>
-                        <Link href="/specialty" className="group">
-                            <Image
-                                src="/specialty.png"
-                                alt=""
-                                height={800}
-                                width={1200}
-                                className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
-                            />
-                            <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
-                                Specialty Products
-                            </h2>
-                            <p className="text-xs text-gray-500">
-                                Discover specialty products like premium olive
-                                oils, crafted for exceptional flavor and
-                                quality.
-                            </p>
-                        </Link>
+                        {sortedCatalogConfigs.map((c) =>
+                            c ? (
+                                <Link
+                                    key={c._id}
+                                    href={"/wines"}
+                                    className="group"
+                                >
+                                    <Image
+                                        src={getImageSrc(c.tileImage) || ""}
+                                        alt=""
+                                        height={800}
+                                        width={1200}
+                                        className="rounded-xl shadow-red-700/10 transition-all ease-in-out group-hover:scale-103 group-hover:shadow-2xl"
+                                    />
+                                    <h2 className="font-display mt-3 text-2xl font-semibold transition-colors group-hover:text-red-700">
+                                        {c.name}
+                                    </h2>
+                                    <p className="text-xs text-gray-500">
+                                        {c.description}
+                                    </p>
+                                </Link>
+                            ) : null,
+                        )}
                     </div>
                     <section
                         id="about"
