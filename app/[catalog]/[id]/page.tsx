@@ -1,6 +1,7 @@
 import { ArrowRight, Home } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CATALOG_CONFIG, CatalogSlug } from "@/app/[catalog]/config";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -9,24 +10,29 @@ import {
     BreadcrumbSeparator,
 } from "@/components/_ui/breadcrumb";
 import { CatalogGrid } from "@/components/catalog/CatalogGrid";
-import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
 import { ProductDescription } from "@/components/products/ProductDescription";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { ProductImages } from "@/components/products/ProductImages";
 import { ProductOptions } from "@/components/products/ProductOptions";
-import { sanity, SPIRITS_CATEGORY_ID } from "@/lib/sanity";
-import { Spirit } from "@/types/product";
+import { sanity } from "@/lib/sanity";
+import { Product } from "@/types/product";
 
-export default async function Page({ params }: { params: { id: string } }) {
-    const { id } = await params;
-    const spirit = await sanity.fetch<Spirit | undefined>(
+export default async function Page({
+    params,
+}: {
+    params: { catalog: CatalogSlug; id: string };
+}) {
+    const { catalog, id } = await params;
+    const config = CATALOG_CONFIG[catalog];
+
+    const product = await sanity.fetch<Product | undefined>(
         `*[_type == "product" && _id == $id][0]{
             ...,
             company->{
                 ...,
                 name
             },
-            spiritOptions {
+            ${config.optionsKey} {
                 ...,
                 style->{
                     ...,
@@ -37,19 +43,18 @@ export default async function Page({ params }: { params: { id: string } }) {
         { id: id },
     );
 
-    if (!spirit) {
+    if (!product) {
         notFound();
     }
 
-    const companyId = spirit.company._id;
-    const related = await sanity.fetch<Spirit[]>(
-        `*[_type == "product" && category._ref == "${SPIRITS_CATEGORY_ID}" && company._ref == "${companyId}" && _id != "${spirit._id}"][0...4] {
+    const related = await sanity.fetch<Product[]>(
+        `*[_type == "product" && category._ref == "${config.id}" && company._ref == "${product.company._id}" && _id != "${product._id}"][0...4] {
             ...,
             company->{
                 ...,
                 name
             },
-            spiritOptions {
+            ${config.optionsKey} {
                 ...,
                 style->{
                     ...,
@@ -71,38 +76,41 @@ export default async function Page({ params }: { params: { id: string } }) {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbLink href="/spirits">
-                                Spirits
+                            <BreadcrumbLink href={`/${catalog}`}>
+                                {config.heading}
                             </BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
                 <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-2 lg:gap-6">
                     <div className="overflow-hidden rounded-lg border">
-                        <ProductImages product={spirit} />
+                        <ProductImages product={product} />
                     </div>
                     <div className="grid h-min gap-6 md:pt-3 lg:pt-6 lg:pr-3 lg:pb-6">
-                        <ProductDetails product={spirit}>
-                            <SpiritBadges
-                                spiritOptions={spirit.spiritOptions}
-                            />
-                        </ProductDetails>
-                        <ProductOptions product={spirit} />
+                        <ProductDetails product={product} />
+                        <ProductOptions
+                            product={product}
+                            packSizes={
+                                "beerOptions" in product
+                                    ? product.beerOptions.quantity
+                                    : undefined
+                            }
+                        />
                     </div>
                 </div>
                 <div className="mx-auto my-12 w-full max-w-3xl">
                     <h2 className="font-display mb-2 text-2xl font-bold">
-                        {spirit.name}
+                        {product.name}
                     </h2>
-                    <ProductDescription description={spirit.description} />
+                    <ProductDescription description={product.description} />
                 </div>
                 <div className="mx-auto my-12 w-full max-w-5xl">
                     <div className="flex items-baseline justify-between gap-3">
                         <h2 className="font-display mb-6 text-2xl font-bold">
-                            More from {spirit.company.name}
+                            More from {product.company.name}
                         </h2>
                         <Link
-                            href={`/spirits?company=${companyId}`}
+                            href={`/${catalog}?company=${product.company._id}`}
                             className="flex items-center gap-1 transition-colors hover:text-red-700"
                         >
                             See All <ArrowRight className="size-4" />

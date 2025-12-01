@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { DisplayPrice } from "@/components/price/DisplayPrice";
 import { usePrice } from "@/components/price/usePrice";
-import { BeerBadges } from "@/components/products/badges/BeerBadges";
-import { CiderBadges } from "@/components/products/badges/CiderBadges";
-import { HoneyBadges } from "@/components/products/badges/HoneyBadges";
-import { LiqueurBadges } from "@/components/products/badges/LiqueurBadges";
-import { PortBadges } from "@/components/products/badges/PortBadges";
-import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
-import { TobaccoBadges } from "@/components/products/badges/TobaccoBadges";
-import { WineBadges } from "@/components/products/badges/WineBadges";
+import { ProductBadges } from "@/components/products/ProductBadges";
 import { ProductImage } from "@/components/products/ProductImage";
 import {
     BEERS_CATEGORY_ID,
@@ -62,43 +55,35 @@ export function ProductTile({ product }: { product: Product }) {
             href={productLink}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 hover:text-red-700"
         >
-            <ProductImage image={product.images[0]} name={product.name} />
+            <ProductImage image={product.images?.[0]} name={product.name} />
             <h3 className="mt-2 line-clamp-2 min-h-[calc((0.875rem*1.25)*2)] text-sm leading-tight font-medium transition-colors">
                 {product.name}
             </h3>
+            <ProductBadges product={product} />
             {"beerOptions" in product && (
-                <>
-                    <BeerBadges beerOptions={product.beerOptions} />
-                    <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        {product.beerOptions.quantity.map((o, i) => (
-                            <span key={o}>
-                                {o} Pack
-                                {i !==
-                                    product.beerOptions.quantity.length - 1 &&
-                                    ","}
-                            </span>
-                        ))}
-                    </div>
-                </>
+                <div className="flex flex-wrap gap-1 text-xs text-gray-500">
+                    {product.beerOptions.quantity.map((o, i) => (
+                        <span key={o}>
+                            {o} Pack
+                            {i !== product.beerOptions.quantity.length - 1 &&
+                                ","}
+                        </span>
+                    ))}
+                </div>
             )}
             {"ciderOptions" in product && (
-                <>
-                    <CiderBadges ciderOptions={product.ciderOptions} />
-                    <div className="flex flex-wrap gap-1 text-xs text-gray-500">
-                        {product.ciderOptions.quantity.map((o, i) => (
-                            <span key={o}>
-                                {o} Pack
-                                {i !==
-                                    product.ciderOptions.quantity.length - 1 &&
-                                    ","}
-                            </span>
-                        ))}
-                    </div>
-                </>
+                <div className="flex flex-wrap gap-1 text-xs text-gray-500">
+                    {product.ciderOptions.quantity.map((o, i) => (
+                        <span key={o}>
+                            {o} Pack
+                            {i !== product.ciderOptions.quantity.length - 1 &&
+                                ","}
+                        </span>
+                    ))}
+                </div>
             )}
             {"honeyOptions" in product && (
                 <>
-                    <HoneyBadges honeyOptions={product.honeyOptions} />
                     {"quantity" in product.honeyOptions && (
                         <span className="text-xs text-gray-500">
                             {product.honeyOptions.quantity} capsules
@@ -113,35 +98,25 @@ export function ProductTile({ product }: { product: Product }) {
                 </>
             )}
             {"liquerOptions" in product && (
-                <>
-                    <LiqueurBadges liquerOptions={product.liquerOptions} />
-                    <span className="text-xs text-gray-500">
-                        {product.liquerOptions.size.value}
-                        {product.liquerOptions.size.unit}
-                    </span>
-                </>
+                <span className="text-xs text-gray-500">
+                    {product.liquerOptions.size.value}
+                    {product.liquerOptions.size.unit}
+                </span>
             )}
             {"portOptions" in product && (
-                <>
-                    <PortBadges portOptions={product.portOptions} />
-                    <span className="text-xs text-gray-500">
-                        {product.portOptions.size.value}
-                        {product.portOptions.size.unit}
-                    </span>
-                </>
+                <span className="text-xs text-gray-500">
+                    {product.portOptions.size.value}
+                    {product.portOptions.size.unit}
+                </span>
             )}
             {"spiritOptions" in product && (
-                <>
-                    <SpiritBadges spiritOptions={product.spiritOptions} />
-                    <span className="text-xs text-gray-500">
-                        {product.spiritOptions.size.value}
-                        {product.spiritOptions.size.unit}
-                    </span>
-                </>
+                <span className="text-xs text-gray-500">
+                    {product.spiritOptions.size.value}
+                    {product.spiritOptions.size.unit}
+                </span>
             )}
             {"tobaccoOptions" in product && (
                 <>
-                    <TobaccoBadges tobaccoOptions={product.tobaccoOptions} />
                     {"quantity" in product.tobaccoOptions && (
                         <span className="text-xs text-gray-500">
                             {product.tobaccoOptions.quantity} per pack
@@ -156,13 +131,10 @@ export function ProductTile({ product }: { product: Product }) {
                 </>
             )}
             {"wineOptions" in product && (
-                <>
-                    <WineBadges wineOptions={product.wineOptions} />
-                    <span className="text-xs text-gray-500">
-                        {product.wineOptions.size.value}
-                        {product.wineOptions.size.unit}
-                    </span>
-                </>
+                <span className="text-xs text-gray-500">
+                    {product.wineOptions.size.value}
+                    {product.wineOptions.size.unit}
+                </span>
             )}
             <span className="font-display mt-auto text-lg font-bold text-red-700">
                 <DisplayPrice
