@@ -2,6 +2,7 @@ import { BeerBadges } from "@/components/products/badges/BeerBadges";
 import { HoneyBadges } from "@/components/products/badges/HoneyBadges";
 import { LiqueurBadges } from "@/components/products/badges/LiqueurBadges";
 import { PortBadges } from "@/components/products/badges/PortBadges";
+import { SpecialtyBadges } from "@/components/products/badges/SpecialtyBadges";
 import { SpiritBadges } from "@/components/products/badges/SpiritBadges";
 import { TobaccoBadges } from "@/components/products/badges/TobaccoBadges";
 import { WineBadges } from "@/components/products/badges/WineBadges";
@@ -20,7 +21,9 @@ export function ProductBadges({ product }: { product: Product }) {
     if ("portOptions" in product) {
         return <PortBadges portOptions={product.portOptions} />;
     }
-    // TODO: Specialty Options
+    if ("specialtyOptions" in product) {
+        return <SpecialtyBadges specialtyOptions={product.specialtyOptions} />;
+    }
     if ("spiritOptions" in product) {
         return <SpiritBadges spiritOptions={product.spiritOptions} />;
     }

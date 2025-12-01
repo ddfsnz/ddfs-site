@@ -136,6 +136,20 @@ export interface Port extends ProductBase {
     };
 }
 
+export interface Specialty extends ProductBase {
+    specialtyOptions: {
+        size: {
+            unit: string;
+            value: number;
+        };
+        style: {
+            _ref: string;
+            _type: "reference";
+            name: string;
+        };
+    };
+}
+
 export interface Spirit extends ProductBase {
     spiritOptions: {
         abv: number;
@@ -200,6 +214,7 @@ export type Product =
     | Honey
     | Liqueur
     | Port
+    | Specialty
     | Spirit
     | Tobacco
     | Wine;

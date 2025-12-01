@@ -109,6 +109,12 @@ export function ProductTile({ product }: { product: Product }) {
                     {product.portOptions.size.unit}
                 </span>
             )}
+            {"specialtyOptions" in product && (
+                <span className="text-xs text-gray-500">
+                    {product.specialtyOptions.size.value}
+                    {product.specialtyOptions.size.unit}
+                </span>
+            )}
             {"spiritOptions" in product && (
                 <span className="text-xs text-gray-500">
                     {product.spiritOptions.size.value}
