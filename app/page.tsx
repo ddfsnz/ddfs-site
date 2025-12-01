@@ -31,11 +31,18 @@ export default async function Page() {
                         </p>
                     </div>
                     <div className="grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-                        {sortedCatalogConfigs.map((c) =>
-                            c ? (
+                        {sortedCatalogConfigs.map((c) => {
+                            if (!c) return null;
+                            const catalogKey = Object.keys(CATALOG_IDS).find(
+                                (key) =>
+                                    CATALOG_IDS[
+                                        key as keyof typeof CATALOG_IDS
+                                    ] === c._id,
+                            );
+                            return (
                                 <Link
                                     key={c._id}
-                                    href={"/wines"}
+                                    href={`/${catalogKey}`}
                                     className="group"
                                 >
                                     <Image
@@ -52,8 +59,8 @@ export default async function Page() {
                                         {c.description}
                                     </p>
                                 </Link>
-                            ) : null,
-                        )}
+                            );
+                        })}
                     </div>
                     <section
                         id="about"

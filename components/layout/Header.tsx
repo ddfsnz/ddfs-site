@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { CATALOG_IDS } from "@/app/[catalog]/config";
 import { Button } from "@/components/_ui/button";
 import {
     NavigationMenu,
@@ -13,8 +14,16 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { GSTSwitch } from "@/components/price/GSTSwitch";
+import { sanity } from "@/lib/sanity";
+import { CatalogConfig } from "@/types/catalog";
 
-export function Header() {
+export async function Header() {
+    const catalogIds = Object.values(CATALOG_IDS).map((id) => id);
+    const catalogConfigs = await sanity.fetch<CatalogConfig[]>(
+        `*[_type == "category" && _id in $catalogIds]`,
+        { catalogIds },
+    );
+
     return (
         <header className="bg-background fixed top-0 z-50 w-full border-b p-2 sm:p-3">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
@@ -37,32 +46,21 @@ export function Header() {
                                     Products
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent className="min-w-48">
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/wines">Wines</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/beers">Beers</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/spirits">Spirits</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/liqueurs">Liqueurs</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/ports">Ports</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/tobacco">Tobacco</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/honey">Manuka Honey</Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/specialty">
-                                            Specialty Products
-                                        </Link>
-                                    </NavigationMenuLink>
+                                    {Object.keys(CATALOG_IDS).map((c) => (
+                                        <NavigationMenuLink key={c} asChild>
+                                            <Link href={`/${c}`}>
+                                                {
+                                                    catalogConfigs.find(
+                                                        (cf) =>
+                                                            cf._id ===
+                                                            CATALOG_IDS[
+                                                                c as keyof typeof CATALOG_IDS
+                                                            ],
+                                                    )?.name
+                                                }
+                                            </Link>
+                                        </NavigationMenuLink>
+                                    ))}
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
