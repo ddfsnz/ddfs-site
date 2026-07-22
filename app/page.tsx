@@ -7,6 +7,8 @@ import { getImageSrc } from "@/lib/sanity-image";
 import { AboutDDFS } from "@/types/about";
 import { CatalogConfig } from "@/types/catalog";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
     const catalogIds = Object.values(CATALOG_IDS).map((id) => id);
     const catalogConfigs = await sanity.fetch<CatalogConfig[]>(
