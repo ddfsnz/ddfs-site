@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/_ui/sonner";
 import { CartProvider } from "@/components/cart/cart-context";
 import { CheckoutProvider } from "@/components/checkout/checkout-context";
+import { AgeDialog } from "@/components/layout/AgeDialog";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { PriceProvider } from "@/components/price/price-context";
@@ -42,6 +43,7 @@ export default function Layout({
                 <PriceProvider>
                     <CartProvider>
                         <CheckoutProvider>
+                            <AgeDialog />
                             <Header />
                             {children}
                             <Footer />
