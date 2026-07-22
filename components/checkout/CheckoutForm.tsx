@@ -1,13 +1,33 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
 import { useCart } from "@/components/cart/cart-context";
 import { useCheckout } from "@/components/checkout/checkout-context";
 import { sendOrder } from "@/lib/actions";
+
+function CheckoutSubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button
+            type="submit"
+            className="mt-3 place-self-end"
+            disabled={pending}
+        >
+            Send Order{" "}
+            {pending ? (
+                <LoaderCircle className="animate-spin" />
+            ) : (
+                <ArrowRight />
+            )}
+        </Button>
+    );
+}
 
 export function CheckoutForm() {
     const { cartItems, cartPrice, emptyCart } = useCart();
@@ -86,9 +106,7 @@ export function CheckoutForm() {
                     required
                 />
             </div>
-            <Button type="submit" className="mt-3 place-self-end">
-                Send Order <ArrowRight />
-            </Button>
+            <CheckoutSubmitButton />
         </form>
     );
 }
