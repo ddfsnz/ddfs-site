@@ -18,3 +18,8 @@ export const SPECIALTY_CATEGORY_ID = "a897735c-d4b2-42f2-8291-aa98813abe8c";
 export const SPIRITS_CATEGORY_ID = "ec175758-a8ad-4ace-a2ba-d1b176cefe15";
 export const TOBACCO_CATEGORY_ID = "0fa5237f-94fa-4e1b-ae62-2b47e8e7a6b3";
 export const WINES_CATEGORY_ID = "6e00044c-9bd3-4714-83d8-0ef3dfb3f445";
+
+export const FOOTER_PDF_IDS = [
+    "monthly-pricelist",
+    "winery-of-the-month",
+] as const;
