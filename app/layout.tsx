@@ -28,6 +28,10 @@ export const metadata: Metadata = {
     title: "Diplomatic Duty Free Services NZ",
     description:
         "Exclusive duty free shopping for diplomats in New Zealand. Discover premium products, seamless service, and secure access tailored for diplomatic personnel.",
+    icons: {
+        icon: "/logo.png",
+        apple: "/logo.png",
+    },
 };
 
 export default function Layout({
