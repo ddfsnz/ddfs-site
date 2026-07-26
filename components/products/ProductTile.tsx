@@ -17,34 +17,34 @@ import {
 import { Product } from "@/types/product";
 
 export function ProductTile({ product }: { product: Product }) {
-    let productLink = "/";
+    let productCategory = "beers";
     switch (product.category._ref) {
         case BEERS_CATEGORY_ID:
-            productLink = `/beers/${product._id}`;
+            productCategory = "beers";
             break;
         case CIDERS_CATEGORY_ID:
-            productLink = `/ciders/${product._id}`;
+            productCategory = "ciders";
             break;
         case HONEY_CATEGORY_ID:
-            productLink = `/honey/${product._id}`;
+            productCategory = "honey";
             break;
         case LIQUEURS_CATEGORY_ID:
-            productLink = `/liqueurs/${product._id}`;
+            productCategory = "liqueurs";
             break;
         case PORTS_CATEGORY_ID:
-            productLink = `/ports/${product._id}`;
+            productCategory = "ports";
             break;
         case SPECIALTY_CATEGORY_ID:
-            productLink = `/specialty/${product._id}`;
+            productCategory = "specialty";
             break;
         case SPIRITS_CATEGORY_ID:
-            productLink = `/spirits/${product._id}`;
+            productCategory = "spirits";
             break;
         case TOBACCO_CATEGORY_ID:
-            productLink = `/tobacco/${product._id}`;
+            productCategory = "tobacco";
             break;
         case WINES_CATEGORY_ID:
-            productLink = `/wines/${product._id}`;
+            productCategory = "wines";
             break;
     }
 
@@ -52,15 +52,15 @@ export function ProductTile({ product }: { product: Product }) {
 
     return (
         <Link
-            href={productLink}
+            href={`/${productCategory}/${product._id}`}
             className="flex flex-col gap-2 rounded-md border border-gray-100 bg-gray-50 p-2 hover:text-red-700"
         >
             <ProductImage image={product.images?.[0]} name={product.name} />
-            <h3 className="mt-2 line-clamp-2 min-h-[calc((0.875rem*1.25)*2)] text-sm leading-tight font-medium transition-colors">
+            <h3 className="mt-2 line-clamp-2 min-h-8.75 text-sm leading-tight font-medium transition-colors">
                 {product.name}
             </h3>
             <ProductBadges product={product} />
-            {"beerOptions" in product && (
+            {productCategory === "beers" && "beerOptions" in product && (
                 <div className="flex flex-wrap gap-1 text-xs text-gray-500">
                     {product.beerOptions.quantity.map((o, i) => (
                         <span key={o}>
@@ -71,7 +71,7 @@ export function ProductTile({ product }: { product: Product }) {
                     ))}
                 </div>
             )}
-            {"ciderOptions" in product && (
+            {productCategory === "ciders" && "ciderOptions" in product && (
                 <div className="flex flex-wrap gap-1 text-xs text-gray-500">
                     {product.ciderOptions.quantity.map((o, i) => (
                         <span key={o}>
@@ -82,7 +82,7 @@ export function ProductTile({ product }: { product: Product }) {
                     ))}
                 </div>
             )}
-            {"honeyOptions" in product && (
+            {productCategory === "honey" && "honeyOptions" in product && (
                 <>
                     {"quantity" in product.honeyOptions && (
                         <span className="text-xs text-gray-500">
@@ -97,31 +97,32 @@ export function ProductTile({ product }: { product: Product }) {
                     )}
                 </>
             )}
-            {"liquerOptions" in product && (
+            {productCategory === "liqueurs" && "liquerOptions" in product && (
                 <span className="text-xs text-gray-500">
                     {product.liquerOptions.size.value}
                     {product.liquerOptions.size.unit}
                 </span>
             )}
-            {"portOptions" in product && (
+            {productCategory === "ports" && "portOptions" in product && (
                 <span className="text-xs text-gray-500">
                     {product.portOptions.size.value}
                     {product.portOptions.size.unit}
                 </span>
             )}
-            {"specialtyOptions" in product && (
-                <span className="text-xs text-gray-500">
-                    {product.specialtyOptions.size.value}
-                    {product.specialtyOptions.size.unit}
-                </span>
-            )}
-            {"spiritOptions" in product && (
+            {productCategory === "specialty" &&
+                "specialtyOptions" in product && (
+                    <span className="text-xs text-gray-500">
+                        {product.specialtyOptions.size.value}
+                        {product.specialtyOptions.size.unit}
+                    </span>
+                )}
+            {productCategory === "spirits" && "spiritOptions" in product && (
                 <span className="text-xs text-gray-500">
                     {product.spiritOptions.size.value}
                     {product.spiritOptions.size.unit}
                 </span>
             )}
-            {"tobaccoOptions" in product && (
+            {productCategory === "tobacco" && "tobaccoOptions" in product && (
                 <>
                     {"quantity" in product.tobaccoOptions && (
                         <span className="text-xs text-gray-500">
@@ -136,7 +137,7 @@ export function ProductTile({ product }: { product: Product }) {
                     )}
                 </>
             )}
-            {"wineOptions" in product && (
+            {productCategory === "wines" && "wineOptions" in product && (
                 <span className="text-xs text-gray-500">
                     {product.wineOptions.size.value}
                     {product.wineOptions.size.unit}
