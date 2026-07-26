@@ -17,7 +17,7 @@ export async function sendOrder(
     function recipientTemplate() {
         return `
             <div style="font-family: Arial, sans-serif; background: #fafafa; padding: 32px;">
-                <img src="https://www.ddfs.co.nz/logo-red-horizontal.png" alt="Diplomatic Duty Free Services" />
+                <img src="https://www.ddfs.co.nz/logo-red-horizontal.png" alt="Diplomatic Duty Free Services" style="height: 40px; width: auto;" />
                 <h1 style="color: #b91c1c; font-size: 2rem; margin-bottom: 0.5em;">Your DDFS Order</h1>
                 <p>Hi ${recipient.name}, thank you for your order. Here are your order details:</p>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
@@ -95,7 +95,7 @@ export async function sendOrder(
     function ddfsTemplate() {
         return `
             <div style="font-family: Arial, sans-serif; background: #fafafa; padding: 32px;">
-                <img src="https://www.ddfs.co.nz/logo-red-horizontal.png" alt="Diplomatic Duty Free Services" />
+                <img src="https://www.ddfs.co.nz/logo-red-horizontal.png" alt="Diplomatic Duty Free Services" style="height: 40px; width: auto;" />
                 <h1 style="color: #b91c1c; font-size: 2rem; margin-bottom: 0.5em;">New Order Received</h1>
                 <p>Here are the order details:</p>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
